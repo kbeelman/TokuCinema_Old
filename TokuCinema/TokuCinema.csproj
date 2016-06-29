@@ -81,6 +81,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -203,8 +205,104 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AudioTrack.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Distributor.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Format.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormatType.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Language.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MediaFile.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medium.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Packaging.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RegionType.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingItem.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Standard.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StandardType.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubtitleTrack.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TokuCinemaEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TokuCinemaEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TokuCinemaEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TokuCinemaEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoBoxSet.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoBoxSetType.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoMedia.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoRelease.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoReview.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoVersion.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoVersionType.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -219,12 +317,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\TokuCinemaEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
+      <LastGenOutput>TokuCinemaEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TokuCinemaEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
+      <LastGenOutput>TokuCinemaEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="DesignDocuments\TokuCinemaDatabase_CrowsFeet.vsdx" />
+    <EntityDeploy Include="Models\TokuCinemaEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TokuCinemaEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TokuCinemaEntities.edmx.diagram">
+      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -289,6 +402,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,1785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AudioTrack">
+          <Key>
+            <PropertyRef Name="AudioTrackid" />
+          </Key>
+          <Property Name="AudioTrackid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LanguageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AudioTrackName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="AudioTrackDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Channel" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Distributor">
+          <Key>
+            <PropertyRef Name="DistributorId" />
+          </Key>
+          <Property Name="DistributorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DistributorName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="DistributorDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Format">
+          <Key>
+            <PropertyRef Name="FormatId" />
+          </Key>
+          <Property Name="FormatId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FormatTypeId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormatType">
+          <Key>
+            <PropertyRef Name="FormatTypeId" />
+          </Key>
+          <Property Name="FormatTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FormatName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="FormatDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LanguageName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="MediaId" />
+          </Key>
+          <Property Name="MediaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MediaOfficialTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MediaDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WikipediaLink" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MediaFile">
+          <Key>
+            <PropertyRef Name="MediaFielId" />
+          </Key>
+          <Property Name="MediaFielId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MediaFile" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Image" Type="bit" Nullable="false" />
+          <Property Name="Video" Type="bit" Nullable="false" />
+          <Property Name="Location" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packaging">
+          <Key>
+            <PropertyRef Name="PackagingId" />
+          </Key>
+          <Property Name="PackagingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PackagingDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PackagingName" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegionTypeId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionType">
+          <Key>
+            <PropertyRef Name="RegionTypeId" />
+          </Key>
+          <Property Name="RegionTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="RegionDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShoppingItem">
+          <Key>
+            <PropertyRef Name="ShoppingItemId" />
+          </Key>
+          <Property Name="ShoppingItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PurchaseLink" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Standard">
+          <Key>
+            <PropertyRef Name="StandardId" />
+          </Key>
+          <Property Name="StandardId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StandardTypeID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StandardType">
+          <Key>
+            <PropertyRef Name="StandardTypeId" />
+          </Key>
+          <Property Name="StandardTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StandardName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="StandardDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubtitleTrack">
+          <Key>
+            <PropertyRef Name="SubtitleTrackId" />
+          </Key>
+          <Property Name="SubtitleTrackId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LanguageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubtitleTrackName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="SubtitleTrackDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoBoxSet">
+          <Key>
+            <PropertyRef Name="VideoBoxSetId" />
+          </Key>
+          <Property Name="VideoBoxSetId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoBoxSetTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoBoxSetType">
+          <Key>
+            <PropertyRef Name="VideoBoxSetTypeId" />
+          </Key>
+          <Property Name="VideoBoxSetTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoBoxSetTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="VideoBoxSetDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoMedia">
+          <Key>
+            <PropertyRef Name="VideoMediaId" />
+          </Key>
+          <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MediaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OriginalAspectRatio" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="OriginalRuntime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoRelease">
+          <Key>
+            <PropertyRef Name="VideoReleaseId" />
+          </Key>
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DistributorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PackagingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ShoppingItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CatalogCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="UPC" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
+          <Property Name="DiscCount" Type="int" Nullable="false" />
+          <Property Name="AspectRatio" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Runtime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ChapterStops" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoReview">
+          <Key>
+            <PropertyRef Name="VideoReviewId" />
+          </Key>
+          <Property Name="VideoReviewId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoreleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Introduction" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PresentationComments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PresentationScore" Type="int" Nullable="false" />
+          <Property Name="VideoComments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VideoScore" Type="int" Nullable="false" />
+          <Property Name="AudioComments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AudioScore" Type="int" Nullable="false" />
+          <Property Name="BonusFeatureComments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BonusFeatureScore" Type="int" Nullable="false" />
+          <Property Name="VerdictComments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VerdictScore" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoVersion">
+          <Key>
+            <PropertyRef Name="VideoVersionId" />
+          </Key>
+          <Property Name="VideoVersionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoVersionTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoVersionType">
+          <Key>
+            <PropertyRef Name="VideoVersionTypeId" />
+          </Key>
+          <Property Name="VideoVersionTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VideoVersionTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="VideoVersionDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AudioTrack_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="AudioTrack" Type="Self.AudioTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="AudioTrack">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AudioTrack_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="AudioTrack" Type="Self.AudioTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="AudioTrack">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Format_FormatType">
+          <End Role="FormatType" Type="Self.FormatType" Multiplicity="1" />
+          <End Role="Format" Type="Self.Format" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormatType">
+              <PropertyRef Name="FormatTypeId" />
+            </Principal>
+            <Dependent Role="Format">
+              <PropertyRef Name="FormatTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Format_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="Format" Type="Self.Format" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="Format">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MediaFile_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="MediaFile">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_RegionType">
+          <End Role="RegionType" Type="Self.RegionType" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionType">
+              <PropertyRef Name="RegionTypeId" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="RegionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingItem_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="ShoppingItem">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Standard_StandardType">
+          <End Role="StandardType" Type="Self.StandardType" Multiplicity="1" />
+          <End Role="Standard" Type="Self.Standard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandardType">
+              <PropertyRef Name="StandardTypeId" />
+            </Principal>
+            <Dependent Role="Standard">
+              <PropertyRef Name="StandardTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Standard_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="Standard" Type="Self.Standard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="Standard">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubtitleTrack_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="SubtitleTrack" Type="Self.SubtitleTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="SubtitleTrack">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubtitleTrack_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="SubtitleTrack" Type="Self.SubtitleTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="SubtitleTrack">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoBoxSet_VideoBoxSetType">
+          <End Role="VideoBoxSetType" Type="Self.VideoBoxSetType" Multiplicity="1" />
+          <End Role="VideoBoxSet" Type="Self.VideoBoxSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoBoxSetType">
+              <PropertyRef Name="VideoBoxSetTypeId" />
+            </Principal>
+            <Dependent Role="VideoBoxSet">
+              <PropertyRef Name="VideoBoxSetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoBoxSet_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="VideoBoxSet" Type="Self.VideoBoxSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="VideoBoxSet">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoMedia_Media">
+          <End Role="Media" Type="Self.Media" Multiplicity="1" />
+          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaId" />
+            </Principal>
+            <Dependent Role="VideoMedia">
+              <PropertyRef Name="MediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_Distributor">
+          <End Role="Distributor" Type="Self.Distributor" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distributor">
+              <PropertyRef Name="DistributorId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="DistributorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_Packaging">
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packaging">
+              <PropertyRef Name="PackagingId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="PackagingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_ShoppingItem">
+          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShoppingItem">
+              <PropertyRef Name="ShoppingItemId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="ShoppingItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_VideoMedia">
+          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoMedia">
+              <PropertyRef Name="VideoMediaId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="VideoMediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoReview_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="VideoReview" Type="Self.VideoReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="VideoReview">
+              <PropertyRef Name="VideoreleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoVersion_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="VideoVersion" Type="Self.VideoVersion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="VideoVersion">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoVersion_VideoVersionType">
+          <End Role="VideoVersionType" Type="Self.VideoVersionType" Multiplicity="1" />
+          <End Role="VideoVersion" Type="Self.VideoVersion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoVersionType">
+              <PropertyRef Name="VideoVersionTypeId" />
+            </Principal>
+            <Dependent Role="VideoVersion">
+              <PropertyRef Name="VideoVersionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TokuCinema_DataModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AudioTrack" EntityType="Self.AudioTrack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distributor" EntityType="Self.Distributor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Format" EntityType="Self.Format" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormatType" EntityType="Self.FormatType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MediaFile" EntityType="Self.MediaFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packaging" EntityType="Self.Packaging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegionType" EntityType="Self.RegionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoppingItem" EntityType="Self.ShoppingItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Standard" EntityType="Self.Standard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StandardType" EntityType="Self.StandardType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubtitleTrack" EntityType="Self.SubtitleTrack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoBoxSet" EntityType="Self.VideoBoxSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoBoxSetType" EntityType="Self.VideoBoxSetType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoMedia" EntityType="Self.VideoMedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoRelease" EntityType="Self.VideoRelease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoReview" EntityType="Self.VideoReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoVersion" EntityType="Self.VideoVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoVersionType" EntityType="Self.VideoVersionType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AudioTrack_Language" Association="Self.FK_AudioTrack_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="AudioTrack" EntitySet="AudioTrack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AudioTrack_VideoRelease" Association="Self.FK_AudioTrack_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="AudioTrack" EntitySet="AudioTrack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Format_FormatType" Association="Self.FK_Format_FormatType">
+            <End Role="FormatType" EntitySet="FormatType" />
+            <End Role="Format" EntitySet="Format" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Format_VideoRelease" Association="Self.FK_Format_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="Format" EntitySet="Format" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MediaFile_VideoRelease" Association="Self.FK_MediaFile_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="MediaFile" EntitySet="MediaFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_RegionType" Association="Self.FK_Region_RegionType">
+            <End Role="RegionType" EntitySet="RegionType" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_VideoRelease" Association="Self.FK_Region_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingItem_Company" Association="Self.FK_ShoppingItem_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ShoppingItem" EntitySet="ShoppingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Standard_StandardType" Association="Self.FK_Standard_StandardType">
+            <End Role="StandardType" EntitySet="StandardType" />
+            <End Role="Standard" EntitySet="Standard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Standard_VideoRelease" Association="Self.FK_Standard_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="Standard" EntitySet="Standard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubtitleTrack_Language" Association="Self.FK_SubtitleTrack_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="SubtitleTrack" EntitySet="SubtitleTrack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubtitleTrack_VideoRelease" Association="Self.FK_SubtitleTrack_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="SubtitleTrack" EntitySet="SubtitleTrack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoBoxSet_VideoBoxSetType" Association="Self.FK_VideoBoxSet_VideoBoxSetType">
+            <End Role="VideoBoxSetType" EntitySet="VideoBoxSetType" />
+            <End Role="VideoBoxSet" EntitySet="VideoBoxSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoBoxSet_VideoRelease" Association="Self.FK_VideoBoxSet_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="VideoBoxSet" EntitySet="VideoBoxSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoMedia_Media" Association="Self.FK_VideoMedia_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="VideoMedia" EntitySet="VideoMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_Distributor" Association="Self.FK_VideoRelease_Distributor">
+            <End Role="Distributor" EntitySet="Distributor" />
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_Packaging" Association="Self.FK_VideoRelease_Packaging">
+            <End Role="Packaging" EntitySet="Packaging" />
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_ShoppingItem" Association="Self.FK_VideoRelease_ShoppingItem">
+            <End Role="ShoppingItem" EntitySet="ShoppingItem" />
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_VideoMedia" Association="Self.FK_VideoRelease_VideoMedia">
+            <End Role="VideoMedia" EntitySet="VideoMedia" />
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoReview_VideoRelease" Association="Self.FK_VideoReview_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="VideoReview" EntitySet="VideoReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoVersion_VideoRelease" Association="Self.FK_VideoVersion_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="VideoVersion" EntitySet="VideoVersion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoVersion_VideoVersionType" Association="Self.FK_VideoVersion_VideoVersionType">
+            <End Role="VideoVersionType" EntitySet="VideoVersionType" />
+            <End Role="VideoVersion" EntitySet="VideoVersion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TokuCinema_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="AudioTrack">
+          <Key>
+            <PropertyRef Name="AudioTrackid" />
+          </Key>
+          <Property Name="AudioTrackid" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="LanguageId" Type="Guid" Nullable="false" />
+          <Property Name="AudioTrackName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AudioTrackDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Channel" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_AudioTrack_Language" FromRole="AudioTrack" ToRole="Language" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_AudioTrack_VideoRelease" FromRole="AudioTrack" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Guid" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ShoppingItems" Relationship="Self.FK_ShoppingItem_Company" FromRole="Company" ToRole="ShoppingItem" />
+        </EntityType>
+        <EntityType Name="Distributor">
+          <Key>
+            <PropertyRef Name="DistributorId" />
+          </Key>
+          <Property Name="DistributorId" Type="Guid" Nullable="false" />
+          <Property Name="DistributorName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DistributorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_Distributor" FromRole="Distributor" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="Format">
+          <Key>
+            <PropertyRef Name="FormatId" />
+          </Key>
+          <Property Name="FormatId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="FormatTypeId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="FormatType" Relationship="Self.FK_Format_FormatType" FromRole="Format" ToRole="FormatType" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_Format_VideoRelease" FromRole="Format" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="FormatType">
+          <Key>
+            <PropertyRef Name="FormatTypeId" />
+          </Key>
+          <Property Name="FormatTypeId" Type="Guid" Nullable="false" />
+          <Property Name="FormatName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FormatDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Formats" Relationship="Self.FK_Format_FormatType" FromRole="FormatType" ToRole="Format" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="Guid" Nullable="false" />
+          <Property Name="LanguageName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AudioTracks" Relationship="Self.FK_AudioTrack_Language" FromRole="Language" ToRole="AudioTrack" />
+          <NavigationProperty Name="SubtitleTracks" Relationship="Self.FK_SubtitleTrack_Language" FromRole="Language" ToRole="SubtitleTrack" />
+        </EntityType>
+        <EntityType Name="Medium">
+          <Key>
+            <PropertyRef Name="MediaId" />
+          </Key>
+          <Property Name="MediaId" Type="Guid" Nullable="false" />
+          <Property Name="MediaOfficialTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MediaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WikipediaLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VideoMedias" Relationship="Self.FK_VideoMedia_Media" FromRole="Media" ToRole="VideoMedia" />
+        </EntityType>
+        <EntityType Name="MediaFile">
+          <Key>
+            <PropertyRef Name="MediaFielId" />
+          </Key>
+          <Property Name="MediaFielId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="MediaFile1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Image" Type="Boolean" Nullable="false" />
+          <Property Name="Video" Type="Boolean" Nullable="false" />
+          <Property Name="Location" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_MediaFile_VideoRelease" FromRole="MediaFile" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="Packaging">
+          <Key>
+            <PropertyRef Name="PackagingId" />
+          </Key>
+          <Property Name="PackagingId" Type="Guid" Nullable="false" />
+          <Property Name="PackagingDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PackagingName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_Packaging" FromRole="Packaging" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="RegionTypeId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="RegionType" Relationship="Self.FK_Region_RegionType" FromRole="Region" ToRole="RegionType" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_Region_VideoRelease" FromRole="Region" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="RegionType">
+          <Key>
+            <PropertyRef Name="RegionTypeId" />
+          </Key>
+          <Property Name="RegionTypeId" Type="Guid" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Regions" Relationship="Self.FK_Region_RegionType" FromRole="RegionType" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="ShoppingItem">
+          <Key>
+            <PropertyRef Name="ShoppingItemId" />
+          </Key>
+          <Property Name="ShoppingItemId" Type="Guid" Nullable="false" />
+          <Property Name="CompanyId" Type="Guid" Nullable="false" />
+          <Property Name="PurchaseLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_ShoppingItem_Company" FromRole="ShoppingItem" ToRole="Company" />
+          <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_ShoppingItem" FromRole="ShoppingItem" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="Standard">
+          <Key>
+            <PropertyRef Name="StandardId" />
+          </Key>
+          <Property Name="StandardId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="StandardTypeID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="StandardType" Relationship="Self.FK_Standard_StandardType" FromRole="Standard" ToRole="StandardType" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_Standard_VideoRelease" FromRole="Standard" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="StandardType">
+          <Key>
+            <PropertyRef Name="StandardTypeId" />
+          </Key>
+          <Property Name="StandardTypeId" Type="Guid" Nullable="false" />
+          <Property Name="StandardName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StandardDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Standards" Relationship="Self.FK_Standard_StandardType" FromRole="StandardType" ToRole="Standard" />
+        </EntityType>
+        <EntityType Name="SubtitleTrack">
+          <Key>
+            <PropertyRef Name="SubtitleTrackId" />
+          </Key>
+          <Property Name="SubtitleTrackId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="LanguageId" Type="Guid" Nullable="false" />
+          <Property Name="SubtitleTrackName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubtitleTrackDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_SubtitleTrack_Language" FromRole="SubtitleTrack" ToRole="Language" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_SubtitleTrack_VideoRelease" FromRole="SubtitleTrack" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="VideoBoxSet">
+          <Key>
+            <PropertyRef Name="VideoBoxSetId" />
+          </Key>
+          <Property Name="VideoBoxSetId" Type="Guid" Nullable="false" />
+          <Property Name="VideoBoxSetTypeId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="VideoBoxSetType" Relationship="Self.FK_VideoBoxSet_VideoBoxSetType" FromRole="VideoBoxSet" ToRole="VideoBoxSetType" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_VideoBoxSet_VideoRelease" FromRole="VideoBoxSet" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="VideoBoxSetType">
+          <Key>
+            <PropertyRef Name="VideoBoxSetTypeId" />
+          </Key>
+          <Property Name="VideoBoxSetTypeId" Type="Guid" Nullable="false" />
+          <Property Name="VideoBoxSetTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoBoxSetDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VideoBoxSets" Relationship="Self.FK_VideoBoxSet_VideoBoxSetType" FromRole="VideoBoxSetType" ToRole="VideoBoxSet" />
+        </EntityType>
+        <EntityType Name="VideoMedia">
+          <Key>
+            <PropertyRef Name="VideoMediaId" />
+          </Key>
+          <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
+          <Property Name="MediaId" Type="Guid" Nullable="false" />
+          <Property Name="OriginalAspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OriginalRuntime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Medium" Relationship="Self.FK_VideoMedia_Media" FromRole="VideoMedia" ToRole="Media" />
+          <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoMedia" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="VideoRelease">
+          <Key>
+            <PropertyRef Name="VideoReleaseId" />
+          </Key>
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="DistributorId" Type="Guid" Nullable="false" />
+          <Property Name="PackagingId" Type="Guid" Nullable="false" />
+          <Property Name="ShoppingItemId" Type="Guid" Nullable="false" />
+          <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
+          <Property Name="CatalogCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UPC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DiscCount" Type="Int32" Nullable="false" />
+          <Property Name="AspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Runtime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ChapterStops" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AudioTracks" Relationship="Self.FK_AudioTrack_VideoRelease" FromRole="VideoRelease" ToRole="AudioTrack" />
+          <NavigationProperty Name="Distributor" Relationship="Self.FK_VideoRelease_Distributor" FromRole="VideoRelease" ToRole="Distributor" />
+          <NavigationProperty Name="Formats" Relationship="Self.FK_Format_VideoRelease" FromRole="VideoRelease" ToRole="Format" />
+          <NavigationProperty Name="MediaFiles" Relationship="Self.FK_MediaFile_VideoRelease" FromRole="VideoRelease" ToRole="MediaFile" />
+          <NavigationProperty Name="Packaging" Relationship="Self.FK_VideoRelease_Packaging" FromRole="VideoRelease" ToRole="Packaging" />
+          <NavigationProperty Name="Regions" Relationship="Self.FK_Region_VideoRelease" FromRole="VideoRelease" ToRole="Region" />
+          <NavigationProperty Name="ShoppingItem" Relationship="Self.FK_VideoRelease_ShoppingItem" FromRole="VideoRelease" ToRole="ShoppingItem" />
+          <NavigationProperty Name="Standards" Relationship="Self.FK_Standard_VideoRelease" FromRole="VideoRelease" ToRole="Standard" />
+          <NavigationProperty Name="SubtitleTracks" Relationship="Self.FK_SubtitleTrack_VideoRelease" FromRole="VideoRelease" ToRole="SubtitleTrack" />
+          <NavigationProperty Name="VideoBoxSets" Relationship="Self.FK_VideoBoxSet_VideoRelease" FromRole="VideoRelease" ToRole="VideoBoxSet" />
+          <NavigationProperty Name="VideoMedia" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoRelease" ToRole="VideoMedia" />
+          <NavigationProperty Name="VideoReviews" Relationship="Self.FK_VideoReview_VideoRelease" FromRole="VideoRelease" ToRole="VideoReview" />
+          <NavigationProperty Name="VideoVersions" Relationship="Self.FK_VideoVersion_VideoRelease" FromRole="VideoRelease" ToRole="VideoVersion" />
+        </EntityType>
+        <EntityType Name="VideoReview">
+          <Key>
+            <PropertyRef Name="VideoReviewId" />
+          </Key>
+          <Property Name="VideoReviewId" Type="Guid" Nullable="false" />
+          <Property Name="VideoreleaseId" Type="Guid" Nullable="false" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PresentationComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PresentationScore" Type="Int32" Nullable="false" />
+          <Property Name="VideoComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoScore" Type="Int32" Nullable="false" />
+          <Property Name="AudioComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AudioScore" Type="Int32" Nullable="false" />
+          <Property Name="BonusFeatureComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BonusFeatureScore" Type="Int32" Nullable="false" />
+          <Property Name="VerdictComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VerdictScore" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_VideoReview_VideoRelease" FromRole="VideoReview" ToRole="VideoRelease" />
+        </EntityType>
+        <EntityType Name="VideoVersion">
+          <Key>
+            <PropertyRef Name="VideoVersionId" />
+          </Key>
+          <Property Name="VideoVersionId" Type="Guid" Nullable="false" />
+          <Property Name="VideoVersionTypeId" Type="Guid" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
+          <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_VideoVersion_VideoRelease" FromRole="VideoVersion" ToRole="VideoRelease" />
+          <NavigationProperty Name="VideoVersionType" Relationship="Self.FK_VideoVersion_VideoVersionType" FromRole="VideoVersion" ToRole="VideoVersionType" />
+        </EntityType>
+        <EntityType Name="VideoVersionType">
+          <Key>
+            <PropertyRef Name="VideoVersionTypeId" />
+          </Key>
+          <Property Name="VideoVersionTypeId" Type="Guid" Nullable="false" />
+          <Property Name="VideoVersionTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoVersionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VideoVersions" Relationship="Self.FK_VideoVersion_VideoVersionType" FromRole="VideoVersionType" ToRole="VideoVersion" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AudioTrack_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="AudioTrack" Type="Self.AudioTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="AudioTrack">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AudioTrack_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="AudioTrack" Type="Self.AudioTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="AudioTrack">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingItem_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="ShoppingItem">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_Distributor">
+          <End Role="Distributor" Type="Self.Distributor" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distributor">
+              <PropertyRef Name="DistributorId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="DistributorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Format_FormatType">
+          <End Role="FormatType" Type="Self.FormatType" Multiplicity="1" />
+          <End Role="Format" Type="Self.Format" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormatType">
+              <PropertyRef Name="FormatTypeId" />
+            </Principal>
+            <Dependent Role="Format">
+              <PropertyRef Name="FormatTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Format_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="Format" Type="Self.Format" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="Format">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubtitleTrack_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="SubtitleTrack" Type="Self.SubtitleTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="SubtitleTrack">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoMedia_Media">
+          <End Role="Media" Type="Self.Medium" Multiplicity="1" />
+          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaId" />
+            </Principal>
+            <Dependent Role="VideoMedia">
+              <PropertyRef Name="MediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MediaFile_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="MediaFile">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_Packaging">
+          <End Role="Packaging" Type="Self.Packaging" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packaging">
+              <PropertyRef Name="PackagingId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="PackagingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_RegionType">
+          <End Role="RegionType" Type="Self.RegionType" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionType">
+              <PropertyRef Name="RegionTypeId" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="RegionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_ShoppingItem">
+          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShoppingItem">
+              <PropertyRef Name="ShoppingItemId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="ShoppingItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Standard_StandardType">
+          <End Role="StandardType" Type="Self.StandardType" Multiplicity="1" />
+          <End Role="Standard" Type="Self.Standard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandardType">
+              <PropertyRef Name="StandardTypeId" />
+            </Principal>
+            <Dependent Role="Standard">
+              <PropertyRef Name="StandardTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Standard_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="Standard" Type="Self.Standard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="Standard">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubtitleTrack_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="SubtitleTrack" Type="Self.SubtitleTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="SubtitleTrack">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoBoxSet_VideoBoxSetType">
+          <End Role="VideoBoxSetType" Type="Self.VideoBoxSetType" Multiplicity="1" />
+          <End Role="VideoBoxSet" Type="Self.VideoBoxSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoBoxSetType">
+              <PropertyRef Name="VideoBoxSetTypeId" />
+            </Principal>
+            <Dependent Role="VideoBoxSet">
+              <PropertyRef Name="VideoBoxSetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoBoxSet_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="VideoBoxSet" Type="Self.VideoBoxSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="VideoBoxSet">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoRelease_VideoMedia">
+          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoMedia">
+              <PropertyRef Name="VideoMediaId" />
+            </Principal>
+            <Dependent Role="VideoRelease">
+              <PropertyRef Name="VideoMediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoReview_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="VideoReview" Type="Self.VideoReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="VideoReview">
+              <PropertyRef Name="VideoreleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoVersion_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="VideoVersion" Type="Self.VideoVersion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="VideoVersion">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoVersion_VideoVersionType">
+          <End Role="VideoVersionType" Type="Self.VideoVersionType" Multiplicity="1" />
+          <End Role="VideoVersion" Type="Self.VideoVersion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoVersionType">
+              <PropertyRef Name="VideoVersionTypeId" />
+            </Principal>
+            <Dependent Role="VideoVersion">
+              <PropertyRef Name="VideoVersionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TokuCinema_DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="AudioTracks" EntityType="Self.AudioTrack" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Distributors" EntityType="Self.Distributor" />
+          <EntitySet Name="Formats" EntityType="Self.Format" />
+          <EntitySet Name="FormatTypes" EntityType="Self.FormatType" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Media" EntityType="Self.Medium" />
+          <EntitySet Name="MediaFiles" EntityType="Self.MediaFile" />
+          <EntitySet Name="Packagings" EntityType="Self.Packaging" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="RegionTypes" EntityType="Self.RegionType" />
+          <EntitySet Name="ShoppingItems" EntityType="Self.ShoppingItem" />
+          <EntitySet Name="Standards" EntityType="Self.Standard" />
+          <EntitySet Name="StandardTypes" EntityType="Self.StandardType" />
+          <EntitySet Name="SubtitleTracks" EntityType="Self.SubtitleTrack" />
+          <EntitySet Name="VideoBoxSets" EntityType="Self.VideoBoxSet" />
+          <EntitySet Name="VideoBoxSetTypes" EntityType="Self.VideoBoxSetType" />
+          <EntitySet Name="VideoMedias" EntityType="Self.VideoMedia" />
+          <EntitySet Name="VideoReleases" EntityType="Self.VideoRelease" />
+          <EntitySet Name="VideoReviews" EntityType="Self.VideoReview" />
+          <EntitySet Name="VideoVersions" EntityType="Self.VideoVersion" />
+          <EntitySet Name="VideoVersionTypes" EntityType="Self.VideoVersionType" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AudioTrack_Language" Association="Self.FK_AudioTrack_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="AudioTrack" EntitySet="AudioTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AudioTrack_VideoRelease" Association="Self.FK_AudioTrack_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="AudioTrack" EntitySet="AudioTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingItem_Company" Association="Self.FK_ShoppingItem_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="ShoppingItem" EntitySet="ShoppingItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_Distributor" Association="Self.FK_VideoRelease_Distributor">
+            <End Role="Distributor" EntitySet="Distributors" />
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Format_FormatType" Association="Self.FK_Format_FormatType">
+            <End Role="FormatType" EntitySet="FormatTypes" />
+            <End Role="Format" EntitySet="Formats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Format_VideoRelease" Association="Self.FK_Format_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="Format" EntitySet="Formats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubtitleTrack_Language" Association="Self.FK_SubtitleTrack_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="SubtitleTrack" EntitySet="SubtitleTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoMedia_Media" Association="Self.FK_VideoMedia_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="VideoMedia" EntitySet="VideoMedias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MediaFile_VideoRelease" Association="Self.FK_MediaFile_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="MediaFile" EntitySet="MediaFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_Packaging" Association="Self.FK_VideoRelease_Packaging">
+            <End Role="Packaging" EntitySet="Packagings" />
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_RegionType" Association="Self.FK_Region_RegionType">
+            <End Role="RegionType" EntitySet="RegionTypes" />
+            <End Role="Region" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_VideoRelease" Association="Self.FK_Region_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="Region" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_ShoppingItem" Association="Self.FK_VideoRelease_ShoppingItem">
+            <End Role="ShoppingItem" EntitySet="ShoppingItems" />
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Standard_StandardType" Association="Self.FK_Standard_StandardType">
+            <End Role="StandardType" EntitySet="StandardTypes" />
+            <End Role="Standard" EntitySet="Standards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Standard_VideoRelease" Association="Self.FK_Standard_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="Standard" EntitySet="Standards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubtitleTrack_VideoRelease" Association="Self.FK_SubtitleTrack_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="SubtitleTrack" EntitySet="SubtitleTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoBoxSet_VideoBoxSetType" Association="Self.FK_VideoBoxSet_VideoBoxSetType">
+            <End Role="VideoBoxSetType" EntitySet="VideoBoxSetTypes" />
+            <End Role="VideoBoxSet" EntitySet="VideoBoxSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoBoxSet_VideoRelease" Association="Self.FK_VideoBoxSet_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="VideoBoxSet" EntitySet="VideoBoxSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoRelease_VideoMedia" Association="Self.FK_VideoRelease_VideoMedia">
+            <End Role="VideoMedia" EntitySet="VideoMedias" />
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoReview_VideoRelease" Association="Self.FK_VideoReview_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="VideoReview" EntitySet="VideoReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoVersion_VideoRelease" Association="Self.FK_VideoVersion_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="VideoVersion" EntitySet="VideoVersions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoVersion_VideoVersionType" Association="Self.FK_VideoVersion_VideoVersionType">
+            <End Role="VideoVersionType" EntitySet="VideoVersionTypes" />
+            <End Role="VideoVersion" EntitySet="VideoVersions" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TokuCinema_DataModelStoreContainer" CdmEntityContainer="TokuCinema_DataEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AudioTracks">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.AudioTrack">
+              <MappingFragment StoreEntitySet="AudioTrack">
+                <ScalarProperty Name="AudioTrackid" ColumnName="AudioTrackid" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="AudioTrackName" ColumnName="AudioTrackName" />
+                <ScalarProperty Name="AudioTrackDescription" ColumnName="AudioTrackDescription" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distributors">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Distributor">
+              <MappingFragment StoreEntitySet="Distributor">
+                <ScalarProperty Name="DistributorId" ColumnName="DistributorId" />
+                <ScalarProperty Name="DistributorName" ColumnName="DistributorName" />
+                <ScalarProperty Name="DistributorDescription" ColumnName="DistributorDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formats">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Format">
+              <MappingFragment StoreEntitySet="Format">
+                <ScalarProperty Name="FormatId" ColumnName="FormatId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="FormatTypeId" ColumnName="FormatTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormatTypes">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.FormatType">
+              <MappingFragment StoreEntitySet="FormatType">
+                <ScalarProperty Name="FormatTypeId" ColumnName="FormatTypeId" />
+                <ScalarProperty Name="FormatName" ColumnName="FormatName" />
+                <ScalarProperty Name="FormatDescription" ColumnName="FormatDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Medium">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="MediaOfficialTitle" ColumnName="MediaOfficialTitle" />
+                <ScalarProperty Name="MediaDescription" ColumnName="MediaDescription" />
+                <ScalarProperty Name="WikipediaLink" ColumnName="WikipediaLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MediaFiles">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.MediaFile">
+              <MappingFragment StoreEntitySet="MediaFile">
+                <ScalarProperty Name="MediaFielId" ColumnName="MediaFielId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="MediaFile1" ColumnName="MediaFile" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packagings">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Packaging">
+              <MappingFragment StoreEntitySet="Packaging">
+                <ScalarProperty Name="PackagingId" ColumnName="PackagingId" />
+                <ScalarProperty Name="PackagingDescription" ColumnName="PackagingDescription" />
+                <ScalarProperty Name="PackagingName" ColumnName="PackagingName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="RegionTypeId" ColumnName="RegionTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionTypes">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.RegionType">
+              <MappingFragment StoreEntitySet="RegionType">
+                <ScalarProperty Name="RegionTypeId" ColumnName="RegionTypeId" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="RegionDescription" ColumnName="RegionDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingItems">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.ShoppingItem">
+              <MappingFragment StoreEntitySet="ShoppingItem">
+                <ScalarProperty Name="ShoppingItemId" ColumnName="ShoppingItemId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="PurchaseLink" ColumnName="PurchaseLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Standards">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Standard">
+              <MappingFragment StoreEntitySet="Standard">
+                <ScalarProperty Name="StandardId" ColumnName="StandardId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="StandardTypeID" ColumnName="StandardTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StandardTypes">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.StandardType">
+              <MappingFragment StoreEntitySet="StandardType">
+                <ScalarProperty Name="StandardTypeId" ColumnName="StandardTypeId" />
+                <ScalarProperty Name="StandardName" ColumnName="StandardName" />
+                <ScalarProperty Name="StandardDescription" ColumnName="StandardDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubtitleTracks">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.SubtitleTrack">
+              <MappingFragment StoreEntitySet="SubtitleTrack">
+                <ScalarProperty Name="SubtitleTrackId" ColumnName="SubtitleTrackId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="SubtitleTrackName" ColumnName="SubtitleTrackName" />
+                <ScalarProperty Name="SubtitleTrackDescription" ColumnName="SubtitleTrackDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoBoxSets">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoBoxSet">
+              <MappingFragment StoreEntitySet="VideoBoxSet">
+                <ScalarProperty Name="VideoBoxSetId" ColumnName="VideoBoxSetId" />
+                <ScalarProperty Name="VideoBoxSetTypeId" ColumnName="VideoBoxSetTypeId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoBoxSetTypes">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoBoxSetType">
+              <MappingFragment StoreEntitySet="VideoBoxSetType">
+                <ScalarProperty Name="VideoBoxSetTypeId" ColumnName="VideoBoxSetTypeId" />
+                <ScalarProperty Name="VideoBoxSetTitle" ColumnName="VideoBoxSetTitle" />
+                <ScalarProperty Name="VideoBoxSetDescription" ColumnName="VideoBoxSetDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoMedias">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoMedia">
+              <MappingFragment StoreEntitySet="VideoMedia">
+                <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="OriginalAspectRatio" ColumnName="OriginalAspectRatio" />
+                <ScalarProperty Name="OriginalRuntime" ColumnName="OriginalRuntime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoReleases">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoRelease">
+              <MappingFragment StoreEntitySet="VideoRelease">
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="DistributorId" ColumnName="DistributorId" />
+                <ScalarProperty Name="PackagingId" ColumnName="PackagingId" />
+                <ScalarProperty Name="ShoppingItemId" ColumnName="ShoppingItemId" />
+                <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
+                <ScalarProperty Name="CatalogCode" ColumnName="CatalogCode" />
+                <ScalarProperty Name="UPC" ColumnName="UPC" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="DiscCount" ColumnName="DiscCount" />
+                <ScalarProperty Name="AspectRatio" ColumnName="AspectRatio" />
+                <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+                <ScalarProperty Name="ChapterStops" ColumnName="ChapterStops" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoReviews">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoReview">
+              <MappingFragment StoreEntitySet="VideoReview">
+                <ScalarProperty Name="VideoReviewId" ColumnName="VideoReviewId" />
+                <ScalarProperty Name="VideoreleaseId" ColumnName="VideoreleaseId" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="PresentationComments" ColumnName="PresentationComments" />
+                <ScalarProperty Name="PresentationScore" ColumnName="PresentationScore" />
+                <ScalarProperty Name="VideoComments" ColumnName="VideoComments" />
+                <ScalarProperty Name="VideoScore" ColumnName="VideoScore" />
+                <ScalarProperty Name="AudioComments" ColumnName="AudioComments" />
+                <ScalarProperty Name="AudioScore" ColumnName="AudioScore" />
+                <ScalarProperty Name="BonusFeatureComments" ColumnName="BonusFeatureComments" />
+                <ScalarProperty Name="BonusFeatureScore" ColumnName="BonusFeatureScore" />
+                <ScalarProperty Name="VerdictComments" ColumnName="VerdictComments" />
+                <ScalarProperty Name="VerdictScore" ColumnName="VerdictScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoVersions">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoVersion">
+              <MappingFragment StoreEntitySet="VideoVersion">
+                <ScalarProperty Name="VideoVersionId" ColumnName="VideoVersionId" />
+                <ScalarProperty Name="VideoVersionTypeId" ColumnName="VideoVersionTypeId" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
+                <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoVersionTypes">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoVersionType">
+              <MappingFragment StoreEntitySet="VideoVersionType">
+                <ScalarProperty Name="VideoVersionTypeId" ColumnName="VideoVersionTypeId" />
+                <ScalarProperty Name="VideoVersionTitle" ColumnName="VideoVersionTitle" />
+                <ScalarProperty Name="VideoVersionDescription" ColumnName="VideoVersionDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TokuCinema_DataModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
