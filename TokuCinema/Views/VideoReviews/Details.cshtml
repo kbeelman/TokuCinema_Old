@@ -1,0 +1,114 @@
+﻿@model TokuCinema.Models.VideoReview
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VideoReview</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Introduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PresentationComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PresentationComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PresentationScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PresentationScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AudioComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AudioComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AudioScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AudioScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BonusFeatureComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BonusFeatureComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BonusFeatureScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BonusFeatureScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VerdictComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VerdictComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VerdictScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VerdictScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoRelease.CatalogCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoReviewId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

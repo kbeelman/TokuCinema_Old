@@ -12,10 +12,10 @@ namespace TokuCinema.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Medium
+    public partial class Media
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medium()
+        public Media()
         {
             this.VideoMedias = new HashSet<VideoMedia>();
         }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e23ef94d0f2b40c29f5df7d98a7f3fef" Name="Diagram1" ZoomLevel="70">
+      <Diagram DiagramId="e23ef94d0f2b40c29f5df7d98a7f3fef" Name="Diagram1" ZoomLevel="120">
         <EntityTypeShape EntityType="TokuCinema_DataModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetRole" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="1" IsExpanded="true" />
@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="TokuCinema_DataModel.Format" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.FormatType" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.Language" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Medium" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Media" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.MediaFile" Width="1.5" PointX="7.5" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.Packaging" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.Region" Width="1.5" PointX="10.5" PointY="14.75" IsExpanded="true" />

@@ -848,7 +848,7 @@
           <NavigationProperty Name="AudioTracks" Relationship="Self.FK_AudioTrack_Language" FromRole="Language" ToRole="AudioTrack" />
           <NavigationProperty Name="SubtitleTracks" Relationship="Self.FK_SubtitleTrack_Language" FromRole="Language" ToRole="SubtitleTrack" />
         </EntityType>
-        <EntityType Name="Medium">
+        <EntityType Name="Media">
           <Key>
             <PropertyRef Name="MediaId" />
           </Key>
@@ -1151,7 +1151,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VideoMedia_Media">
-          <End Role="Media" Type="Self.Medium" Multiplicity="1" />
+          <End Role="Media" Type="TokuCinema_DataModel.Media" Multiplicity="1" />
           <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Media">
@@ -1346,7 +1346,7 @@
           <EntitySet Name="Formats" EntityType="Self.Format" />
           <EntitySet Name="FormatTypes" EntityType="Self.FormatType" />
           <EntitySet Name="Languages" EntityType="Self.Language" />
-          <EntitySet Name="Media" EntityType="Self.Medium" />
+          <EntitySet Name="Media1" EntityType="TokuCinema_DataModel.Media" />
           <EntitySet Name="MediaFiles" EntityType="Self.MediaFile" />
           <EntitySet Name="Packagings" EntityType="Self.Packaging" />
           <EntitySet Name="Regions" EntityType="Self.Region" />
@@ -1399,7 +1399,7 @@
             <End Role="SubtitleTrack" EntitySet="SubtitleTracks" />
           </AssociationSet>
           <AssociationSet Name="FK_VideoMedia_Media" Association="Self.FK_VideoMedia_Media">
-            <End Role="Media" EntitySet="Media" />
+            <End Role="Media" EntitySet="Media1" />
             <End Role="VideoMedia" EntitySet="VideoMedias" />
           </AssociationSet>
           <AssociationSet Name="FK_MediaFile_VideoRelease" Association="Self.FK_MediaFile_VideoRelease">
@@ -1580,8 +1580,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Media">
-            <EntityTypeMapping TypeName="TokuCinema_DataModel.Medium">
+          <EntitySetMapping Name="Media1">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Media">
               <MappingFragment StoreEntitySet="Media">
                 <ScalarProperty Name="MediaId" ColumnName="MediaId" />
                 <ScalarProperty Name="MediaOfficialTitle" ColumnName="MediaOfficialTitle" />

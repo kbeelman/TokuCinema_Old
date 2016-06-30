@@ -1,0 +1,42 @@
+﻿@model TokuCinema.Models.Media
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Media</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaOfficialTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaOfficialTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WikipediaLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WikipediaLink)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MediaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

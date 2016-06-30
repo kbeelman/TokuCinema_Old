@@ -1,0 +1,34 @@
+﻿@model TokuCinema.Models.Packaging
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Packaging</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PackagingDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackagingDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackagingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackagingName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PackagingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

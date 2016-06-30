@@ -1,0 +1,34 @@
+﻿@model TokuCinema.Models.VideoBoxSet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VideoBoxSet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoBoxSetType.VideoBoxSetTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoBoxSetType.VideoBoxSetTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoRelease.CatalogCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoBoxSetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

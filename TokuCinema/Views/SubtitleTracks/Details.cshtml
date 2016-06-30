@@ -1,0 +1,50 @@
+﻿@model TokuCinema.Models.SubtitleTrack
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SubtitleTrack</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubtitleTrackName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubtitleTrackName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubtitleTrackDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubtitleTrackDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language.LanguageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language.LanguageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoRelease.CatalogCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubtitleTrackId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -199,8 +199,30 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AudioTracksController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\DistributorsController.cs" />
+    <Compile Include="Controllers\FormatsController.cs" />
+    <Compile Include="Controllers\FormatTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\MediaFilesController.cs" />
+    <Compile Include="Controllers\PackagingsController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\RegionTypesController.cs" />
+    <Compile Include="Controllers\ShoppingItemsController.cs" />
+    <Compile Include="Controllers\StandardsController.cs" />
+    <Compile Include="Controllers\StandardTypesController.cs" />
+    <Compile Include="Controllers\SubtitleTracksController.cs" />
+    <Compile Include="Controllers\VideoBoxSetsController.cs" />
+    <Compile Include="Controllers\VideoBoxSetTypesController.cs" />
+    <Compile Include="Controllers\VideoMediasController.cs" />
+    <Compile Include="Controllers\VideoReleasesController.cs" />
+    <Compile Include="Controllers\VideoReviewsController.cs" />
+    <Compile Include="Controllers\VideoVersionsController.cs" />
+    <Compile Include="Controllers\VideoVersionTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,12 +262,14 @@
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Media.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MediaFile.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Medium.cs">
-      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Metadata\MediaMetadata.cs" />
+    <Compile Include="Models\Metadata\VideoMediaMetadata.cs" />
     <Compile Include="Models\Packaging.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
@@ -387,6 +411,116 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="DesignDocuments\TokuCinemaDatabase.vsdx" />
+    <Content Include="Views\Media\Create.cshtml" />
+    <Content Include="Views\Media\Delete.cshtml" />
+    <Content Include="Views\Media\Details.cshtml" />
+    <Content Include="Views\Media\Edit.cshtml" />
+    <Content Include="Views\Media\Index.cshtml" />
+    <Content Include="Views\VideoMedias\Create.cshtml" />
+    <Content Include="Views\VideoMedias\Delete.cshtml" />
+    <Content Include="Views\VideoMedias\Details.cshtml" />
+    <Content Include="Views\VideoMedias\Edit.cshtml" />
+    <Content Include="Views\VideoMedias\Index.cshtml" />
+    <Content Include="Views\FormatTypes\Create.cshtml" />
+    <Content Include="Views\FormatTypes\Delete.cshtml" />
+    <Content Include="Views\FormatTypes\Details.cshtml" />
+    <Content Include="Views\FormatTypes\Edit.cshtml" />
+    <Content Include="Views\FormatTypes\Index.cshtml" />
+    <Content Include="Views\Formats\Create.cshtml" />
+    <Content Include="Views\Formats\Delete.cshtml" />
+    <Content Include="Views\Formats\Details.cshtml" />
+    <Content Include="Views\Formats\Edit.cshtml" />
+    <Content Include="Views\Formats\Index.cshtml" />
+    <Content Include="Views\VideoVersionTypes\Create.cshtml" />
+    <Content Include="Views\VideoVersionTypes\Delete.cshtml" />
+    <Content Include="Views\VideoVersionTypes\Details.cshtml" />
+    <Content Include="Views\VideoVersionTypes\Edit.cshtml" />
+    <Content Include="Views\VideoVersionTypes\Index.cshtml" />
+    <Content Include="Views\VideoVersions\Create.cshtml" />
+    <Content Include="Views\VideoVersions\Delete.cshtml" />
+    <Content Include="Views\VideoVersions\Details.cshtml" />
+    <Content Include="Views\VideoVersions\Edit.cshtml" />
+    <Content Include="Views\VideoVersions\Index.cshtml" />
+    <Content Include="Views\VideoReviews\Create.cshtml" />
+    <Content Include="Views\VideoReviews\Delete.cshtml" />
+    <Content Include="Views\VideoReviews\Details.cshtml" />
+    <Content Include="Views\VideoReviews\Edit.cshtml" />
+    <Content Include="Views\VideoReviews\Index.cshtml" />
+    <Content Include="Views\Packagings\Create.cshtml" />
+    <Content Include="Views\Packagings\Delete.cshtml" />
+    <Content Include="Views\Packagings\Details.cshtml" />
+    <Content Include="Views\Packagings\Edit.cshtml" />
+    <Content Include="Views\Packagings\Index.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\ShoppingItems\Create.cshtml" />
+    <Content Include="Views\ShoppingItems\Delete.cshtml" />
+    <Content Include="Views\ShoppingItems\Details.cshtml" />
+    <Content Include="Views\ShoppingItems\Edit.cshtml" />
+    <Content Include="Views\ShoppingItems\Index.cshtml" />
+    <Content Include="Views\VideoBoxSets\Create.cshtml" />
+    <Content Include="Views\VideoBoxSets\Delete.cshtml" />
+    <Content Include="Views\VideoBoxSets\Details.cshtml" />
+    <Content Include="Views\VideoBoxSets\Edit.cshtml" />
+    <Content Include="Views\VideoBoxSets\Index.cshtml" />
+    <Content Include="Views\VideoBoxSetTypes\Create.cshtml" />
+    <Content Include="Views\VideoBoxSetTypes\Delete.cshtml" />
+    <Content Include="Views\VideoBoxSetTypes\Details.cshtml" />
+    <Content Include="Views\VideoBoxSetTypes\Edit.cshtml" />
+    <Content Include="Views\VideoBoxSetTypes\Index.cshtml" />
+    <Content Include="Views\VideoReleases\Create.cshtml" />
+    <Content Include="Views\VideoReleases\Delete.cshtml" />
+    <Content Include="Views\VideoReleases\Details.cshtml" />
+    <Content Include="Views\VideoReleases\Edit.cshtml" />
+    <Content Include="Views\VideoReleases\Index.cshtml" />
+    <Content Include="Views\Distributors\Create.cshtml" />
+    <Content Include="Views\Distributors\Delete.cshtml" />
+    <Content Include="Views\Distributors\Details.cshtml" />
+    <Content Include="Views\Distributors\Edit.cshtml" />
+    <Content Include="Views\Distributors\Index.cshtml" />
+    <Content Include="Views\StandardTypes\Create.cshtml" />
+    <Content Include="Views\StandardTypes\Delete.cshtml" />
+    <Content Include="Views\StandardTypes\Details.cshtml" />
+    <Content Include="Views\StandardTypes\Edit.cshtml" />
+    <Content Include="Views\StandardTypes\Index.cshtml" />
+    <Content Include="Views\Standards\Create.cshtml" />
+    <Content Include="Views\Standards\Delete.cshtml" />
+    <Content Include="Views\Standards\Details.cshtml" />
+    <Content Include="Views\Standards\Edit.cshtml" />
+    <Content Include="Views\Standards\Index.cshtml" />
+    <Content Include="Views\Languages\Create.cshtml" />
+    <Content Include="Views\Languages\Delete.cshtml" />
+    <Content Include="Views\Languages\Details.cshtml" />
+    <Content Include="Views\Languages\Edit.cshtml" />
+    <Content Include="Views\Languages\Index.cshtml" />
+    <Content Include="Views\SubtitleTracks\Create.cshtml" />
+    <Content Include="Views\SubtitleTracks\Delete.cshtml" />
+    <Content Include="Views\SubtitleTracks\Details.cshtml" />
+    <Content Include="Views\SubtitleTracks\Edit.cshtml" />
+    <Content Include="Views\SubtitleTracks\Index.cshtml" />
+    <Content Include="Views\AudioTracks\Create.cshtml" />
+    <Content Include="Views\AudioTracks\Delete.cshtml" />
+    <Content Include="Views\AudioTracks\Details.cshtml" />
+    <Content Include="Views\AudioTracks\Edit.cshtml" />
+    <Content Include="Views\AudioTracks\Index.cshtml" />
+    <Content Include="Views\MediaFiles\Create.cshtml" />
+    <Content Include="Views\MediaFiles\Delete.cshtml" />
+    <Content Include="Views\MediaFiles\Details.cshtml" />
+    <Content Include="Views\MediaFiles\Edit.cshtml" />
+    <Content Include="Views\MediaFiles\Index.cshtml" />
+    <Content Include="Views\Regions\Create.cshtml" />
+    <Content Include="Views\Regions\Delete.cshtml" />
+    <Content Include="Views\Regions\Details.cshtml" />
+    <Content Include="Views\Regions\Edit.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\RegionTypes\Create.cshtml" />
+    <Content Include="Views\RegionTypes\Delete.cshtml" />
+    <Content Include="Views\RegionTypes\Details.cshtml" />
+    <Content Include="Views\RegionTypes\Edit.cshtml" />
+    <Content Include="Views\RegionTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />

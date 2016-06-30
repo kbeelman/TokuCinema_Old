@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TokuCinema.Models.VideoRelease>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UPC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspectRatio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Runtime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChapterStops)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Distributor.DistributorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Packaging.PackagingDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShoppingItem.PurchaseLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalAspectRatio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatalogCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspectRatio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Runtime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChapterStops)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Distributor.DistributorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Packaging.PackagingDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShoppingItem.PurchaseLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoMedia.OriginalAspectRatio)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VideoReleaseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VideoReleaseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VideoReleaseId })
+        </td>
+    </tr>
+}
+
+</table>

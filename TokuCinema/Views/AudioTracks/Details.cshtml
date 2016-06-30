@@ -1,0 +1,58 @@
+﻿@model TokuCinema.Models.AudioTrack
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AudioTrack</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AudioTrackName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AudioTrackName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AudioTrackDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AudioTrackDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Channel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Channel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language.LanguageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language.LanguageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoRelease.CatalogCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AudioTrackid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

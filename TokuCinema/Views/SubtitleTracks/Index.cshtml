@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TokuCinema.Models.SubtitleTrack>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubtitleTrackName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubtitleTrackDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Language.LanguageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubtitleTrackName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubtitleTrackDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language.LanguageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoRelease.CatalogCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SubtitleTrackId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SubtitleTrackId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SubtitleTrackId })
+        </td>
+    </tr>
+}
+
+</table>

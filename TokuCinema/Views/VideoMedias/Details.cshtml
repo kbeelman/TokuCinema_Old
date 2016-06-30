@@ -1,0 +1,42 @@
+﻿@model TokuCinema.Models.VideoMedia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VideoMedia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalAspectRatio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalAspectRatio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalRuntime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalRuntime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medium.MediaOfficialTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoMediaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

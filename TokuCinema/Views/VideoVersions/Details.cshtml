@@ -1,0 +1,42 @@
+﻿@model TokuCinema.Models.VideoVersion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VideoVersion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoMediaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoMediaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoRelease.CatalogCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoVersionType.VideoVersionTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoVersionType.VideoVersionTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoVersionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

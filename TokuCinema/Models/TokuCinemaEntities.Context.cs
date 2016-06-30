@@ -36,7 +36,7 @@ namespace TokuCinema.Models
         public virtual DbSet<Format> Formats { get; set; }
         public virtual DbSet<FormatType> FormatTypes { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
-        public virtual DbSet<Medium> Media { get; set; }
+        public virtual DbSet<Media> Media1 { get; set; }
         public virtual DbSet<MediaFile> MediaFiles { get; set; }
         public virtual DbSet<Packaging> Packagings { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
