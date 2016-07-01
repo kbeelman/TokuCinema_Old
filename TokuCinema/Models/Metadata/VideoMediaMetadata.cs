@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TokuCinema.Models.Metadata
+namespace TokuCinema.Models
 {
     [MetadataType(typeof(VideoMedia.Metadata))]
     public partial class VideoMedia
