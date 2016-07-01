@@ -21,13 +21,13 @@ namespace TokuCinema.Models
             public System.Guid MediaId { get; set; }
 
             [Required]
-            [Display(Name = "Original Aspect Ration")]
+            [Display(Name = "Original Aspect Ratio")]
             [StringLength(10, ErrorMessage = "Please limit this field to 10 characters.")]
             public string OriginalAspectRatio { get; set; }
 
             [Required]
-            [Display(Name = "Original Runtime")]
-            public System.TimeSpan OriginalRuntime { get; set; }
+            [Display(Name = "Original Runtime (minutes)")]
+            public int OriginalRuntime { get; set; }
         }
     }
 }

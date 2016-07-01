@@ -54,8 +54,8 @@ namespace TokuCinema.Models
             public string AspectRatio { get; set; }
 
             [Required]
-            [Display(Name = "Runtime")]
-            public System.TimeSpan Runtime { get; set; }
+            [Display(Name = "Runtime (minutes)")]
+            public int Runtime { get; set; }
 
             [Required]
             [Display(Name = "Chapter Stops")]

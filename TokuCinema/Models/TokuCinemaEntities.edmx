@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -217,7 +217,7 @@
           <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MediaId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="OriginalAspectRatio" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="OriginalRuntime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="OriginalRuntime" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VideoRelease">
           <Key>
@@ -233,7 +233,7 @@
           <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
           <Property Name="DiscCount" Type="int" Nullable="false" />
           <Property Name="AspectRatio" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Runtime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Runtime" Type="int" Nullable="false" />
           <Property Name="ChapterStops" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VideoReview">
@@ -725,8 +725,7 @@
             <End Role="VideoVersion" EntitySet="VideoVersion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TokuCinema_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -965,7 +964,7 @@
           <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
           <Property Name="MediaId" Type="Guid" Nullable="false" />
           <Property Name="OriginalAspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OriginalRuntime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="OriginalRuntime" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Medium" Relationship="Self.FK_VideoMedia_Media" FromRole="VideoMedia" ToRole="Media" />
           <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoMedia" ToRole="VideoRelease" />
         </EntityType>
@@ -983,7 +982,7 @@
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DiscCount" Type="Int32" Nullable="false" />
           <Property Name="AspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Runtime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Runtime" Type="Int32" Nullable="false" />
           <Property Name="ChapterStops" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AudioTracks" Relationship="Self.FK_AudioTrack_VideoRelease" FromRole="VideoRelease" ToRole="AudioTrack" />
           <NavigationProperty Name="Distributor" Relationship="Self.FK_VideoRelease_Distributor" FromRole="VideoRelease" ToRole="Distributor" />

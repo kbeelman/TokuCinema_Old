@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TokuCinema.Models
 {
-    [MetadataType(typeof(RegionType))]
+    [MetadataType(typeof(RegionType.Metadata))]
     public partial class RegionType
     {
         class Metadata
