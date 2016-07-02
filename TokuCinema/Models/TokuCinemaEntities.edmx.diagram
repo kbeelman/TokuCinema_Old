@@ -4,40 +4,41 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e23ef94d0f2b40c29f5df7d98a7f3fef" Name="Diagram1" ZoomLevel="120">
+      <Diagram DiagramId="e23ef94d0f2b40c29f5df7d98a7f3fef" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="TokuCinema_DataModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetRole" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetUserLogin" Width="1.5" PointX="15.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetUser" Width="1.5" PointX="13" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.AudioTrack" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Company" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Distributor" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Format" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.FormatType" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Language" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Media" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.MediaFile" Width="1.5" PointX="7.5" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Packaging" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Region" Width="1.5" PointX="10.5" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.RegionType" Width="1.5" PointX="8.25" PointY="21.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.ShoppingItem" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.Standard" Width="1.5" PointX="10.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.StandardType" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.SubtitleTrack" Width="1.5" PointX="10.5" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSet" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSetType" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoMedia" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoRelease" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoReview" Width="1.5" PointX="7.625" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersion" Width="1.5" PointX="13.5" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersionType" Width="1.5" PointX="11.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.AudioTrack" Width="1.5" PointX="20.375" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Company" Width="1.5" PointX="11.375" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Distributor" Width="1.5" PointX="19" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Format" Width="1.5" PointX="13.625" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.FormatType" Width="1.5" PointX="11.125" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Language" Width="1.5" PointX="19.5" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Media" Width="1.5" PointX="23" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.MediaFile" Width="1.5" PointX="16.375" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Packaging" Width="1.5" PointX="19" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Region" Width="1.5" PointX="13.625" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.RegionType" Width="1.5" PointX="11.125" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.ShoppingItem" Width="1.5" PointX="13.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.Standard" Width="1.5" PointX="13.625" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.StandardType" Width="1.5" PointX="11.125" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.SubtitleTrack" Width="1.5" PointX="18.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSet" Width="1.5" PointX="13.625" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSetType" Width="1.5" PointX="11.125" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoMedia" Width="1.5" PointX="23" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoRelease" Width="1.5" PointX="16.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoReview" Width="1.5" PointX="16.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersion" Width="1.5" PointX="19.375" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersionType" Width="1.5" PointX="22.125" PointY="15" IsExpanded="true" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_AudioTrack_Language" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_AudioTrack_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_ShoppingItem_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoRelease_Distributor" ManuallyRouted="false" />
+        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoRelease_Distributor" ManuallyRouted="false" >
+        </AssociationConnector>
         <AssociationConnector Association="TokuCinema_DataModel.FK_Format_FormatType" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_Format_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_SubtitleTrack_Language" ManuallyRouted="false" />
@@ -52,11 +53,12 @@
         <AssociationConnector Association="TokuCinema_DataModel.FK_SubtitleTrack_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoBoxSet_VideoBoxSetType" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoBoxSet_VideoRelease" ManuallyRouted="false" />
-        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoRelease_VideoMedia" ManuallyRouted="false" />
+        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoRelease_VideoMedia" ManuallyRouted="false" ></AssociationConnector>
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoReview_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_VideoVersionType" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_ToTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

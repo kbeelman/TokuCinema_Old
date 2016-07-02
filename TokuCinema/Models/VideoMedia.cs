@@ -18,6 +18,7 @@ namespace TokuCinema.Models
         public VideoMedia()
         {
             this.VideoReleases = new HashSet<VideoRelease>();
+            this.VideoVersions = new HashSet<VideoVersion>();
         }
     
         public System.Guid VideoMediaId { get; set; }
@@ -28,5 +29,7 @@ namespace TokuCinema.Models
         public virtual Media Medium { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoRelease> VideoReleases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VideoVersion> VideoVersions { get; set; }
     }
 }
