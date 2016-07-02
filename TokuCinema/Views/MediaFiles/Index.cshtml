@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TokuCinema.Models.MediaFile>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Media File Index";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -32,7 +32,11 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.MediaFile1)
+            @*Display picture if picture, do nothing if video - we can change this later*@
+            @if (item.MediaFile1 != null && item.Image == true)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(item.MediaFile1,0,item.MediaFile1.Length)" width="100" />
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Image)

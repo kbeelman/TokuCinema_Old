@@ -102,7 +102,7 @@ namespace TokuCinema.Controllers
                 }
                 using (TokuCinema_DataEntities db = new TokuCinema_DataEntities())
                 {
-                    db.Companies.Add(company);
+                    db.MediaFiles.Add(mediaFile);
                     db.SaveChanges();
                 }
             }
@@ -131,16 +131,61 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaFielId,VideoReleaseId,MediaFile1,Image,Video,Location")] MediaFile mediaFile)
+        public ActionResult Edit(/*[Bind(Include = "MediaFielId,VideoReleaseId,MediaFile1,Image,Video,Location")]*/ MediaFile mediaFile)
         {
+            //get / retain original
+            MediaFile original = db.MediaFiles.Find(mediaFile.MediaFielId);
+
+            //**Original implementation
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(mediaFile).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", mediaFile.VideoReleaseId);
+            //return View(mediaFile);
+
             if (ModelState.IsValid)
             {
-                db.Entry(mediaFile).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (mediaFile.File == null)
+                {
+                    // Make changes to original without replacing picture
+                    original.VideoReleaseId = mediaFile.VideoReleaseId;
+                    original.Image = mediaFile.Image;
+                    original.Video = mediaFile.Video;
+                    original.Location = mediaFile.Location;
+                    db.SaveChanges();
+                }
+
+                else
+                {
+                    // Make changes to original including replacing the picture
+
+                    /* Decide on validation later - see comments in upload action method
+                    // Validation
+                    if (product.File.ContentLength > (2 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
+                        return View(product);
+                    }
+                    */
+                    string name = mediaFile.File.FileName;
+                    int fileSize = mediaFile.File.ContentLength;
+
+                    byte[] data = new byte[fileSize];
+                    mediaFile.File.InputStream.Read(data, 0, fileSize);
+
+
+                    original.MediaFile1 = data;
+                    original.VideoReleaseId = mediaFile.VideoReleaseId;
+                    original.Image = mediaFile.Image;
+                    original.Video = mediaFile.Video;
+                    original.Location = mediaFile.Location;
+                    db.SaveChanges();
+                }
             }
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", mediaFile.VideoReleaseId);
-            return View(mediaFile);
+            return RedirectToAction("Index");
         }
 
         // GET: MediaFiles/Delete/5

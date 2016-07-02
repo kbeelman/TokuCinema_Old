@@ -16,7 +16,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MediaFile1)
+            @*Display picture if picture, do nothing if video - we can change this later*@
+            @if (Model.MediaFile1 != null && Model.Image == true)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(Model.MediaFile1,0,Model.MediaFile1.Length)" width="100" />
+            }
         </dd>
 
         <dt>
