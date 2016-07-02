@@ -1,16 +1,17 @@
 ﻿@model TokuCinema.Models.Company
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Upload";
 }
 
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Upload", "Companies", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+    @Html.ValidationSummary(true)
+
     <div class="form-horizontal">
         <h4>Company</h4>
         <hr />
@@ -26,8 +27,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.File, new { type = "file", @class = "form-control" })
+                @Html.ValidationMessage("CustomError")
             </div>
         </div>
 

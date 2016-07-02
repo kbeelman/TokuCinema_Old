@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace TokuCinema.Models
 {
     [MetadataType(typeof(MediaFile.Metadata))]
     public partial class MediaFile
     {
+        // Used for file uploads
+        public HttpPostedFileBase File { get; set; }
+
         class Metadata
         {
             [Key]
-            [Display(Name = "Media Fiel Id")]
+            [Display(Name = "Media File Id")]
             public System.Guid MediaFielId { get; set; }
 
             [Required]

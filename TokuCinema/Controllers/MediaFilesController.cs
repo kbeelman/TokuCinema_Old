@@ -62,6 +62,54 @@ namespace TokuCinema.Controllers
             return View(mediaFile);
         }
 
+        /*New Post method for allowing picture uploads*/
+        // Post: MediaFiles/Upload
+        [HttpPost]
+        public ActionResult Upload(MediaFile mediaFile)
+        {
+            if (ModelState.IsValid)
+            {
+                // Set Company Id
+                mediaFile.MediaFielId = Guid.NewGuid();
+
+                if (mediaFile.File != null)
+                {
+                    /* Leaving this commented out till we know what sort of size / type limitations we want to enforce
+                     * 
+                    // Validation - size limitations
+                    if(company.File.ContentLength > (2 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError","File size must be less than 2 MB");
+                        return View(company);
+                    }
+
+                    *Type resctritions 
+                    //if (product.File.ContentType == "image/jpeg" || product.File.ContentType == "image/gif")
+                    //{
+                    //    ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                    //    return View();
+                    //}
+
+                    */
+
+                    string name = mediaFile.File.FileName;
+                    int fileSize = mediaFile.File.ContentLength;
+
+                    byte[] data = new byte[fileSize];
+                    mediaFile.File.InputStream.Read(data, 0, fileSize);
+
+                    mediaFile.MediaFile1 = data;
+                }
+                using (TokuCinema_DataEntities db = new TokuCinema_DataEntities())
+                {
+                    db.Companies.Add(company);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // GET: MediaFiles/Edit/5
         public ActionResult Edit(Guid? id)
         {

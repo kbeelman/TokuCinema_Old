@@ -59,6 +59,54 @@ namespace TokuCinema.Controllers
             return View(company);
         }
 
+        /*New Post method for allowing picture uploads*/
+        // Post: Companies/Upload
+        [HttpPost]
+        public ActionResult Upload(Company company)
+        {
+            if (ModelState.IsValid)
+            {
+                // Set Company Id
+                company.CompanyId = Guid.NewGuid();
+
+                if (company.File != null)
+                {
+                    /* Leaving this commented out till we know what sort of size / type limitations we want to enforce
+                     * 
+                    // Validation - size limitations
+                    if(company.File.ContentLength > (2 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError","File size must be less than 2 MB");
+                        return View(company);
+                    }
+
+                    *Type resctritions 
+                    //if (product.File.ContentType == "image/jpeg" || product.File.ContentType == "image/gif")
+                    //{
+                    //    ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                    //    return View();
+                    //}
+
+                    */
+
+                    string name = company.File.FileName;
+                    int imageSize = company.File.ContentLength;
+
+                    byte[] data = new byte[imageSize];
+                    company.File.InputStream.Read(data, 0, imageSize);
+
+                    company.Image = data;
+                }
+                using (TokuCinema_DataEntities db = new TokuCinema_DataEntities())
+                {
+                    db.Companies.Add(company);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Companies/Edit/5
         public ActionResult Edit(Guid? id)
         {
@@ -79,15 +127,53 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,CompanyName,Image")] Company company)
+        public ActionResult Edit(/*[Bind(Include = "CompanyId,CompanyName,Image")]*/ Company company)
         {
+            // get / retain original
+            Company original = db.Companies.Find(company.CompanyId);
+
+            //**original implementation
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(company).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //return View(company);
+
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (company.File == null)
+                {
+                    // Make changes to original without replacing picture
+                    original.CompanyName = company.CompanyName;
+                    db.SaveChanges();
+                }
+
+                else
+                {
+                    // Make changes to original including replacing the picture
+
+                    /* Decide on validation later - see comments in upload action method
+                    // Validation
+                    if (product.File.ContentLength > (2 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
+                        return View(product);
+                    }
+                    */
+                    string name = company.File.FileName;
+                    int imageSize = company.File.ContentLength;
+
+                    byte[] data = new byte[imageSize];
+                    company.File.InputStream.Read(data, 0, imageSize);
+
+                    original.Image = data;
+                    original.CompanyName = company.CompanyName;
+                    db.SaveChanges();
+                }
             }
-            return View(company);
+            return RedirectToAction("Index");
         }
 
         // GET: Companies/Delete/5

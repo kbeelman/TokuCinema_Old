@@ -4,12 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace TokuCinema.Models
 {
     [MetadataType(typeof(Company.Metadata))]
     public partial class Company
     {
+        // Used for file uploads
+        public HttpPostedFileBase File { get; set; }
+
         class Metadata
         {
             [Key]
@@ -24,5 +28,6 @@ namespace TokuCinema.Models
             [Display(Name = "Image")]
             public byte[] Image { get; set; }
         }
+
     }
 }
