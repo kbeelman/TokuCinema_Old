@@ -39,7 +39,7 @@ namespace TokuCinema.Controllers
         // GET: VideoMedias/Create
         public ActionResult Create()
         {
-            ViewBag.MediaId = new SelectList(db.Media1, "MediaId", "MediaOfficialTitle");
+            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle");
             return View();
         }
 
@@ -70,7 +70,7 @@ namespace TokuCinema.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MediaId = new SelectList(db.Media1, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
+            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
         }
 
@@ -89,7 +89,7 @@ namespace TokuCinema.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MediaId = new SelectList(db.Media1, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
+            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
         }
 
@@ -105,7 +105,7 @@ namespace TokuCinema.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MediaId = new SelectList(db.Media1, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
+            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
         }
 
@@ -122,7 +122,7 @@ namespace TokuCinema.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MediaId = new SelectList(db.Media1, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
+            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
         }
 

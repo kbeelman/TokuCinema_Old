@@ -17,7 +17,7 @@ namespace TokuCinema.Controllers
         // GET: Media
         public ActionResult Index()
         {
-            return View(db.Media1.ToList());
+            return View(db.Media.ToList());
         }
 
         // GET: Media/Details/5
@@ -27,7 +27,7 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Media media = db.Media1.Find(id);
+            Medium media = db.Media.Find(id);
             if (media == null)
             {
                 return HttpNotFound();
@@ -46,12 +46,12 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink")] Media media)
+        public ActionResult Create([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink")] Medium media)
         {
             if (ModelState.IsValid)
             {
                 media.MediaId = Guid.NewGuid();
-                db.Media1.Add(media);
+                db.Media.Add(media);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Media media = db.Media1.Find(id);
+            Medium media = db.Media.Find(id);
             if (media == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink")] Media media)
+        public ActionResult Edit([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink")] Medium media)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Media media = db.Media1.Find(id);
+            Medium media = db.Media.Find(id);
             if (media == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace TokuCinema.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Media media = db.Media1.Find(id);
-            db.Media1.Remove(media);
+            Medium media = db.Media.Find(id);
+            db.Media.Remove(media);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

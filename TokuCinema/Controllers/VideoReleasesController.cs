@@ -17,7 +17,7 @@ namespace TokuCinema.Controllers
         // GET: VideoReleases
         public ActionResult Index()
         {
-            var videoReleases = db.VideoReleases.Include(v => v.Distributor).Include(v => v.Packaging).Include(v => v.ShoppingItem).Include(v => v.VideoMedia);
+            var videoReleases = db.VideoReleases.Include(v => v.Distributor).Include(v => v.Packaging).Include(v => v.VideoMedia);
             return View(videoReleases.ToList());
         }
 
@@ -40,9 +40,8 @@ namespace TokuCinema.Controllers
         public ActionResult Create()
         {
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
-            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription");
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink");
-            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio");
+            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName");
+            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "VideoMediaId");
             return View();
         }
 
@@ -51,7 +50,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,ShoppingItemId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
+        public ActionResult Create([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
         {
             if (ModelState.IsValid)
             {
@@ -62,9 +61,8 @@ namespace TokuCinema.Controllers
             }
 
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName", videoRelease.DistributorId);
-            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription", videoRelease.PackagingId);
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink", videoRelease.ShoppingItemId);
-            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio", videoRelease.VideoMediaId);
+            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName", videoRelease.PackagingId);
+            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "VideoMediaId", videoRelease.VideoMediaId);
             return View(videoRelease);
         }
 
@@ -80,7 +78,6 @@ namespace TokuCinema.Controllers
             
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName");
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink");
             return View();
         }
 
@@ -89,7 +86,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateRelease(/*[Bind(Include = "VideoReleaseId,DistributorId,PackagingId,ShoppingItemId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")]*/ VideoRelease videoRelease)
+        public ActionResult CreateRelease(/*[Bind(Include = "VideoReleaseId,DistributorId,PackagingId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")]*/ VideoRelease videoRelease)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +98,6 @@ namespace TokuCinema.Controllers
 
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName", videoRelease.DistributorId);
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName", videoRelease.PackagingId);
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink", videoRelease.ShoppingItemId);
             ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio", videoRelease.VideoMediaId);
             return View(videoRelease);
         }
@@ -120,7 +116,6 @@ namespace TokuCinema.Controllers
             }
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName", videoRelease.DistributorId);
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription", videoRelease.PackagingId);
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink", videoRelease.ShoppingItemId);
             ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio", videoRelease.VideoMediaId);
             return View(videoRelease);
         }
@@ -130,7 +125,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,ShoppingItemId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
+        public ActionResult Edit([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +135,6 @@ namespace TokuCinema.Controllers
             }
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName", videoRelease.DistributorId);
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription", videoRelease.PackagingId);
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink", videoRelease.ShoppingItemId);
             ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio", videoRelease.VideoMediaId);
             return View(videoRelease);
         }
