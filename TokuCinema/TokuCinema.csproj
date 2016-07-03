@@ -311,17 +311,20 @@
     <Compile Include="Models\SubtitleTrack.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TokuCinemaEntities.Context.cs">
+    <Compile Include="Models\TokuCinemaEntities.Context.cs" />
+    <Compile Include="Models\TokuCinemaEntities.Context1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TokuCinemaEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TokuCinemaEntities.cs">
+    <Compile Include="Models\TokuCinemaEntities.cs" />
+    <Compile Include="Models\TokuCinemaEntities.Designer.cs" />
+    <Compile Include="Models\TokuCinemaEntities1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TokuCinemaEntities.Designer.cs">
+    <Compile Include="Models\TokuCinemaEntities1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
@@ -373,32 +376,28 @@
     <Content Include="js\grayscale.min.js" />
     <Content Include="Models\TokuCinemaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
-      <LastGenOutput>TokuCinemaEntities.Context.cs</LastGenOutput>
+      <LastGenOutput>TokuCinemaEntities.Context1.cs</LastGenOutput>
     </Content>
     <Content Include="Models\TokuCinemaEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
-      <LastGenOutput>TokuCinemaEntities.cs</LastGenOutput>
+      <LastGenOutput>TokuCinemaEntities1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="DesignDocuments\TokuCinemaDatabase_CrowsFeet.vsdx" />
-    <EntityDeploy Include="Models\TokuCinemaEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TokuCinemaEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TokuCinemaEntities.edmx.diagram">
-      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
-    </Content>
     <Content Include="less\grayscale.less" />
     <Content Include="less\mixins.less" />
     <Content Include="less\variables.less" />
     <Content Include="sass\grayscale.scss" />
     <Content Include="sass\_mixins.scss" />
     <Content Include="sass\_variables.scss" />
+    <EntityDeploy Include="Models\TokuCinemaEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TokuCinemaEntities1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TokuCinemaEntities.edmx.diagram" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -605,7 +604,10 @@
     <Content Include="vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\Home\Index_admin.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\VideoMedias\CreateVideo.cshtml" />
+    <Content Include="Views\VideoReleases\CreateRelease.cshtml" />
+    <Content Include="Views\VideoReviews\CreateReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />

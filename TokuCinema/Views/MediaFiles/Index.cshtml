@@ -24,6 +24,9 @@
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.VideoLink)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
         </th>
         <th></th>
@@ -46,6 +49,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoLink)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.VideoRelease.CatalogCode)

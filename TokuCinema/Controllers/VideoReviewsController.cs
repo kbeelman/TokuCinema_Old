@@ -62,6 +62,37 @@ namespace TokuCinema.Controllers
             return View(videoReview);
         }
 
+        // GET: VideoReviews/CreateReview
+        public ActionResult CreateReview(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.VideoreleaseId = id;
+            return View();
+        }
+
+        // POST: VideoReviews/CreateReview
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateReview(/*[Bind(Include = "VideoReviewId,VideoreleaseId,Introduction,PresentationComments,PresentationScore,VideoComments,VideoScore,AudioComments,AudioScore,BonusFeatureComments,BonusFeatureScore,VerdictComments,VerdictScore")]*/ VideoReview videoReview)
+        {
+            if (ModelState.IsValid)
+            {
+                videoReview.VideoReviewId = Guid.NewGuid();
+                db.VideoReviews.Add(videoReview);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.VideoreleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", videoReview.VideoreleaseId);
+            return View(videoReview);
+        }
+
         // GET: VideoReviews/Edit/5
         public ActionResult Edit(Guid? id)
         {

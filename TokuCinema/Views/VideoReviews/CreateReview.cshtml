@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.VideoreleaseId, "VideoreleaseId", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
-                @Html.DropDownList("VideoreleaseId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBox("VideoreleaseId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.VideoreleaseId, "", new { @class = "text-danger" })
             </div>
         </div>

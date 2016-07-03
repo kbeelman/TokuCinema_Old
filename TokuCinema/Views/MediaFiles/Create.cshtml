@@ -12,11 +12,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>MediaFile</h4>
+        <h4>Media File</h4>
+        <p>* Indicates required field</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.VideoReleaseId, "VideoReleaseId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.VideoReleaseId, "VideoReleaseId", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
                 @Html.DropDownList("VideoReleaseId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.VideoReleaseId, "", new { @class = "text-danger" })
@@ -32,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Image)
@@ -42,7 +43,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Video)
@@ -52,10 +53,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoLink, htmlAttributes: new { @class = "control-label col-md-2 required-field" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VideoLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VideoLink, "", new { @class = "text-danger" })
             </div>
         </div>
 
