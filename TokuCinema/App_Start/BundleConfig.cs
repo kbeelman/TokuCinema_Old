@@ -26,6 +26,23 @@ namespace TokuCinema
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            
+            // Grayscale
+            bundles.Add(new StyleBundle("~/vendor/css").Include(
+                            "~/vendor/bootstrap/css/bootstrap.css",
+                      "~/vendor/font-awesome/css/font-awesome.min.css"));
+
+            // Grayscale
+            bundles.Add(new StyleBundle("~/css/css").Include(
+                      "~/css/grayscale.css"));            
+
+            // Grayscale
+            bundles.Add(new ScriptBundle("~/bundles/GrayscaleScripts").Include(
+                "~/vendor/jquery/jquery.js",
+                "~/vendor/bootstrap/js/bootstrap.min.js",
+                "~/js/grayscale.min.js"));
+
         }
     }
 }
