@@ -12,21 +12,20 @@ namespace TokuCinema.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class VideoMedia
+    public partial class Medium
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public VideoMedia()
+        public Medium()
         {
-            this.VideoReleases = new HashSet<VideoRelease>();
+            this.VideoMedias = new HashSet<VideoMedia>();
         }
     
-        public System.Guid VideoMediaId { get; set; }
         public System.Guid MediaId { get; set; }
-        public string OriginalAspectRatio { get; set; }
-        public int OriginalRuntime { get; set; }
+        public string MediaOfficialTitle { get; set; }
+        public string MediaDescription { get; set; }
+        public string WikipediaLink { get; set; }
     
-        public virtual Medium Medium { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VideoRelease> VideoReleases { get; set; }
+        public virtual ICollection<VideoMedia> VideoMedias { get; set; }
     }
 }

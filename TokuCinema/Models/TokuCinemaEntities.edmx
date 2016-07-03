@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -131,10 +131,11 @@
           </Key>
           <Property Name="MediaFielId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MediaFile" Type="varbinary(max)" Nullable="false" />
+          <Property Name="MediaFile" Type="varbinary(max)" />
           <Property Name="Image" Type="bit" Nullable="false" />
           <Property Name="Video" Type="bit" Nullable="false" />
           <Property Name="Location" Type="int" Nullable="false" />
+          <Property Name="VideoLink" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Packaging">
           <Key>
@@ -167,6 +168,7 @@
           <Property Name="ShoppingItemId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PurchaseLink" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Standard">
           <Key>
@@ -226,7 +228,6 @@
           <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DistributorId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PackagingId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ShoppingItemId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CatalogCode" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="UPC" Type="nvarchar" MaxLength="13" Nullable="false" />
@@ -423,6 +424,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ShoppingItem_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
+            </Principal>
+            <Dependent Role="ShoppingItem">
+              <PropertyRef Name="VideoReleaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Standard_StandardType">
           <End Role="StandardType" Type="Self.StandardType" Multiplicity="1" />
           <End Role="Standard" Type="Self.Standard" Multiplicity="*" />
@@ -531,18 +544,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VideoRelease_ShoppingItem">
-          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="1" />
-          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShoppingItem">
-              <PropertyRef Name="ShoppingItemId" />
-            </Principal>
-            <Dependent Role="VideoRelease">
-              <PropertyRef Name="ShoppingItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_VideoRelease_VideoMedia">
           <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
           <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
@@ -564,18 +565,6 @@
             </Principal>
             <Dependent Role="VideoReview">
               <PropertyRef Name="VideoreleaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VideoVersion_ToTable">
-          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
-          <End Role="VideoVersion" Type="Self.VideoVersion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoMedia">
-              <PropertyRef Name="VideoMediaId" />
-            </Principal>
-            <Dependent Role="VideoVersion">
-              <PropertyRef Name="VideoMediaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -680,6 +669,10 @@
             <End Role="Company" EntitySet="Company" />
             <End Role="ShoppingItem" EntitySet="ShoppingItem" />
           </AssociationSet>
+          <AssociationSet Name="FK_ShoppingItem_VideoRelease" Association="Self.FK_ShoppingItem_VideoRelease">
+            <End Role="VideoRelease" EntitySet="VideoRelease" />
+            <End Role="ShoppingItem" EntitySet="ShoppingItem" />
+          </AssociationSet>
           <AssociationSet Name="FK_Standard_StandardType" Association="Self.FK_Standard_StandardType">
             <End Role="StandardType" EntitySet="StandardType" />
             <End Role="Standard" EntitySet="Standard" />
@@ -716,10 +709,6 @@
             <End Role="Packaging" EntitySet="Packaging" />
             <End Role="VideoRelease" EntitySet="VideoRelease" />
           </AssociationSet>
-          <AssociationSet Name="FK_VideoRelease_ShoppingItem" Association="Self.FK_VideoRelease_ShoppingItem">
-            <End Role="ShoppingItem" EntitySet="ShoppingItem" />
-            <End Role="VideoRelease" EntitySet="VideoRelease" />
-          </AssociationSet>
           <AssociationSet Name="FK_VideoRelease_VideoMedia" Association="Self.FK_VideoRelease_VideoMedia">
             <End Role="VideoMedia" EntitySet="VideoMedia" />
             <End Role="VideoRelease" EntitySet="VideoRelease" />
@@ -727,10 +716,6 @@
           <AssociationSet Name="FK_VideoReview_VideoRelease" Association="Self.FK_VideoReview_VideoRelease">
             <End Role="VideoRelease" EntitySet="VideoRelease" />
             <End Role="VideoReview" EntitySet="VideoReview" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoVersion_ToTable" Association="Self.FK_VideoVersion_ToTable">
-            <End Role="VideoMedia" EntitySet="VideoMedia" />
-            <End Role="VideoVersion" EntitySet="VideoVersion" />
           </AssociationSet>
           <AssociationSet Name="FK_VideoVersion_VideoRelease" Association="Self.FK_VideoVersion_VideoRelease">
             <End Role="VideoRelease" EntitySet="VideoRelease" />
@@ -741,7 +726,8 @@
             <End Role="VideoVersion" EntitySet="VideoVersion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TokuCinema_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -863,7 +849,7 @@
           <NavigationProperty Name="AudioTracks" Relationship="Self.FK_AudioTrack_Language" FromRole="Language" ToRole="AudioTrack" />
           <NavigationProperty Name="SubtitleTracks" Relationship="Self.FK_SubtitleTrack_Language" FromRole="Language" ToRole="SubtitleTrack" />
         </EntityType>
-        <EntityType Name="Media">
+        <EntityType Name="Medium">
           <Key>
             <PropertyRef Name="MediaId" />
           </Key>
@@ -879,10 +865,11 @@
           </Key>
           <Property Name="MediaFielId" Type="Guid" Nullable="false" />
           <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
-          <Property Name="MediaFile1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="MediaFile1" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Image" Type="Boolean" Nullable="false" />
           <Property Name="Video" Type="Boolean" Nullable="false" />
           <Property Name="Location" Type="Int32" Nullable="false" />
+          <Property Name="VideoLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="VideoRelease" Relationship="Self.FK_MediaFile_VideoRelease" FromRole="MediaFile" ToRole="VideoRelease" />
         </EntityType>
         <EntityType Name="Packaging">
@@ -920,8 +907,9 @@
           <Property Name="ShoppingItemId" Type="Guid" Nullable="false" />
           <Property Name="CompanyId" Type="Guid" Nullable="false" />
           <Property Name="PurchaseLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="Self.FK_ShoppingItem_Company" FromRole="ShoppingItem" ToRole="Company" />
-          <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_ShoppingItem" FromRole="ShoppingItem" ToRole="VideoRelease" />
+          <NavigationProperty Name="VideoRelease" Relationship="Self.FK_ShoppingItem_VideoRelease" FromRole="ShoppingItem" ToRole="VideoRelease" />
         </EntityType>
         <EntityType Name="Standard">
           <Key>
@@ -983,7 +971,6 @@
           <Property Name="OriginalRuntime" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Medium" Relationship="Self.FK_VideoMedia_Media" FromRole="VideoMedia" ToRole="Media" />
           <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoMedia" ToRole="VideoRelease" />
-          <NavigationProperty Name="VideoVersions" Relationship="TokuCinema_DataModel.FK_VideoVersion_ToTable" FromRole="VideoMedia" ToRole="VideoVersion" />
         </EntityType>
         <EntityType Name="VideoRelease">
           <Key>
@@ -992,7 +979,6 @@
           <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
           <Property Name="DistributorId" Type="Guid" Nullable="false" />
           <Property Name="PackagingId" Type="Guid" Nullable="false" />
-          <Property Name="ShoppingItemId" Type="Guid" Nullable="false" />
           <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
           <Property Name="CatalogCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UPC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1007,7 +993,7 @@
           <NavigationProperty Name="MediaFiles" Relationship="Self.FK_MediaFile_VideoRelease" FromRole="VideoRelease" ToRole="MediaFile" />
           <NavigationProperty Name="Packaging" Relationship="Self.FK_VideoRelease_Packaging" FromRole="VideoRelease" ToRole="Packaging" />
           <NavigationProperty Name="Regions" Relationship="Self.FK_Region_VideoRelease" FromRole="VideoRelease" ToRole="Region" />
-          <NavigationProperty Name="ShoppingItem" Relationship="Self.FK_VideoRelease_ShoppingItem" FromRole="VideoRelease" ToRole="ShoppingItem" />
+          <NavigationProperty Name="ShoppingItems" Relationship="Self.FK_ShoppingItem_VideoRelease" FromRole="VideoRelease" ToRole="ShoppingItem" />
           <NavigationProperty Name="Standards" Relationship="Self.FK_Standard_VideoRelease" FromRole="VideoRelease" ToRole="Standard" />
           <NavigationProperty Name="SubtitleTracks" Relationship="Self.FK_SubtitleTrack_VideoRelease" FromRole="VideoRelease" ToRole="SubtitleTrack" />
           <NavigationProperty Name="VideoBoxSets" Relationship="Self.FK_VideoBoxSet_VideoRelease" FromRole="VideoRelease" ToRole="VideoBoxSet" />
@@ -1044,7 +1030,6 @@
           <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="VideoRelease" Relationship="Self.FK_VideoVersion_VideoRelease" FromRole="VideoVersion" ToRole="VideoRelease" />
           <NavigationProperty Name="VideoVersionType" Relationship="Self.FK_VideoVersion_VideoVersionType" FromRole="VideoVersion" ToRole="VideoVersionType" />
-          <NavigationProperty Name="VideoMedia" Relationship="TokuCinema_DataModel.FK_VideoVersion_ToTable" FromRole="VideoVersion" ToRole="VideoMedia" />
         </EntityType>
         <EntityType Name="VideoVersionType">
           <Key>
@@ -1168,7 +1153,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VideoMedia_Media">
-          <End Role="Media" Type="TokuCinema_DataModel.Media" Multiplicity="1" />
+          <End Role="Media" Type="Self.Medium" Multiplicity="1" />
           <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Media">
@@ -1227,15 +1212,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VideoRelease_ShoppingItem">
-          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="1" />
-          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
+        <Association Name="FK_ShoppingItem_VideoRelease">
+          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
+          <End Role="ShoppingItem" Type="Self.ShoppingItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ShoppingItem">
-              <PropertyRef Name="ShoppingItemId" />
+            <Principal Role="VideoRelease">
+              <PropertyRef Name="VideoReleaseId" />
             </Principal>
-            <Dependent Role="VideoRelease">
-              <PropertyRef Name="ShoppingItemId" />
+            <Dependent Role="ShoppingItem">
+              <PropertyRef Name="VideoReleaseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1363,7 +1348,7 @@
           <EntitySet Name="Formats" EntityType="Self.Format" />
           <EntitySet Name="FormatTypes" EntityType="Self.FormatType" />
           <EntitySet Name="Languages" EntityType="Self.Language" />
-          <EntitySet Name="Media1" EntityType="TokuCinema_DataModel.Media" />
+          <EntitySet Name="Media" EntityType="Self.Medium" />
           <EntitySet Name="MediaFiles" EntityType="Self.MediaFile" />
           <EntitySet Name="Packagings" EntityType="Self.Packaging" />
           <EntitySet Name="Regions" EntityType="Self.Region" />
@@ -1416,7 +1401,7 @@
             <End Role="SubtitleTrack" EntitySet="SubtitleTracks" />
           </AssociationSet>
           <AssociationSet Name="FK_VideoMedia_Media" Association="Self.FK_VideoMedia_Media">
-            <End Role="Media" EntitySet="Media1" />
+            <End Role="Media" EntitySet="Media" />
             <End Role="VideoMedia" EntitySet="VideoMedias" />
           </AssociationSet>
           <AssociationSet Name="FK_MediaFile_VideoRelease" Association="Self.FK_MediaFile_VideoRelease">
@@ -1435,9 +1420,9 @@
             <End Role="VideoRelease" EntitySet="VideoReleases" />
             <End Role="Region" EntitySet="Regions" />
           </AssociationSet>
-          <AssociationSet Name="FK_VideoRelease_ShoppingItem" Association="Self.FK_VideoRelease_ShoppingItem">
-            <End Role="ShoppingItem" EntitySet="ShoppingItems" />
+          <AssociationSet Name="FK_ShoppingItem_VideoRelease" Association="Self.FK_ShoppingItem_VideoRelease">
             <End Role="VideoRelease" EntitySet="VideoReleases" />
+            <End Role="ShoppingItem" EntitySet="ShoppingItems" />
           </AssociationSet>
           <AssociationSet Name="FK_Standard_StandardType" Association="Self.FK_Standard_StandardType">
             <End Role="StandardType" EntitySet="StandardTypes" />
@@ -1479,23 +1464,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_VideoVersion_ToTable" Association="TokuCinema_DataModel.FK_VideoVersion_ToTable">
-            <End Role="VideoMedia" EntitySet="VideoMedias" />
-            <End Role="VideoVersion" EntitySet="VideoVersions" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_VideoVersion_ToTable">
-          <End Type="TokuCinema_DataModel.VideoMedia" Role="VideoMedia" Multiplicity="1" />
-          <End Type="TokuCinema_DataModel.VideoVersion" Role="VideoVersion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoMedia">
-              <PropertyRef Name="VideoMediaId" />
-            </Principal>
-            <Dependent Role="VideoVersion">
-              <PropertyRef Name="VideoMediaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1613,8 +1582,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Media1">
-            <EntityTypeMapping TypeName="TokuCinema_DataModel.Media">
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="TokuCinema_DataModel.Medium">
               <MappingFragment StoreEntitySet="Media">
                 <ScalarProperty Name="MediaId" ColumnName="MediaId" />
                 <ScalarProperty Name="MediaOfficialTitle" ColumnName="MediaOfficialTitle" />
@@ -1632,6 +1601,7 @@
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Video" ColumnName="Video" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1668,6 +1638,7 @@
                 <ScalarProperty Name="ShoppingItemId" ColumnName="ShoppingItemId" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="PurchaseLink" ColumnName="PurchaseLink" />
+                <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1734,7 +1705,6 @@
                 <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
                 <ScalarProperty Name="DistributorId" ColumnName="DistributorId" />
                 <ScalarProperty Name="PackagingId" ColumnName="PackagingId" />
-                <ScalarProperty Name="ShoppingItemId" ColumnName="ShoppingItemId" />
                 <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
                 <ScalarProperty Name="CatalogCode" ColumnName="CatalogCode" />
                 <ScalarProperty Name="UPC" ColumnName="UPC" />
