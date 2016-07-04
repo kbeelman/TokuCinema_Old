@@ -18,7 +18,7 @@ namespace TokuCinema.Controllers
         public ActionResult Index()
         {
             var videoMedias = db.VideoMedias.Include(v => v.Medium);
-            return View(videoMedias.ToList());
+            return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
         }
 
         // GET: VideoMedias/Details/5
