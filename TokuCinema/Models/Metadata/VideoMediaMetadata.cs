@@ -28,6 +28,12 @@ namespace TokuCinema.Models
             [Required]
             [Display(Name = "Original Runtime (minutes)")]
             public int OriginalRuntime { get; set; }
+
+            [Required]
+            [Display(Name = "Release Date")]
+            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+            public System.DateTime ReleaseDate { get; set; }
+            
         }
     }
 }

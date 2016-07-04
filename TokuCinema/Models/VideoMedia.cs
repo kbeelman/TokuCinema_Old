@@ -25,6 +25,7 @@ namespace TokuCinema.Models
         public System.Guid MediaId { get; set; }
         public string OriginalAspectRatio { get; set; }
         public int OriginalRuntime { get; set; }
+        public System.DateTime ReleaseDate { get; set; }
     
         public virtual Medium Medium { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -7,9 +7,25 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Video Media</h4>
+    <h4>VideoMedia</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medium.MediaOfficialTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.OriginalAspectRatio)
         </dt>
@@ -27,11 +43,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayNameFor(model => model.Medium.WikipediaLink)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Medium.MediaOfficialTitle)
+            <a href="@Html.DisplayFor(model => model.Medium.WikipediaLink)" target="_blank">Wikipedia Link</a>
         </dd>
 
     </dl>

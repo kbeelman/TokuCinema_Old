@@ -43,43 +43,12 @@ namespace TokuCinema.Controllers
             return View();
         }
 
-        // GET: VideoMedias/CreateVideo
-        public ActionResult CreateVideo(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ViewBag.MediaId = id;
-            return View();
-        }
-
-        // POST: VideoMedias/CreateVideo
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateVideo(/*[Bind(Include = "VideoMediaId,MediaId,OriginalAspectRatio,OriginalRuntime")]*/ VideoMedia videoMedia)
-        {
-            if (ModelState.IsValid)
-            {
-                videoMedia.VideoMediaId = Guid.NewGuid();
-                db.VideoMedias.Add(videoMedia);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
-            return View(videoMedia);
-        }
-
         // POST: VideoMedias/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoMediaId,MediaId,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
+        public ActionResult Create([Bind(Include = "VideoMediaId,MediaId,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
         {
             if (ModelState.IsValid)
             {
