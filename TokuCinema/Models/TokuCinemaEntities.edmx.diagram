@@ -63,7 +63,7 @@
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_VideoVersionType" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_VideoMedia" />
+        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersionType_VideoMedia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

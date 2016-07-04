@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TokuCinema.Models
 {
-    [MetadataType(typeof(VideoReviewType.Metadata))]
-    public partial class VideoReviewType
+    [MetadataType(typeof(VideoVersionType.Metadata))]
+    public partial class VideoVersionType
     {
         class Metadata
         {
@@ -24,6 +24,12 @@ namespace TokuCinema.Models
             [Required]
             [Display(Name = "Video Version Description")]
             public string VideoVersionDescription { get; set; }
+
+            [Required]
+            [Display(Name = "Video Media Id")]
+            public System.Guid VideoMediaId { get; set; }
+
+
         }
     }
 }

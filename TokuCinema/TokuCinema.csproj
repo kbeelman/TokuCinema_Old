@@ -288,7 +288,7 @@
     <Compile Include="Models\Metadata\VideoMediaMetadata.cs" />
     <Compile Include="Models\Metadata\VideoReleaseMetadata.cs" />
     <Compile Include="Models\Metadata\VideoReviewMetadata.cs" />
-    <Compile Include="Models\Metadata\VideoReviewTypeMetadata.cs" />
+    <Compile Include="Models\Metadata\VideoVersionTypeMetadata.cs" />
     <Compile Include="Models\Metadata\VideoVersionMetadata.cs" />
     <Compile Include="Models\Packaging.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>

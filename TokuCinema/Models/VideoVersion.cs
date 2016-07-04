@@ -17,10 +17,8 @@ namespace TokuCinema.Models
         public System.Guid VideoVersionId { get; set; }
         public System.Guid VideoVersionTypeId { get; set; }
         public System.Guid VideoReleaseId { get; set; }
-        public System.Guid VideoMediaId { get; set; }
     
         public virtual VideoRelease VideoRelease { get; set; }
         public virtual VideoVersionType VideoVersionType { get; set; }
-        public virtual VideoMedia VideoMedia { get; set; }
     }
 }

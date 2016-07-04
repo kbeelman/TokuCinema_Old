@@ -23,8 +23,10 @@ namespace TokuCinema.Models
         public System.Guid VideoVersionTypeId { get; set; }
         public string VideoVersionTitle { get; set; }
         public string VideoVersionDescription { get; set; }
+        public System.Guid VideoMediaId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoVersion> VideoVersions { get; set; }
+        public virtual VideoMedia VideoMedia { get; set; }
     }
 }
