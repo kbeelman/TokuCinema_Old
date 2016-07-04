@@ -21,5 +21,6 @@ namespace TokuCinema.Models
     
         public virtual VideoRelease VideoRelease { get; set; }
         public virtual VideoVersionType VideoVersionType { get; set; }
+        public virtual VideoMedia VideoMedia { get; set; }
     }
 }

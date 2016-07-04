@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TokuCinema.Models.VideoMedia>
 
 @{
-    ViewBag.Title = "Video Media Index";
+    ViewBag.Title = "Index";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,19 +12,32 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.OriginalAspectRatio)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OriginalRuntime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayNameFor(model => model.Medium.WikipediaLink)
         </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medium.MediaOfficialTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.OriginalAspectRatio)
         </td>
@@ -32,8 +45,9 @@
             @Html.DisplayFor(modelItem => item.OriginalRuntime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Medium.MediaOfficialTitle)
+            <a href="@Html.DisplayFor(model => item.Medium.WikipediaLink)" target="_blank">Wikipedia Link</a>
         </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VideoMediaId }) |
             @Html.ActionLink("Details", "Details", new { id=item.VideoMediaId }) |

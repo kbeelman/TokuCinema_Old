@@ -460,11 +460,6 @@
     <Content Include="Views\Media\Details.cshtml" />
     <Content Include="Views\Media\Edit.cshtml" />
     <Content Include="Views\Media\Index.cshtml" />
-    <Content Include="Views\VideoMedias\Create.cshtml" />
-    <Content Include="Views\VideoMedias\Delete.cshtml" />
-    <Content Include="Views\VideoMedias\Details.cshtml" />
-    <Content Include="Views\VideoMedias\Edit.cshtml" />
-    <Content Include="Views\VideoMedias\Index.cshtml" />
     <Content Include="Views\FormatTypes\Create.cshtml" />
     <Content Include="Views\FormatTypes\Delete.cshtml" />
     <Content Include="Views\FormatTypes\Details.cshtml" />
@@ -606,13 +601,18 @@
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\VideoMedias\CreateVideo.cshtml" />
     <Content Include="Views\VideoReleases\CreateRelease.cshtml" />
     <Content Include="Views\VideoReviews\CreateReview.cshtml" />
+    <Content Include="Views\VideoMedias\Create.cshtml" />
+    <Content Include="Views\VideoMedias\Delete.cshtml" />
+    <Content Include="Views\VideoMedias\Details.cshtml" />
+    <Content Include="Views\VideoMedias\Edit.cshtml" />
+    <Content Include="Views\VideoMedias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

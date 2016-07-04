@@ -18,15 +18,19 @@ namespace TokuCinema.Models
         public VideoMedia()
         {
             this.VideoReleases = new HashSet<VideoRelease>();
+            this.VideoVersions = new HashSet<VideoVersion>();
         }
     
         public System.Guid VideoMediaId { get; set; }
         public System.Guid MediaId { get; set; }
         public string OriginalAspectRatio { get; set; }
         public int OriginalRuntime { get; set; }
+        public System.DateTime ReleaseDate { get; set; }
     
         public virtual Medium Medium { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoRelease> VideoReleases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VideoVersion> VideoVersions { get; set; }
     }
 }

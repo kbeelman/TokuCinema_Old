@@ -17,7 +17,7 @@ namespace TokuCinema.Models
             public System.Guid MediaId { get; set; }
 
             [Required]
-            [Display(Name = "Media Offical Title")]
+            [Display(Name = "Offical Title")]
             [StringLength(50, ErrorMessage = "Please limit this field to 100 characters.")]
             public string MediaOfficialTitle { get; set; }
 
