@@ -41,7 +41,6 @@ namespace TokuCinema.Controllers
         {
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription");
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink");
             ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio");
             return View();
         }
@@ -79,7 +78,6 @@ namespace TokuCinema.Controllers
             
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName");
-            ViewBag.ShoppingItemId = new SelectList(db.ShoppingItems, "ShoppingItemId", "PurchaseLink");
             return View();
         }
 
@@ -127,7 +125,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,ShoppingItemId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
+        public ActionResult Edit([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,VideoMediaId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
         {
             if (ModelState.IsValid)
             {
