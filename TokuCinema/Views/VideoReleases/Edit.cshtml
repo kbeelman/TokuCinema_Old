@@ -34,14 +34,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShoppingItemId, "ShoppingItemId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ShoppingItemId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ShoppingItemId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.VideoMediaId, "VideoMediaId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("VideoMediaId", null, htmlAttributes: new { @class = "form-control" })
@@ -105,10 +97,85 @@
             </div>
         </div>
 
+        @*Dynamically add reviews to this release*@
         <div class="form-group">
             @Html.LabelFor(model => model.VideoReviews, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ActionLink("Add Video Review", "CreateReview", "VideoReviews", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        <hr />
+
+        @*Dynamically add audio tracks to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.AudioTracks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Audio Track", "Create", "AudioTracks", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add subtitle tracks to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubtitleTracks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Subtitle Track", "Create", "SubtitleTracks", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add regions to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Regions, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Region", "Create", "Regions", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add media files to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.MediaFiles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Media Files", "Create", "MediaFiles", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add standards to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Standards, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Standard", "Create", "Standards", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add video box set to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoBoxSets, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Video Box Set", "Create", "VideoBoxSets", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add shopping items to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShoppingItems, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Shopping Items", "Create", "Shopping Items", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add formats to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Formats, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Format", "Create", "Formats", new { id = Model.VideoReleaseId }, null)
+            </div>
+        </div>
+
+        @*Dynamically add video version to this release*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoVersions, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ActionLink("Add Video Version", "Create", "VideoVersions", new { id = Model.VideoReleaseId }, null)
             </div>
         </div>
 

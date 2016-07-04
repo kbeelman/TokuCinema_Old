@@ -40,8 +40,8 @@ namespace TokuCinema.Controllers
         public ActionResult Create()
         {
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
-            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription");
-            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio");
+            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName");
+            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "VideoMediaId");
             return View();
         }
 
@@ -61,8 +61,8 @@ namespace TokuCinema.Controllers
             }
 
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName", videoRelease.DistributorId);
-            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingDescription", videoRelease.PackagingId);
-            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "OriginalAspectRatio", videoRelease.VideoMediaId);
+            ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName", videoRelease.PackagingId);
+            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "VideoMediaId", videoRelease.VideoMediaId);
             return View(videoRelease);
         }
 

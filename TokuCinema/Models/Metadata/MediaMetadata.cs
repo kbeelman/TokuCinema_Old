@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace TokuCinema.Models
 {
-    [MetadataType(typeof(Media.Metadata))]
-    public partial class Media
+    [MetadataType(typeof(Medium.Metadata))]
+    public partial class Medium
     {
         class Metadata
         {
