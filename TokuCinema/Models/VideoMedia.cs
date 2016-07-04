@@ -26,7 +26,12 @@ namespace TokuCinema.Models
         public string OriginalAspectRatio { get; set; }
         public int OriginalRuntime { get; set; }
         public System.DateTime ReleaseDate { get; set; }
-    
+
+        //From Media
+        public string MediaOfficialTitle { get; set; }
+        public string MediaDescription { get; set; }
+        public string WikipediaLink { get; set; }
+
         public virtual Medium Medium { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoRelease> VideoReleases { get; set; }

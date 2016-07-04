@@ -33,7 +33,19 @@ namespace TokuCinema.Models
             [Display(Name = "Release Date")]
             [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
             public System.DateTime ReleaseDate { get; set; }
-            
+
+            [Required]
+            [Display(Name = "Offical Title")]
+            [StringLength(50, ErrorMessage = "Please limit this field to 100 characters.")]
+            public string MediaOfficialTitle { get; set; }
+
+            [Required]
+            [Display(Name = "Media Description")]
+            public string MediaDescription { get; set; }
+
+            [Display(Name = "Wikipedia Link")]
+            public string WikipediaLink { get; set; }
+
         }
     }
 }
