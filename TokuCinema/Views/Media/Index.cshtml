@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Media Index";
+    int iterationCounter = 0;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -9,119 +10,84 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MediaOfficialTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MediaDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WikipediaLink)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MediaOfficialTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MediaDescription)
-            </td>
-            <td>
-                <a href="@Html.DisplayFor(model => item.WikipediaLink)" target="_blank">Wikipedia Link</a>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MediaId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MediaId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MediaId })
-            </td>
-        </tr>      
-            <tr>
-                <th>Video Media</th>
-            </tr>
-                <tr>
-                    <th></th>
-                    <th>
-                        Release Date
-                    </th>
-                    <th>
-                        Original Aspect Ratio
-                    </th>
-                    <th>
-                        Original Runtime
-                    </th>
-
-                    <th></th>
-                </tr>
-        foreach (var videoItem in item.VideoMedias.Where(vi => vi.MediaId == item.MediaId))
-        {
-            <tr>
-                <td></td>
-                <td>
-                    @Html.DisplayFor(modelItem => videoItem.ReleaseDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => videoItem.OriginalAspectRatio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => videoItem.OriginalRuntime)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = videoItem.VideoMediaId }) |
-                    @Html.ActionLink("Details", "Details", new { id = videoItem.VideoMediaId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = videoItem.VideoMediaId })
-                </td>
-            </tr>
-        }
-
-    }
-
-</table>*@
-
-@foreach (var item in Model)
+@foreach (var item in Model.OrderBy(d => d.VideoMedias.FirstOrDefault().ReleaseDate))
 {
+    
+    iterationCounter++;
+    string iterationCollapseName = "collapse" + iterationCounter.ToString();
+
     <div class="jumbotron row">
-        <div class="col-md-4">
-            <h1>@item.MediaOfficialTitle</h1>
-            <label>@Html.ActionLink(item.MediaId.ToString(), "Edit", new { id = item.MediaId })</label>
+        <div @*class="col-md-4"*@>
+            <h1>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", new { id = item.MediaId })</h1>
             <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", new { id = item.MediaId })</p><br />
             <a href="@Html.DisplayFor(model => item.WikipediaLink)" target="_blank">Wikipedia Link</a><br />
             <p>@item.MediaDescription</p>
             <hr />
-            <p class="glyphicon-plus">@Html.ActionLink("Insert Video Media", "Create", "VideoMedias", new { id = item.VideoMedias.FirstOrDefault().MediaId }, null)</p>
         </div>
-        <div>            
-                @foreach (var videoMediaItem in item.VideoMedias)
-                {
-                    <div class="col-md-4">
-                        <h2>Video Media Details</h2>
-                    <p>@Html.ActionLink(@Html.DisplayFor(modelItem => videoMediaItem.VideoMediaId).ToString(), "Edit", "VideoMedias", new { id = videoMediaItem.VideoMediaId }, null)</p>
-                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoMedias", new { id = videoMediaItem.VideoMediaId }, null)</p><br />
-                            <label class="lead">Release Date </label><p>@Html.DisplayFor(modelItem => videoMediaItem.ReleaseDate)</p>
-                            <label class="lead">Original Aspect Ratio </label><p>@Html.DisplayFor(modelItem => videoMediaItem.OriginalAspectRatio)<br /></p>
-                            <label class="lead">Original Runtime </label><p>@Html.DisplayFor(modelItem => videoMediaItem.OriginalRuntime)</p>
-                            <hr />
-                        <p class="glyphicon-plus">@Html.ActionLink("Insert Video Release", "Create", "VideoReleases", new { id = item.VideoMedias.FirstOrDefault().MediaId }, null)</p>
-                     </div>
 
-                    <h2>Video Release(s)</h2>
-                    foreach (var videoReleaseItem in videoMediaItem.VideoReleases)
-                    {
-                        <div class="col-md-4">
-                            <p>@Html.ActionLink(@Html.DisplayFor(modelItem => videoReleaseItem.VideoMediaId).ToString(), "Edit", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId}, null)</p>
-                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p><br />
-                            <label class="lead">Distributor </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.Distributor.DistributorName)</p>
-                            <label class="lead">Release Date </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.ReleaseDate)</p>
-                            <hr />
-                        </div>
-                     }
-                }
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div @*class="panel panel-default"*@>
+                <div @*class="panel-heading"*@ role="tab" id="headingOne">
+                    <h4 @*class="panel-title"*@>
+                            <a class="glyphicon glyphicon-chevron-right" data-toggle="collapse" data-parent="#accordion" href='#@iterationCounter' aria-expanded="false" aria-controls="collapseOne">
+                                Details
+                            </a>
+                    </h4>
+                </div>
+                <div id='@iterationCounter' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+
+                    <div>
+                        @foreach (var videoMediaItem in item.VideoMedias)
+                {
+                            <div class="col-md-4">
+                                <div class="glyphicon-plus">@Html.ActionLink("Insert Video Media", "Create", "VideoMedias", new { id = item.MediaId }, null)</div>
+                                <h2>Video Media Details</h2>
+                                <p>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", "VideoMedias", new { id = videoMediaItem.VideoMediaId }, null)</p>
+                                <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoMedias", new { id = videoMediaItem.VideoMediaId }, null)</p><br />
+                                <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoMediaItem.ReleaseDate)</p>
+                                <label>Original Aspect Ratio </label><p>@Html.DisplayFor(modelItem => videoMediaItem.OriginalAspectRatio)<br /></p>
+                                <label>Original Runtime </label><p>@Html.DisplayFor(modelItem => videoMediaItem.OriginalRuntime)</p>
+                                <hr />
+
+                            </div>
+                            if (videoMediaItem.VideoReleases.Count > 0)
+                            {
+
+                                foreach (var videoReleaseItem in videoMediaItem.VideoReleases)
+                                {
+                                    <div class="col-md-4">
+                                        <div class="glyphicon-plus">@Html.ActionLink("Insert Video Release", "Create", "VideoReleases", new { id = item.MediaId }, null)</div>
+                                        <h2>Video Release(s)</h2>
+                                        <p>@Html.ActionLink(@Html.DisplayFor(modelItem => videoReleaseItem.Distributor.DistributorName).ToString(), "Edit", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p>
+                                        <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p><br />
+                                        <label>Distributor </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.Distributor.DistributorName)</p>
+                                        <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.ReleaseDate)</p>
+                                        <hr />
+                                    </div>
+                                }
+                            }
+
+                            if (videoMediaItem.VideoVersionTypes.Count > 0)
+                            {
+
+                                foreach (var videoVersionTypeItem in videoMediaItem.VideoVersionTypes)
+                                {
+                                    <div class="col-md-4">
+                                        <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version", "Create", "VideoVersionTypes", new { id = videoMediaItem.VideoMediaId }, null)</div>
+                                        <h2>Video Version Types</h2>
+                                        <p>@Html.ActionLink(@Html.DisplayFor(modelItem => videoVersionTypeItem.VideoVersionTitle).ToString(), "Edit", "VideoVersionTypes", new { id = videoVersionTypeItem.VideoVersionTypeId }, null)</p>
+                                        <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReleases", new { id = videoVersionTypeItem.VideoVersionTypeId }, null)</p><br />
+                                        <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoVersionTypeItem.VideoVersionTitle)</p>
+                                        <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoVersionTypeItem.VideoVersionDescription)</p>
+                                        <hr />
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 }

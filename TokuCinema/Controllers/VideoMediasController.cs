@@ -21,13 +21,6 @@ namespace TokuCinema.Controllers
             return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
         }
 
-        // GET: _VideoMedias **Partial View
-        public ActionResult _VideoMedia(Guid? id)
-        {
-            var videoMedias = db.VideoMedias.Where(v => v.MediaId == id);
-            return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
-        }
-
         // GET: VideoMedias/Details/5
         public ActionResult Details(Guid? id)
         {
