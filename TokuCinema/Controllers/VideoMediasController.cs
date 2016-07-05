@@ -82,7 +82,6 @@ namespace TokuCinema.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
         }
 
@@ -91,15 +90,15 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoMediaId,MediaId,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
+        public ActionResult Edit([Bind(Include = "VideoMediaId,MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(videoMedia).State = EntityState.Modified;
+                db.Entry(videoMedia.Medium).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
         }
 
