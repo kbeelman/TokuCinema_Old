@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="828d507c217a4b1d98fcbb04ad4ba7b7" Name="Diagram1">
+      <Diagram DiagramId="828d507c217a4b1d98fcbb04ad4ba7b7" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="TokuCinema_DataModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
@@ -27,7 +27,7 @@
         <EntityTypeShape EntityType="TokuCinema_DataModel.SubtitleTrack" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSet" Width="1.5" PointX="13.5" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSetType" Width="1.5" PointX="11.25" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoMedia" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoMedia" Width="1.5" PointX="1" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoRelease" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoReview" Width="1.5" PointX="7.5" PointY="39" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersion" Width="1.5" PointX="10.5" PointY="24" IsExpanded="true" />
@@ -52,7 +52,6 @@
         <AssociationConnector Association="TokuCinema_DataModel.FK_SubtitleTrack_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoBoxSet_VideoBoxSetType" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoBoxSet_VideoRelease" ManuallyRouted="false" />
-        <AssociationConnector Association="TokuCinema_DataModel.FK_VideoRelease_VideoMedia" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersionType_VideoMedia" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoReview_VideoRelease" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_VideoVersion_VideoRelease" ManuallyRouted="false" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -229,7 +229,6 @@
           <Property Name="VideoReleaseId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DistributorId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PackagingId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CatalogCode" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="UPC" Type="nvarchar" MaxLength="13" Nullable="false" />
           <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
@@ -545,18 +544,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VideoRelease_VideoMedia">
-          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
-          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoMedia">
-              <PropertyRef Name="VideoMediaId" />
-            </Principal>
-            <Dependent Role="VideoRelease">
-              <PropertyRef Name="VideoMediaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_VideoReview_VideoRelease">
           <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
           <End Role="VideoReview" Type="Self.VideoReview" Multiplicity="*" />
@@ -722,10 +709,6 @@
             <End Role="Packaging" EntitySet="Packaging" />
             <End Role="VideoRelease" EntitySet="VideoRelease" />
           </AssociationSet>
-          <AssociationSet Name="FK_VideoRelease_VideoMedia" Association="Self.FK_VideoRelease_VideoMedia">
-            <End Role="VideoMedia" EntitySet="VideoMedia" />
-            <End Role="VideoRelease" EntitySet="VideoRelease" />
-          </AssociationSet>
           <AssociationSet Name="FK_VideoReview_VideoRelease" Association="Self.FK_VideoReview_VideoRelease">
             <End Role="VideoRelease" EntitySet="VideoRelease" />
             <End Role="VideoReview" EntitySet="VideoReview" />
@@ -743,8 +726,7 @@
             <End Role="VideoVersionType" EntitySet="VideoVersionType" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TokuCinema_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -988,7 +970,6 @@
           <Property Name="OriginalRuntime" Type="Int32" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Medium" Relationship="Self.FK_VideoMedia_Media" FromRole="VideoMedia" ToRole="Media" />
-          <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoMedia" ToRole="VideoRelease" />
           <NavigationProperty Name="VideoVersionTypes" Relationship="Self.FK_VideoVersionType_VideoMedia" FromRole="VideoMedia" ToRole="VideoVersionType" />
         </EntityType>
         <EntityType Name="VideoRelease">
@@ -998,7 +979,6 @@
           <Property Name="VideoReleaseId" Type="Guid" Nullable="false" />
           <Property Name="DistributorId" Type="Guid" Nullable="false" />
           <Property Name="PackagingId" Type="Guid" Nullable="false" />
-          <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
           <Property Name="CatalogCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UPC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1016,7 +996,6 @@
           <NavigationProperty Name="Standards" Relationship="Self.FK_Standard_VideoRelease" FromRole="VideoRelease" ToRole="Standard" />
           <NavigationProperty Name="SubtitleTracks" Relationship="Self.FK_SubtitleTrack_VideoRelease" FromRole="VideoRelease" ToRole="SubtitleTrack" />
           <NavigationProperty Name="VideoBoxSets" Relationship="Self.FK_VideoBoxSet_VideoRelease" FromRole="VideoRelease" ToRole="VideoBoxSet" />
-          <NavigationProperty Name="VideoMedia" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoRelease" ToRole="VideoMedia" />
           <NavigationProperty Name="VideoReviews" Relationship="Self.FK_VideoReview_VideoRelease" FromRole="VideoRelease" ToRole="VideoReview" />
           <NavigationProperty Name="VideoVersions" Relationship="Self.FK_VideoVersion_VideoRelease" FromRole="VideoRelease" ToRole="VideoVersion" />
         </EntityType>
@@ -1304,18 +1283,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VideoRelease_VideoMedia">
-          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
-          <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoMedia">
-              <PropertyRef Name="VideoMediaId" />
-            </Principal>
-            <Dependent Role="VideoRelease">
-              <PropertyRef Name="VideoMediaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_VideoVersionType_VideoMedia">
           <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
           <End Role="VideoVersionType" Type="Self.VideoVersionType" Multiplicity="*" />
@@ -1475,10 +1442,6 @@
           <AssociationSet Name="FK_VideoBoxSet_VideoRelease" Association="Self.FK_VideoBoxSet_VideoRelease">
             <End Role="VideoRelease" EntitySet="VideoReleases" />
             <End Role="VideoBoxSet" EntitySet="VideoBoxSets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VideoRelease_VideoMedia" Association="Self.FK_VideoRelease_VideoMedia">
-            <End Role="VideoMedia" EntitySet="VideoMedias" />
-            <End Role="VideoRelease" EntitySet="VideoReleases" />
           </AssociationSet>
           <AssociationSet Name="FK_VideoVersionType_VideoMedia" Association="Self.FK_VideoVersionType_VideoMedia">
             <End Role="VideoMedia" EntitySet="VideoMedias" />
@@ -1742,7 +1705,6 @@
                 <ScalarProperty Name="VideoReleaseId" ColumnName="VideoReleaseId" />
                 <ScalarProperty Name="DistributorId" ColumnName="DistributorId" />
                 <ScalarProperty Name="PackagingId" ColumnName="PackagingId" />
-                <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
                 <ScalarProperty Name="CatalogCode" ColumnName="CatalogCode" />
                 <ScalarProperty Name="UPC" ColumnName="UPC" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
