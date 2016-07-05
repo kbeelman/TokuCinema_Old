@@ -50,6 +50,7 @@
         
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VideoMediaId }) |
+            @Html.ActionLink("New Version", "Create", "VideoVersionTypes", new { id=item.VideoMediaId}, null) |
             @Html.ActionLink("Details", "Details", new { id=item.VideoMediaId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.VideoMediaId })
         </td>

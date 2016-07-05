@@ -36,8 +36,19 @@ namespace TokuCinema.Controllers
         }
 
         // GET: VideoVersionTypes/Create
-        public ActionResult Create()
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        // GET: VideoVersionTypes/Create/5
+        public ActionResult Create(Guid? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.VideoMediaId = id;
             return View();
         }
 
@@ -46,7 +57,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoVersionTypeId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
+        public ActionResult Create([Bind(Include = "VideoVersionTypeId,VideoMediaId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +90,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoVersionTypeId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
+        public ActionResult Edit([Bind(Include = "VideoVersionTypeId,VideoMediaId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
         {
             if (ModelState.IsValid)
             {
