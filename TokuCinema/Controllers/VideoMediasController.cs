@@ -46,7 +46,6 @@ namespace TokuCinema.Controllers
         // GET: VideoMedias/Create
         public ActionResult Create()
         {
-            ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle");
             return View();
         }
 
@@ -55,11 +54,20 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoMediaId,MediaId,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
+        public ActionResult Create([Bind(Include = "VideoMediaId,MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
         {
             if (ModelState.IsValid)
             {
+                //videoMedia.MediaId = Guid.NewGuid();
+                var media = new Medium();
+                media.MediaId = Guid.NewGuid();
+                media.MediaOfficialTitle = videoMedia.MediaOfficialTitle;
+                media.MediaDescription = videoMedia.MediaDescription;
+                media.WikipediaLink = videoMedia.WikipediaLink;
+                db.Media.Add(media);
+                
                 videoMedia.VideoMediaId = Guid.NewGuid();
+                videoMedia.MediaId = media.MediaId;
                 db.VideoMedias.Add(videoMedia);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Media");
