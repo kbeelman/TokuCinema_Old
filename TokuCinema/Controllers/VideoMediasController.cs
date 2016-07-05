@@ -122,12 +122,12 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VideoMedia videoMedia = db.VideoMedias.Find(id);
-            if (videoMedia == null)
+            Movie movie = new Movie(id);
+            if (movie == null)
             {
                 return HttpNotFound();
             }
-            return View(videoMedia);
+            return View(movie);
         }
 
         // POST: VideoMedias/Delete/5
@@ -135,8 +135,9 @@ namespace TokuCinema.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            VideoMedia videoMedia = db.VideoMedias.Find(id);
-            db.VideoMedias.Remove(videoMedia);
+            Movie movie = new Movie(id);
+            db.VideoMedias.Remove(db.VideoMedias.Find(movie.VideoMedia.VideoMediaId));
+            db.Media.Remove(db.Media.Find(movie.Media.MediaId));
             db.SaveChanges();
             return RedirectToAction("Index", "Media");
         }
