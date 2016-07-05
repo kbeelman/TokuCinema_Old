@@ -17,8 +17,14 @@ namespace TokuCinema.Controllers
         // GET: VideoMedias
         public ActionResult Index()
         {
-            var videoMedias = db.VideoMedias.Include(v => v.Medium);
-            return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
+            List<Movie> movies = new List<Movie>();
+            var videoMedias = db.VideoMedias.OrderBy(v => v.ReleaseDate);
+            foreach (VideoMedia videoMedia in videoMedias)
+            {
+                movies.Add(new Movie(videoMedia.VideoMediaId));
+            }
+
+            return View(movies);
         }
 
         // GET: _VideoMedias **Partial View
@@ -35,12 +41,12 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VideoMedia videoMedia = db.VideoMedias.Find(id);
-            if (videoMedia == null)
+            Movie movie = new Movie(id);
+            if (movie == null)
             {
                 return HttpNotFound();
             }
-            return View(videoMedia);
+            return View(movie);
         }
 
         // GET: VideoMedias/Create
@@ -54,16 +60,15 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoMediaId,MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
+        public ActionResult Create(Movie movie)
         {
+            var videoMedia = movie.VideoMedia;
+            var media = movie.Media;
+
             if (ModelState.IsValid)
             {
                 //videoMedia.MediaId = Guid.NewGuid();
-                var media = new Medium();
                 media.MediaId = Guid.NewGuid();
-                media.MediaOfficialTitle = videoMedia.MediaOfficialTitle;
-                media.MediaDescription = videoMedia.MediaDescription;
-                media.WikipediaLink = videoMedia.WikipediaLink;
                 db.Media.Add(media);
                 
                 videoMedia.VideoMediaId = Guid.NewGuid();
@@ -84,12 +89,12 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VideoMedia videoMedia = db.VideoMedias.Find(id);
-            if (videoMedia == null)
+            Movie movie = new Movie(id);
+            if (movie == null)
             {
                 return HttpNotFound();
             }
-            return View(videoMedia);
+            return View(movie);
         }
 
         // POST: VideoMedias/Edit/5
@@ -97,16 +102,17 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoMediaId,MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
+        public ActionResult Edit(Movie movie)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
-                db.Entry(videoMedia).State = EntityState.Modified;
-                db.Entry(videoMedia.Medium).State = EntityState.Modified;
+                db.Entry(movie.Media).State = EntityState.Modified;
+                db.Entry(movie.VideoMedia).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Media");
             }
-            return View(videoMedia);
+            return View(movie);
         }
 
         // GET: VideoMedias/Delete/5

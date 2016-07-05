@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TokuCinema.Models.VideoMedia>
+﻿@model IEnumerable<TokuCinema.Models.Movie>
 
 @{
     ViewBag.Title = "Index";
@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayNameFor(model => model.Media.MediaOfficialTitle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            @Html.DisplayNameFor(model => model.VideoMedia.ReleaseDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OriginalAspectRatio)
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalAspectRatio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OriginalRuntime)
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalRuntime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Medium.WikipediaLink)
+            @Html.DisplayNameFor(model => model.Media.WikipediaLink)
         </th>
         
         <th></th>
@@ -33,26 +33,26 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Medium.MediaOfficialTitle)
+            @Html.DisplayFor(modelItem => item.Media.MediaOfficialTitle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
+            @Html.DisplayFor(modelItem => item.VideoMedia.ReleaseDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OriginalAspectRatio)
+            @Html.DisplayFor(modelItem => item.VideoMedia.OriginalAspectRatio)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OriginalRuntime)
+            @Html.DisplayFor(modelItem => item.VideoMedia.OriginalRuntime)
         </td>
         <td>
-            <a href="@Html.DisplayFor(model => item.Medium.WikipediaLink)" target="_blank">Wikipedia Link</a>
+            <a href="@Html.DisplayFor(model => item.Media.WikipediaLink)" target="_blank">Wikipedia Link</a>
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VideoMediaId }) |
-            @Html.ActionLink("New Version", "Create", "VideoVersionTypes", new { id=item.VideoMediaId}, null) |
-            @Html.ActionLink("Details", "Details", new { id=item.VideoMediaId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VideoMediaId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.VideoMedia.VideoMediaId }) |
+            @Html.ActionLink("New Version", "Create", "VideoVersionTypes", new { id=item.VideoMedia.VideoMediaId }, null) |
+            @Html.ActionLink("Details", "Details", new { id=item.VideoMedia.VideoMediaId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VideoMedia.VideoMediaId })
         </td>
     </tr>
 }
