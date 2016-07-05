@@ -21,6 +21,13 @@ namespace TokuCinema.Controllers
             return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
         }
 
+        // GET: _VideoMedias **Partial View
+        public ActionResult _VideoMedia(Guid? id)
+        {
+            var videoMedias = db.VideoMedias.Where(v => v.MediaId == id);
+            return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
+        }
+
         // GET: VideoMedias/Details/5
         public ActionResult Details(Guid? id)
         {
@@ -63,7 +70,7 @@ namespace TokuCinema.Controllers
                 videoMedia.MediaId = media.MediaId;
                 db.VideoMedias.Add(videoMedia);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Media");
             }
 
             ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
@@ -97,7 +104,7 @@ namespace TokuCinema.Controllers
                 db.Entry(videoMedia).State = EntityState.Modified;
                 db.Entry(videoMedia.Medium).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Media");
             }
             return View(videoMedia);
         }
@@ -125,7 +132,7 @@ namespace TokuCinema.Controllers
             VideoMedia videoMedia = db.VideoMedias.Find(id);
             db.VideoMedias.Remove(videoMedia);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Media");
         }
 
         protected override void Dispose(bool disposing)

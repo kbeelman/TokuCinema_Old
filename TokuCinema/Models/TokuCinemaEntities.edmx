@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TokuCinema_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -743,7 +743,8 @@
             <End Role="VideoVersionType" EntitySet="VideoVersionType" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TokuCinema_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -985,10 +986,10 @@
           <Property Name="MediaId" Type="Guid" Nullable="false" />
           <Property Name="OriginalAspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OriginalRuntime" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Medium" Relationship="Self.FK_VideoMedia_Media" FromRole="VideoMedia" ToRole="Media" />
           <NavigationProperty Name="VideoReleases" Relationship="Self.FK_VideoRelease_VideoMedia" FromRole="VideoMedia" ToRole="VideoRelease" />
-          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="VideoVersionTypes" Relationship="TokuCinema_DataModel.FK_VideoVersionType_VideoMedia" FromRole="VideoMedia" ToRole="VideoVersionType" />
+          <NavigationProperty Name="VideoVersionTypes" Relationship="Self.FK_VideoVersionType_VideoMedia" FromRole="VideoMedia" ToRole="VideoVersionType" />
         </EntityType>
         <EntityType Name="VideoRelease">
           <Key>
@@ -1055,9 +1056,9 @@
           <Property Name="VideoVersionTypeId" Type="Guid" Nullable="false" />
           <Property Name="VideoVersionTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VideoVersionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VideoVersions" Relationship="Self.FK_VideoVersion_VideoVersionType" FromRole="VideoVersionType" ToRole="VideoVersion" />
           <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="VideoMedia" Relationship="TokuCinema_DataModel.FK_VideoVersionType_VideoMedia" FromRole="VideoVersionType" ToRole="VideoMedia" />
+          <NavigationProperty Name="VideoMedia" Relationship="Self.FK_VideoVersionType_VideoMedia" FromRole="VideoVersionType" ToRole="VideoMedia" />
+          <NavigationProperty Name="VideoVersions" Relationship="Self.FK_VideoVersion_VideoVersionType" FromRole="VideoVersionType" ToRole="VideoVersion" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -1315,6 +1316,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VideoVersionType_VideoMedia">
+          <End Role="VideoMedia" Type="Self.VideoMedia" Multiplicity="1" />
+          <End Role="VideoVersionType" Type="Self.VideoVersionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoMedia">
+              <PropertyRef Name="VideoMediaId" />
+            </Principal>
+            <Dependent Role="VideoVersionType">
+              <PropertyRef Name="VideoMediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VideoReview_VideoRelease">
           <End Role="VideoRelease" Type="Self.VideoRelease" Multiplicity="1" />
           <End Role="VideoReview" Type="Self.VideoReview" Multiplicity="*" />
@@ -1467,6 +1480,10 @@
             <End Role="VideoMedia" EntitySet="VideoMedias" />
             <End Role="VideoRelease" EntitySet="VideoReleases" />
           </AssociationSet>
+          <AssociationSet Name="FK_VideoVersionType_VideoMedia" Association="Self.FK_VideoVersionType_VideoMedia">
+            <End Role="VideoMedia" EntitySet="VideoMedias" />
+            <End Role="VideoVersionType" EntitySet="VideoVersionTypes" />
+          </AssociationSet>
           <AssociationSet Name="FK_VideoReview_VideoRelease" Association="Self.FK_VideoReview_VideoRelease">
             <End Role="VideoRelease" EntitySet="VideoReleases" />
             <End Role="VideoReview" EntitySet="VideoReviews" />
@@ -1483,23 +1500,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_VideoVersionType_VideoMedia" Association="TokuCinema_DataModel.FK_VideoVersionType_VideoMedia">
-            <End Role="VideoMedia" EntitySet="VideoMedias" />
-            <End Role="VideoVersionType" EntitySet="VideoVersionTypes" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_VideoVersionType_VideoMedia">
-          <End Type="TokuCinema_DataModel.VideoMedia" Role="VideoMedia" Multiplicity="1" />
-          <End Type="TokuCinema_DataModel.VideoVersionType" Role="VideoVersionType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VideoMedia">
-              <PropertyRef Name="VideoMediaId" />
-            </Principal>
-            <Dependent Role="VideoVersionType">
-              <PropertyRef Name="VideoMediaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1727,11 +1728,11 @@
           <EntitySetMapping Name="VideoMedias">
             <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoMedia">
               <MappingFragment StoreEntitySet="VideoMedia">
-                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
                 <ScalarProperty Name="MediaId" ColumnName="MediaId" />
                 <ScalarProperty Name="OriginalAspectRatio" ColumnName="OriginalAspectRatio" />
                 <ScalarProperty Name="OriginalRuntime" ColumnName="OriginalRuntime" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1783,10 +1784,10 @@
           <EntitySetMapping Name="VideoVersionTypes">
             <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoVersionType">
               <MappingFragment StoreEntitySet="VideoVersionType">
-                <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
                 <ScalarProperty Name="VideoVersionTypeId" ColumnName="VideoVersionTypeId" />
                 <ScalarProperty Name="VideoVersionTitle" ColumnName="VideoVersionTitle" />
                 <ScalarProperty Name="VideoVersionDescription" ColumnName="VideoVersionDescription" />
+                <ScalarProperty Name="VideoMediaId" ColumnName="VideoMediaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
