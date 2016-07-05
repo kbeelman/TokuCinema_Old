@@ -38,6 +38,7 @@ namespace TokuCinema.Controllers
         // GET: VideoVersionTypes/Create
         public ActionResult Create()
         {
+            ViewBag.MediaId = new SelectList(db.Media, "VideoMediaId", "MediaOfficialTitle");
             return View();
         }
 
@@ -46,7 +47,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoVersionTypeId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
+        public ActionResult Create([Bind(Include = "VideoVersionTypeId,MediaId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
         {
             if (ModelState.IsValid)
             {

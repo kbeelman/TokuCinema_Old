@@ -612,7 +612,7 @@
   <ItemGroup>
     <Folder Include="Domain\" />
     <Folder Include="Services\" />
-    <Folder Include="Views\Video\" />
+    <Folder Include="Views\MasterMedia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

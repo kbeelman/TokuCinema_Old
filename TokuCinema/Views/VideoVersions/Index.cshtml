@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.VideoMediaId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
         </th>
         <th>
@@ -25,9 +22,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoMediaId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VideoRelease.CatalogCode)
         </td>

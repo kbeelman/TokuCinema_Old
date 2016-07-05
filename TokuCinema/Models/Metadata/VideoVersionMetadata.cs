@@ -24,9 +24,6 @@ namespace TokuCinema.Models
             [Display(Name = "Video Release Id")]
             public System.Guid VideoReleaseId { get; set; }
 
-            [Required]
-            [Display(Name = "Video Media Id")]
-            public System.Guid VideoMediaId { get; set; }
         }
     }
 }

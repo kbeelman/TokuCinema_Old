@@ -21,6 +21,13 @@ namespace TokuCinema.Controllers
             return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
         }
 
+        // GET: _VideoMedias **Partial View
+        public ActionResult _VideoMedia(Guid? id)
+        {
+            var videoMedias = db.VideoMedias.Where(v => v.MediaId == id);
+            return View(videoMedias.OrderBy(v => v.ReleaseDate).ToList());
+        }
+
         // GET: VideoMedias/Details/5
         public ActionResult Details(Guid? id)
         {
@@ -55,7 +62,7 @@ namespace TokuCinema.Controllers
                 videoMedia.VideoMediaId = Guid.NewGuid();
                 db.VideoMedias.Add(videoMedia);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Media");
             }
 
             ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
@@ -83,13 +90,13 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoMediaId,MediaId,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
+        public ActionResult Edit([Bind(Include = "VideoMediaId,MediaId,ReleaseDate,OriginalAspectRatio,OriginalRuntime")] VideoMedia videoMedia)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(videoMedia).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Media");
             }
             ViewBag.MediaId = new SelectList(db.Media, "MediaId", "MediaOfficialTitle", videoMedia.MediaId);
             return View(videoMedia);
@@ -118,7 +125,7 @@ namespace TokuCinema.Controllers
             VideoMedia videoMedia = db.VideoMedias.Find(id);
             db.VideoMedias.Remove(videoMedia);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Media");
         }
 
         protected override void Dispose(bool disposing)
