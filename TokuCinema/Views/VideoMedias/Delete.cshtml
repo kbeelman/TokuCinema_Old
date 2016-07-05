@@ -1,4 +1,4 @@
-﻿@model TokuCinema.Models.VideoMedia
+﻿@model TokuCinema.Models.Movie
 
 @{
     ViewBag.Title = "Delete";
@@ -12,27 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.OriginalAspectRatio)
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalAspectRatio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalAspectRatio)
+            @Html.DisplayFor(model => model.VideoMedia.OriginalAspectRatio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OriginalRuntime)
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalRuntime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalRuntime)
+            @Html.DisplayFor(model => model.VideoMedia.OriginalRuntime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayNameFor(model => model.Media.MediaOfficialTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayFor(model => model.Media.MediaOfficialTitle)
         </dd>
 
     </dl>

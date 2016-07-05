@@ -1,4 +1,4 @@
-﻿@model TokuCinema.Models.VideoMedia
+﻿@model TokuCinema.Models.Movie
 
 @{
     ViewBag.Title = "Details";
@@ -11,56 +11,56 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayNameFor(model => model.Media.MediaOfficialTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Medium.MediaOfficialTitle)
+            @Html.DisplayFor(model => model.Media.MediaOfficialTitle)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Medium.MediaDescription)
+            @Html.DisplayNameFor(model => model.Media.MediaDescription)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Medium.MediaDescription)
+            @Html.DisplayFor(model => model.Media.MediaDescription)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            @Html.DisplayNameFor(model => model.VideoMedia.ReleaseDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
+            @Html.DisplayFor(model => model.VideoMedia.ReleaseDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OriginalAspectRatio)
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalAspectRatio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalAspectRatio)
+            @Html.DisplayFor(model => model.VideoMedia.OriginalAspectRatio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OriginalRuntime)
+            @Html.DisplayNameFor(model => model.VideoMedia.OriginalRuntime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalRuntime)
+            @Html.DisplayFor(model => model.VideoMedia.OriginalRuntime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Medium.WikipediaLink)
+            @Html.DisplayNameFor(model => model.Media.WikipediaLink)
         </dt>
 
         <dd>
-            <a href="@Html.DisplayFor(model => model.Medium.WikipediaLink)" target="_blank">Wikipedia Link</a>
+            <a href="@Html.DisplayFor(model => model.Media.WikipediaLink)" target="_blank">Wikipedia Link</a>
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoMediaId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoMedia.VideoMediaId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

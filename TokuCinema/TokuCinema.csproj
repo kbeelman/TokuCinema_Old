@@ -290,6 +290,7 @@
     <Compile Include="Models\Metadata\VideoReviewMetadata.cs" />
     <Compile Include="Models\Metadata\VideoVersionTypeMetadata.cs" />
     <Compile Include="Models\Metadata\VideoVersionMetadata.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Packaging.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
