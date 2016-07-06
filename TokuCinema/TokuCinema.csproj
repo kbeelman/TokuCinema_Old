@@ -603,7 +603,6 @@
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\VideoReleases\CreateRelease.cshtml" />
     <Content Include="Views\VideoReviews\CreateReview.cshtml" />
     <Content Include="Views\VideoMedias\Create.cshtml" />
     <Content Include="Views\VideoMedias\Delete.cshtml" />

@@ -32,7 +32,6 @@ namespace TokuCinema.Models
         public System.Guid VideoReleaseId { get; set; }
         public System.Guid DistributorId { get; set; }
         public System.Guid PackagingId { get; set; }
-        public System.Guid VideoMediaId { get; set; }
         public string CatalogCode { get; set; }
         public string UPC { get; set; }
         public System.DateTime ReleaseDate { get; set; }
@@ -59,7 +58,6 @@ namespace TokuCinema.Models
         public virtual ICollection<SubtitleTrack> SubtitleTracks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoBoxSet> VideoBoxSets { get; set; }
-        public virtual VideoMedia VideoMedia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoReview> VideoReviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

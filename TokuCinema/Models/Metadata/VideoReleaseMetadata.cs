@@ -26,10 +26,6 @@ namespace TokuCinema.Models
             public System.Guid PackagingId { get; set; }
 
             [Required]
-            [Display(Name = "Video Media Id")]
-            public System.Guid VideoMediaId { get; set; }
-
-            [Required]
             [Display(Name = "Catalog Code")]
             public string CatalogCode { get; set; }
 
