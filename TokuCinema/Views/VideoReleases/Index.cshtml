@@ -38,9 +38,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Packaging.PackagingDescription)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VideoMedia.OriginalAspectRatio)
-        </th>
         <th></th>
     </tr>
 
@@ -72,9 +69,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Packaging.PackagingDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoMedia.OriginalAspectRatio)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VideoReleaseId }) |
