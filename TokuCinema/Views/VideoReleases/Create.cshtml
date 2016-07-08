@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
+    TokuCinema.Models.TokuCinema_DataEntities db = new TokuCinema.Models.TokuCinema_DataEntities();
 }
 
 <h2>Create</h2>
@@ -16,6 +17,89 @@
         <p>* Indicates required field</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <script>
+            var numOfSelected = 0;
+
+            function getVideoVersions() {
+                var selectedId = document.getElementById("videoMediaId");
+                var id = selectedId.options[selectedId.selectedIndex].value;
+
+                $.ajax({
+                    url: '@Url.Action("GetVersions", "VideoReleases")',
+                    data: { 'id': id },
+                    success: function (result) {
+                        $("#VideoVersionId").html(result);
+                    }
+                });
+            }
+
+            function modifyNumOfSelected(number) {
+                numOfSelected = numOfSelected + number;
+            }
+
+            function cancel() {
+                $("#VideoVersionId").html("");
+                $("#videoMediaId").val($("#videoMediaId option:first").val());
+            }
+
+            function deleteVersion(number) {
+                for (i = number; i < numOfSelected; i++) {
+                    var nextVersion = $('#version' + (i + 1)).html();
+                    $('#version' + i).html(nextVersion);
+                    $("label[for='selectedVersion" + (i + 1) + "']").text("Selected Version" + i);
+                    $('#innerDivId' + (i + 1)).attr("id", "innerDivId");
+                    $('#version' + (i + 1)).attr("id", "version" + i);
+                    
+                }
+                modifyNumOfSelected(-1);
+                $('#version' + numOfSelected).remove();
+            }
+
+            function restart() {
+                numOfSelected = 0;
+                $('#numberOfVersions').prop("value", numOfSelected);
+                $(selectedVersions).html("");
+            }
+
+            function addVersion() {
+                modifyNumOfSelected(1);
+                var outerDivId = "version" + numOfSelected;
+                var selectedId = "selectedVersion" + numOfSelected;
+                var innerDivId = "innerDivId" + numOfSelected;
+                var outerDiv = "<div class='form-group' id='" + outerDivId + "'></div>";
+                var newLabel = '<label class="control-label col-md-2" for="' + selectedId + '">Selected Version ' + numOfSelected + '</label>';
+                var innerDiv = '<div class="col-md-10" id="' + innerDivId + '"></div>';
+                var versionSelect = '<select class="form-control" id="' + selectedId + '" name="' + selectedId + '">';
+                var guid = $("#VideoVersionTypeId").val();
+                var versionName = $("#VideoVersionTypeId option:selected").text();
+                var selectedVersion = '<option value="' + guid + '">' + versionName + '</option>';
+                var deleteButton = '<button type="button" class="btn btn-default" onclick="deleteVersion(' + numOfSelected + ')">Delete</button>';
+                $('#selectedVersions').append(outerDiv);
+                $('#' + outerDivId).append(newLabel);
+                $('#' + outerDivId).append(innerDiv);
+                $('#' + innerDivId).append(versionSelect);
+                $('#' + selectedId).append(selectedVersion);
+                //$('#' + innerDivId).append(deleteButton);
+                $('#numberOfVersions').prop("value", numOfSelected);
+            }
+        </script>
+
+        <input type="hidden" name="numberOfVersions" id="numberOfVersions">
+        
+        <div class="form-group" id="versionSelector">
+            @Html.Label("VideoMediaId", "Video Media", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
+            <div class="col-md-4">
+                @Html.DropDownList("videoMediaId", new SelectList(db.VideoMedias.OrderBy(v => v.ReleaseDate), "VideoMediaId", "Medium.MediaOfficialTitle"), "", htmlAttributes: new { @class = "form-control", @onchange = "getVideoVersions()" })
+            </div>
+            @Html.Label("VideoVersionTypeId", "Video Version", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
+            <div class="col-md-4" id="VideoVersionId">
+            </div>
+        </div>
+
+        <div class="form-group" id="selectedVersions"></div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.DistributorId, "DistributorId", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
