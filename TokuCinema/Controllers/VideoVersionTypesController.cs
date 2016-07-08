@@ -44,12 +44,21 @@ namespace TokuCinema.Controllers
         // GET: VideoVersionTypes/Create/5
         public ActionResult Create(Guid? id)
         {
+            // bool will allow for dynamically passed ids or manual entry
+            ViewBag.idPassed = false;
+
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.VideoMediaId= new SelectList(db.VideoMedias, "VideoMediaId", "Medium.MediaOfficialTitle");
+                ViewBag.idPassed = false;
+                return View();
             }
-            ViewBag.VideoMediaId = id;
-            return View();
+            else
+            {
+                ViewBag.VideoMediaId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
         }
 
         // POST: VideoVersionTypes/Create
@@ -108,6 +117,15 @@ namespace TokuCinema.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            // Get number of child records - used to let view know not to allow the user to attempt a delete
+            int childRecords = 0;
+            foreach (var videoVersionItem in db.VideoVersions.Where(v => v.VideoVersionTypeId == id))
+            {
+                childRecords++;
+            }
+            ViewBag.ChildRecords = childRecords;
+
             VideoVersionType videoVersionType = db.VideoVersionTypes.Find(id);
             if (videoVersionType == null)
             {

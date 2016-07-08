@@ -41,6 +41,7 @@ namespace TokuCinema.Controllers
         {
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName");
+            
             return View();
         }
 

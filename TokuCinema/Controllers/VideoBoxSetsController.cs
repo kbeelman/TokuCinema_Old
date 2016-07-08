@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using TokuCinema.Models;
 
 namespace TokuCinema.Controllers
@@ -18,7 +19,7 @@ namespace TokuCinema.Controllers
         public ActionResult Index()
         {
             var videoBoxSets = db.VideoBoxSets.Include(v => v.VideoBoxSetType).Include(v => v.VideoRelease);
-            return View(videoBoxSets.ToList());
+            return View(videoBoxSets.ToList()); 
         }
 
         // GET: VideoBoxSets/Details/5

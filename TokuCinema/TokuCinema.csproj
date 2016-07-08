@@ -349,6 +349,7 @@
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PresentationService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -609,10 +610,10 @@
     <Content Include="Views\VideoMedias\Details.cshtml" />
     <Content Include="Views\VideoMedias\Edit.cshtml" />
     <Content Include="Views\VideoMedias\Index.cshtml" />
+    <Content Include="Views\Media\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
-    <Folder Include="Services\" />
     <Folder Include="Views\MasterMedia\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TokuCinema.Models.Medium>
+@model IEnumerable<TokuCinema.Models.Medium>
 
 @{
     ViewBag.Title = "Media Index";
@@ -16,12 +16,17 @@
 
 @foreach (var item in Model.OrderBy(d => d.VideoMedias.FirstOrDefault().ReleaseDate))
 {
-    
+    // Get all media decendents
+    TokuCinema.Services.PresentationService.MediaDecendents mediaDecendents = new TokuCinema.Services.PresentationService.MediaDecendents();
+    mediaDecendents = TokuCinema.Services.PresentationService.GetMediaDecendents(item.MediaId);
+
     iterationCounter++;
     string iterationCollapseName = "collapse" + iterationCounter.ToString();
 
     <div class="jumbotron row">
-        @*Media Objects*@
+
+        @*Medias*@
+
         <div>
             <h1>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", new { id = item.MediaId })</h1>
             <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", new { id = item.MediaId })</p><br />
@@ -29,7 +34,9 @@
             <p>@item.MediaDescription</p>
             <hr />
         </div>
+
         @*Accordion start*@
+
         <div id="accordion" role="tablist" aria-multiselectable="true">
             <div>
                 <div role="tab" id="headingOne">
@@ -39,80 +46,86 @@
                         </a>
                     </h4>
                 </div>
-                <div id='@iterationCounter' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div id='@iterationCounter' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 
-                    @*Video Media Objects*@
-                    <div>
-                        @foreach (var videoMediaItem in item.VideoMedias)
-                        {
-                            <div class="col-md-4">
-                                <div class="glyphicon-plus">@Html.ActionLink("Insert Video Media", "Create", "VideoMedias", new { id = item.MediaId }, null)</div>
-                                <h2>Video Media Details</h2>
+                <div class="glyphicon-plus">@Html.ActionLink("Insert Video Media", "Create", "VideoMedias", new { id = item.MediaId }, null)</div>
+
+                @*Video Medias*@
+                
+                @if (mediaDecendents.VideoMedias.Count > 0)
+                {
+                    <div class="col-md-4">
+                        <h3>Video Media Details</h3>
+                        @foreach (var videoMediaItem in mediaDecendents.VideoMedias)
+                    {
+                            <div class="border-box">
                                 <p>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", "VideoMedias", new { id = videoMediaItem.VideoMediaId }, null)</p>
                                 <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoMedias", new { id = videoMediaItem.VideoMediaId }, null)</p><br />
                                 <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoMediaItem.ReleaseDate)</p>
                                 <label>Original Aspect Ratio </label><p>@Html.DisplayFor(modelItem => videoMediaItem.OriginalAspectRatio)<br /></p>
                                 <label>Original Runtime </label><p>@Html.DisplayFor(modelItem => videoMediaItem.OriginalRuntime)</p>
-                                <hr />
-
                             </div>
-
-                            // Video Version Objects
-                            if (videoMediaItem.VideoVersionTypes.Count > 0)
-                            {
-                                // Keeps track of VideoVersion records associated with each type
-                                List<TokuCinema.Models.VideoVersion> versionsOfType = new List<TokuCinema.Models.VideoVersion>();
-
-                                foreach (var videoVersionTypeItem in videoMediaItem.VideoVersionTypes)
-                                {
-
-                                    <div class="col-md-4">
-                                        <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version Type", "Create", "VideoVersionTypes", new { id = videoMediaItem.VideoMediaId }, null)</div>
-                                        <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version", "Create", "VideoVersions", new { id = videoMediaItem.VideoMediaId }, null)</div>
-                                        <h2>Video Version Types</h2>
-                                        <p>@Html.ActionLink(@Html.DisplayFor(modelItem => videoVersionTypeItem.VideoVersionTitle).ToString(), "Edit", "VideoVersionTypes", new { id = videoVersionTypeItem.VideoVersionTypeId }, null)</p>
-                                        <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReleases", new { id = videoVersionTypeItem.VideoVersionTypeId }, null)</p><br />
-                                        <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoVersionTypeItem.VideoVersionTitle)</p>
-                                        <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoVersionTypeItem.VideoVersionDescription)</p>
-                                        <hr />
-                                    </div>
-
-                                    // Adds VideoVersionRecords to the versionsOfType list
-                                    versionsOfType.AddRange(videoVersionTypeItem.VideoVersions);
-
-                                    // A list of video releases associated with this video version type
-                                    List<TokuCinema.Models.VideoRelease> releasesWithThisVersionType = new List<TokuCinema.Models.VideoRelease>();
-
-                                    // Get all video releases associate with this version type and add it to the list
-                                    foreach (var videoVersionType in versionsOfType)
-                                    {
-                                        releasesWithThisVersionType.Add(db.VideoReleases.Find(videoVersionType.VideoReleaseId));
-                                    }
-
-                                    // Video Release Obejcts
-                                if (releasesWithThisVersionType.Count > 0)
-                                    {
-
-                                        foreach (var videoReleaseItem in releasesWithThisVersionType)
-                                        {
-
-                                            <div class="col-md-4">
-                                                <div class="glyphicon-plus">@Html.ActionLink("Insert Video Release", "Create", "VideoReleases", new { id = item.MediaId }, null)</div>
-                                                <h2>Video Release(s)</h2>
-                                                <p>@Html.ActionLink(@Html.DisplayFor(modelItem => videoReleaseItem.Distributor.DistributorName).ToString(), "Edit", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p>
-                                                <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p><br />
-                                                <label>Distributor </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.Distributor.DistributorName)</p>
-                                                <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.ReleaseDate)</p>
-                                                <hr />
-                                            </div>
-                                        }
-                                    }
-
-                                }
-                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Version Type", "Create", "VideoVersionTypes", new { id = videoMediaItem.VideoMediaId }, null)</div>
                         }
+                        <hr />
                     </div>
-                </div>
+                }
+                
+
+                @*Video Version Types*@                         
+
+                    @if (mediaDecendents.VideoVersionTypes.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Versions of this Media</h3>
+                            @foreach (var videoMediaVersionTypeItem in mediaDecendents.VideoVersionTypes)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(videoMediaVersionTypeItem.VideoVersionTitle.ToString(), "Edit", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p><br />
+                                    <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionTitle)</p>
+                                    <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionDescription)</p>
+                                </div>
+                            }
+                            <hr />
+                        </div>
+                    }
+
+
+                @*Video Versions*@
+
+                @*<div class="glyphicon-plus">@Html.ActionLink("Insert Version", "Create", "VideoVersions", new { id = item.MediaId }, null)</div>
+                <h2>Video Media Details</h2>
+                <div class="col-md-4">
+                    @foreach (var videoVersionItems in mediaDecendents.VideoVersions)
+                    {
+                        <p>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", "VideoVersions", new { id = videoVersionItems.VideoMediaId }, null)</p>
+                        <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersions", new { id = videoVersionItems.VideoMediaId }, null)</p><br />
+                        <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoVersionItems.ReleaseDate)</p>
+                        <label>Original Aspect Ratio </label><p>@Html.DisplayFor(modelItem => videoVersionItems.OriginalAspectRatio)<br /></p>
+                        <label>Original Runtime </label><p>@Html.DisplayFor(modelItem => videoVersionItems.OriginalRuntime)</p>
+                    }
+                    <hr />
+                </div>*@
+
+                @*Video Releases*@
+                    @if(mediaDecendents.VideoReleases.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Releases with this Media</h3>
+                            @foreach (var videoReleaseItem in mediaDecendents.VideoReleases)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(videoReleaseItem), "Edit", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReleases", new { id = videoReleaseItem.VideoReleaseId }, null)</p><br />
+                                    <label>Distributor </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.Distributor.DistributorName)</p>
+                                    <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoReleaseItem.ReleaseDate)</p>
+                                </div>
+                            }
+                            <hr />
+                        </div>
+                    }            
+            </div>
             </div>
         </div>
     </div>

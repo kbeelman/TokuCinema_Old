@@ -58,3 +58,10 @@ textarea {
     -1px 1px 0 #000,
     1px 1px 0 #000;  
 }
+
+.border-box{
+    border: outset 5px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 15px;
+}

@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            <p>Release Name</p>    
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CatalogCode)
         </th>
         <th>
@@ -36,13 +39,16 @@
             @Html.DisplayNameFor(model => model.Distributor.DistributorName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Packaging.PackagingDescription)
+            @Html.DisplayNameFor(model => model.Packaging.PackagingName)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @TokuCinema.Services.PresentationService.GetReleaseName(item)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.CatalogCode)
         </td>
@@ -68,7 +74,7 @@
             @Html.DisplayFor(modelItem => item.Distributor.DistributorName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Packaging.PackagingDescription)
+            @Html.DisplayFor(modelItem => item.Packaging.PackagingName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VideoReleaseId }) |
