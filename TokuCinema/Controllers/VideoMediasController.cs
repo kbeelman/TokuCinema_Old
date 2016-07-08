@@ -60,13 +60,23 @@ namespace TokuCinema.Controllers
 
             if (ModelState.IsValid)
             {
-                //videoMedia.MediaId = Guid.NewGuid();
+                // Add media
                 media.MediaId = Guid.NewGuid();
                 db.Media.Add(media);
                 
+                // Add video media
                 videoMedia.VideoMediaId = Guid.NewGuid();
                 videoMedia.MediaId = media.MediaId;
                 db.VideoMedias.Add(videoMedia);
+
+                // Add "original version"
+                VideoVersionType originalVersion = new VideoVersionType();
+                originalVersion.VideoVersionTypeId = Guid.NewGuid();
+                originalVersion.VideoMediaId = videoMedia.VideoMediaId;
+                originalVersion.VideoVersionTitle = media.MediaOfficialTitle;
+                originalVersion.VideoVersionDescription = "Original Version";
+                db.VideoVersionTypes.Add(originalVersion);
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "Media");
             }

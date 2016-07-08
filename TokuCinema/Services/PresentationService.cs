@@ -31,23 +31,18 @@ namespace TokuCinema.Services
             }
 
             // Add those names to stringbuilder in the appropriate format
-            if (videoVersionNames.Count == 1)
+            foreach (string versionName in videoVersionNames)
             {
-                sb.Append(videoVersionNames.First());
-            }
-            else if(videoVersionNames.Count == 0)
-            {
-                sb.Append(" *No versions specified*");
-            }
-            else
-            {
-                for (int i = 0; i < videoVersionNames.Count - 2; i++)
-                {
-                    sb.Append(videoVersionNames.ElementAt(i) + " and ");
-                }
-                sb.Append(videoVersionNames.Last());
-            }
+                string seperator = "";
 
+                if (versionName != videoVersionNames.Last())
+                {
+                    seperator = " | ";
+                }                
+
+                sb.Append(versionName + seperator);
+            }
+            
             // Return constructed release name
             return sb.ToString();    				
 			}

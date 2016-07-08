@@ -1,87 +1,173 @@
 ﻿@model IEnumerable<TokuCinema.Models.VideoRelease>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Video Release Index";
+    int iterationCounter = 0; /* Used for dynamically naming the collapsable divs */
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <p>Release Name</p>    
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CatalogCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UPC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiscCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspectRatio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Runtime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChapterStops)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Distributor.DistributorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Packaging.PackagingName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @TokuCinema.Services.PresentationService.GetReleaseName(item)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CatalogCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UPC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiscCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspectRatio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Runtime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChapterStops)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Distributor.DistributorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Packaging.PackagingName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VideoReleaseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VideoReleaseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VideoReleaseId })
-        </td>
-    </tr>
+@foreach (var item in Model.OrderBy(d => d.ReleaseDate))
+{
+    iterationCounter++;
+    string iterationCollapseName = "collapse" + iterationCounter.ToString();
+
+    <div class="jumbotron row">
+
+        @*Video Releases*@
+
+        <div>
+            <h2>@Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item), "Edit", new { id = item.VideoReleaseId})</h2>
+            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", new { id = item.VideoReleaseId })</p>
+            <div>
+                <div class="col-md-4">
+                    <label>Distributor</label><p>@Html.DisplayFor(model => item.Distributor.DistributorName)</p>
+                    <label>Release Date</label><p>@Html.DisplayFor(model => item.ReleaseDate.Year)</p>
+                    <label>Chapter Stops</label><p>@Html.DisplayFor(model => item.ChapterStops)</p>
+                </div>
+                <div class="col-md-4">
+                    <label>Packaging</label><p>@Html.DisplayFor(model => item.Packaging.PackagingName)</p>
+                    <label>Catalog Code</label><p>@Html.DisplayFor(model => item.CatalogCode)</p>
+                    <label>UPC</label><p>@Html.DisplayFor(model => item.UPC)</p>
+                </div>
+                <div class="col-md-4">
+                    <label>Aspect Ratio</label><p>@Html.DisplayFor(model => item.AspectRatio)</p>
+                    <label>Runtime</label><p>@Html.DisplayFor(model => item.Runtime)</p>
+                    <label>Disc Count</label><p>@Html.DisplayFor(model => item.DiscCount)</p>
+                </div>
+            </div>
+            <hr />
+        </div>
+
+        @*Accordion start*@
+
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div>
+                <div role="tab" id="headingOne">
+                    <h4>
+                        <a class="glyphicon glyphicon-chevron-right" data-toggle="collapse" data-parent="#accordion" href='#@iterationCollapseName' aria-expanded="false" aria-controls="collapseOne">
+                            Details
+                        </a>
+                    </h4>
+                </div>
+                <div id='@iterationCollapseName' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Subtitle Track", "Create", "SubtitleTracks", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Region", "Create", "Regions", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Shopping Item", "Create", "ShoppingItems", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Standard", "Create", "Standards", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Video Box Set", "Create", "VideoBoxSets", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Format", "Create", "Formats", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Version", "Create", "VideoVersion", new { id = item.VideoReleaseId }, null)</div>
+                    <div class="glyphicon-plus">@Html.ActionLink("Insert Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</div>
+
+                    @*Video Version Types*@
+
+                    @*@if (mediaDecendents.VideoVersionTypes.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Versions of this Media</h3>
+                            @foreach (var videoMediaVersionTypeItem in mediaDecendents.VideoVersionTypes)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(videoMediaVersionTypeItem.VideoVersionTitle.ToString(), "Edit", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p><br />
+                                    <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionTitle)</p>
+                                    <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionDescription)</p>
+                                </div>
+                            }
+                            <hr />
+                        </div>
+                    }*@
+
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
-</table>
+@*
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                <p>Release Name</p>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatalogCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UPC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspectRatio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Runtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChapterStops)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distributor.DistributorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packaging.PackagingName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @TokuCinema.Services.PresentationService.GetReleaseName(item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatalogCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UPC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspectRatio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Runtime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChapterStops)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distributor.DistributorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packaging.PackagingName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.VideoReleaseId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.VideoReleaseId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.VideoReleaseId })
+            </td>
+        </tr>
+    }
+
+    </table>*@

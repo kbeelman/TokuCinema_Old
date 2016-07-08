@@ -31,19 +31,9 @@
                 @Html.ValidationMessageFor(model => model.VideoVersionDescription, "", new { @class = "text-danger" })
             </div>
         </div>
-        
-        @*Hide field entry if id is dynamically passed*@
-        @if (ViewBag.idPassed == true)
-        {
-            @Html.Hidden("VideoMediaId", (object)ViewBag.VideoMediaId)
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        }
+                
         @*Allow manual entry if id is not passed*@
-        else if(ViewBag.idPassed == false)
+        @if(ViewBag.idPassed == false)
         {
             <div class="form-group">
                 @Html.LabelFor(model => model.VideoMediaId, htmlAttributes: new { @class = "control-label col-md-2 required-field" })
@@ -54,11 +44,16 @@
             </div>
         }
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        @*Hide field entry if id is dynamically passed*@
+        @if (ViewBag.idPassed == true)
+        {
+            @Html.Hidden("VideoMediaId", (object)ViewBag.VideoMediaId)
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
-        </div>
+        }
 
     </div>
 }

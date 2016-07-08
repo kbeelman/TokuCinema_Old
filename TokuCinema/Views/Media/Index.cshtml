@@ -11,7 +11,7 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "VideoMedias")
 </p>
 
 @foreach (var item in Model.OrderBy(d => d.VideoMedias.FirstOrDefault().ReleaseDate))
@@ -41,12 +41,12 @@
             <div>
                 <div role="tab" id="headingOne">
                     <h4>
-                        <a class="glyphicon glyphicon-chevron-right" data-toggle="collapse" data-parent="#accordion" href='#@iterationCounter' aria-expanded="false" aria-controls="collapseOne">
+                        <a class="glyphicon glyphicon-chevron-right" data-toggle="collapse" data-parent="#accordion" href='#@iterationCollapseName' aria-expanded="false" aria-controls="collapseOne">
                             Details
                         </a>
                     </h4>
                 </div>
-            <div id='@iterationCounter' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div id='@iterationCollapseName' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 
                 <div class="glyphicon-plus">@Html.ActionLink("Insert Video Media", "Create", "VideoMedias", new { id = item.MediaId }, null)</div>
 
@@ -82,7 +82,7 @@
                             {
                                 <div class="border-box">
                                     <p>@Html.ActionLink(videoMediaVersionTypeItem.VideoVersionTitle.ToString(), "Edit", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p><br />
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoVersionTypeId }, null)</p><br />
                                     <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionTitle)</p>
                                     <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionDescription)</p>
                                 </div>
@@ -90,23 +90,6 @@
                             <hr />
                         </div>
                     }
-
-
-                @*Video Versions*@
-
-                @*<div class="glyphicon-plus">@Html.ActionLink("Insert Version", "Create", "VideoVersions", new { id = item.MediaId }, null)</div>
-                <h2>Video Media Details</h2>
-                <div class="col-md-4">
-                    @foreach (var videoVersionItems in mediaDecendents.VideoVersions)
-                    {
-                        <p>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", "VideoVersions", new { id = videoVersionItems.VideoMediaId }, null)</p>
-                        <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersions", new { id = videoVersionItems.VideoMediaId }, null)</p><br />
-                        <label>Release Date </label><p>@Html.DisplayFor(modelItem => videoVersionItems.ReleaseDate)</p>
-                        <label>Original Aspect Ratio </label><p>@Html.DisplayFor(modelItem => videoVersionItems.OriginalAspectRatio)<br /></p>
-                        <label>Original Runtime </label><p>@Html.DisplayFor(modelItem => videoVersionItems.OriginalRuntime)</p>
-                    }
-                    <hr />
-                </div>*@
 
                 @*Video Releases*@
                     @if(mediaDecendents.VideoReleases.Count > 0)

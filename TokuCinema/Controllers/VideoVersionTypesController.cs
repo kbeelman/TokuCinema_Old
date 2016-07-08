@@ -47,16 +47,16 @@ namespace TokuCinema.Controllers
             // bool will allow for dynamically passed ids or manual entry
             ViewBag.idPassed = false;
 
-            if (id == null)
+            if (id.HasValue)
             {
-                ViewBag.VideoMediaId= new SelectList(db.VideoMedias, "VideoMediaId", "Medium.MediaOfficialTitle");
-                ViewBag.idPassed = false;
+                ViewBag.VideoMediaId = id;
+                ViewBag.idPassed = true;
                 return View();
             }
             else
             {
-                ViewBag.VideoMediaId = id;
-                ViewBag.idPassed = true;
+                ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "Medium.MediaOfficialTitle");
+                ViewBag.idPassed = false;
                 return View();
             }
         }
@@ -73,7 +73,7 @@ namespace TokuCinema.Controllers
                 videoVersionType.VideoVersionTypeId = Guid.NewGuid();
                 db.VideoVersionTypes.Add(videoVersionType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Media");
             }
 
             return View(videoVersionType);
@@ -105,7 +105,7 @@ namespace TokuCinema.Controllers
             {
                 db.Entry(videoVersionType).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Media");
             }
             return View(videoVersionType);
         }
@@ -142,7 +142,7 @@ namespace TokuCinema.Controllers
             VideoVersionType videoVersionType = db.VideoVersionTypes.Find(id);
             db.VideoVersionTypes.Remove(videoVersionType);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Media");
         }
 
         protected override void Dispose(bool disposing)

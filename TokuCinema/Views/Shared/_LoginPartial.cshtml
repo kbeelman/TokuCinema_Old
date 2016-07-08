@@ -19,9 +19,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Core <i class="glyphicon glyphicon-collapse-down"></i></a>
                 <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Media", "Index", "Media")</li>
-                <li>@Html.ActionLink("Video Media", "Index", "VideoMedias")</li>
-                <li>@Html.ActionLink("Video Review", "Index", "VideoReviews")</li>
+                @*<li>@Html.ActionLink("Video Media", "Index", "VideoMedias")</li>
+                    Edit video media from the media index view*@
                 <li>@Html.ActionLink("Video Release", "Index", "VideoReleases")</li>
+                <li>@Html.ActionLink("Video Review", "Index", "VideoReviews")</li>
             </ul>
         </li>
 
@@ -34,7 +35,8 @@
                 <li>@Html.ActionLink("Standard Type", "Index", "StandardTypes")</li>
                 <li>@Html.ActionLink("Video Box Set Type", "Index", "VideoBoxSetTypes")</li>
                 <li>@Html.ActionLink("Format Type", "Index", "FormatTypes")</li>
-                <li>@Html.ActionLink("Video Version Type", "Index", "VideoVersionTypes")</li>
+                @*<li>@Html.ActionLink("Video Version Type", "Index", "VideoVersionTypes")</li> 
+                    Edit Video Version Types from the Media Index View*@
                 <li>@Html.ActionLink("Packaging", "Index", "Packagings")</li>
                 <li>@Html.ActionLink("Company", "Index", "Companies")</li>
                 <li>@Html.ActionLink("Shopping Item", "Index", "ShoppingItems")</li>
