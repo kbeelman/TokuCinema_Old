@@ -50,22 +50,6 @@ namespace TokuCinema.Controllers
             List<VideoVersionType> videoVersionTypes = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
             ViewBag.VideoVersionTypeId = new SelectList(db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id), "VideoVersionTypeId", "VideoVersionTitle");
             return PartialView("_VideoVersionTypeList");
-
-
-            //var dbList = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
-            //List<String> versions = new List<String>();
-
-            //foreach(VideoVersionType videoVersionType in dbList)
-            //{
-            //    versions.Add(videoVersionType.VideoVersionTitle);
-            //}
-
-            //return String.Join(", ", versions.ToArray());
-        }
-
-        public ActionResult GetVideoVersionTypes()
-        {
-            return View();
         }
 
         // POST: VideoReleases/Create
