@@ -41,6 +41,30 @@ namespace TokuCinema.Controllers
         {
             ViewBag.DistributorId = new SelectList(db.Distributors, "DistributorId", "DistributorName");
             ViewBag.PackagingId = new SelectList(db.Packagings, "PackagingId", "PackagingName");
+            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "Medium.MediaOfficialTitle");
+            return View();
+        }
+
+        public PartialViewResult GetVersions(string id)
+        {
+            List<VideoVersionType> videoVersionTypes = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
+            ViewBag.VideoVersionTypeId = new SelectList(db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id), "VideoVersionTypeId", "VideoVersionTitle");
+            return PartialView("_VideoVersionTypeList");
+
+
+            //var dbList = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
+            //List<String> versions = new List<String>();
+
+            //foreach(VideoVersionType videoVersionType in dbList)
+            //{
+            //    versions.Add(videoVersionType.VideoVersionTitle);
+            //}
+
+            //return String.Join(", ", versions.ToArray());
+        }
+
+        public ActionResult GetVideoVersionTypes()
+        {
             return View();
         }
 
@@ -55,6 +79,17 @@ namespace TokuCinema.Controllers
             {
                 videoRelease.VideoReleaseId = Guid.NewGuid();
                 db.VideoReleases.Add(videoRelease);
+                string stringNumOfVersions = Request["numberOfVersions"];
+                int numberOfVersions = Int32.Parse(stringNumOfVersions);
+                for(int i = 1; i <= numberOfVersions; i++)
+                {
+                    VideoVersion videoVersion = new VideoVersion();
+                    videoVersion.VideoVersionId = Guid.NewGuid();
+                    videoVersion.VideoReleaseId = videoRelease.VideoReleaseId;
+                    videoVersion.VideoVersionTypeId = Guid.Parse(Request["selectedVersion" + i]);
+                    db.VideoVersions.Add(videoVersion);
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

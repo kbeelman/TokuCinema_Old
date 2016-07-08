@@ -1,0 +1,7 @@
+﻿@model TokuCinema.Models.VideoVersionType
+
+
+@Html.DropDownList("VideoVersionTypeId", null, htmlAttributes: new { @class = "form-control" })
+<button type="button" class="btn btn-default" onclick="addVersion()">Add</button>
+<button type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
+<button type="button" class="btn btn-default" onclick="restart()">Restart</button>
