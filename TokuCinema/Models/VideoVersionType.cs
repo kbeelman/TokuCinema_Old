@@ -24,6 +24,9 @@ namespace TokuCinema.Models
         public string VideoVersionTitle { get; set; }
         public string VideoVersionDescription { get; set; }
         public System.Guid VideoMediaId { get; set; }
+        public string AspectRatio { get; set; }
+        public Nullable<int> Runtime { get; set; }
+        public Nullable<int> ChapterStops { get; set; }
     
         public virtual VideoMedia VideoMedia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

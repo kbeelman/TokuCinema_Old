@@ -81,10 +81,13 @@
                             @foreach (var videoMediaVersionTypeItem in mediaDecendents.VideoVersionTypes)
                             {
                                 <div class="border-box">
-                                    <p>@Html.ActionLink(videoMediaVersionTypeItem.VideoVersionTitle.ToString(), "Edit", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p>
+                                    <p>@Html.ActionLink(videoMediaVersionTypeItem.VideoVersionTitle.ToString(), "Edit", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoVersionTypeId }, null)</p>
                                     <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoVersionTypeId }, null)</p><br />
                                     <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionTitle)</p>
                                     <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionDescription)</p>
+                                    <label>Aspect Ratio </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.AspectRatio)</p>
+                                    <label>Runtime </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.Runtime)</p>
+                                    <label>Chapter Stops </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.ChapterStops)</p>
                                 </div>
                             }
                             <hr />

@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using TokuCinema.Domain;
 
 namespace TokuCinema.Models
 {
     [MetadataType(typeof(VideoVersionType.Metadata))]
-    public partial class VideoVersionType
+    public partial class VideoVersionType : IExposeProperty
     {
+        public string ExposePropertyValue(string propertyName)
+        {
+            string propertyValue = "";
+
+            propertyValue = GetType().GetProperty(propertyName).GetValue(this, null).ToString();
+
+            return propertyValue.ToString();
+        }
+
         class Metadata
         {
             [Key]
@@ -28,6 +38,18 @@ namespace TokuCinema.Models
             [Required]
             [Display(Name = "Video Media Id")]
             public System.Guid VideoMediaId { get; set; }
+
+            [Required]
+            [Display(Name = "Aspect Ratio")]
+            public string AspectRatio { get; set; }
+
+            [Required]
+            [Display(Name = "Runtime (minutes)")]
+            public int Runtime { get; set; }
+
+            [Required]
+            [Display(Name = "Chapter Stops")]
+            public int ChapterStops { get; set; }
 
 
         }

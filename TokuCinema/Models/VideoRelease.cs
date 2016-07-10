@@ -36,9 +36,6 @@ namespace TokuCinema.Models
         public string UPC { get; set; }
         public System.DateTime ReleaseDate { get; set; }
         public int DiscCount { get; set; }
-        public string AspectRatio { get; set; }
-        public int Runtime { get; set; }
-        public int ChapterStops { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AudioTrack> AudioTracks { get; set; }

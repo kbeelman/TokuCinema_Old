@@ -66,7 +66,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoVersionTypeId,VideoMediaId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
+        public ActionResult Create([Bind(Include = "VideoVersionTypeId,VideoMediaId,VideoVersionTitle,VideoVersionDescription,AspectRatio,Runtime,ChapterStops")] VideoVersionType videoVersionType)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoVersionTypeId,VideoMediaId,VideoVersionTitle,VideoVersionDescription")] VideoVersionType videoVersionType)
+        public ActionResult Edit([Bind(Include = "VideoVersionTypeId,VideoMediaId,VideoVersionTitle,VideoVersionDescription,AspectRatio,Runtime,ChapterStops")] VideoVersionType videoVersionType)
         {
             if (ModelState.IsValid)
             {

@@ -57,7 +57,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
+        public ActionResult Create([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,CatalogCode,UPC,ReleaseDate,DiscCount")] VideoRelease videoRelease)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,CatalogCode,UPC,ReleaseDate,DiscCount,AspectRatio,Runtime,ChapterStops")] VideoRelease videoRelease)
+        public ActionResult Edit([Bind(Include = "VideoReleaseId,DistributorId,PackagingId,CatalogCode,UPC,ReleaseDate,DiscCount")] VideoRelease videoRelease)
         {
             if (ModelState.IsValid)
             {
@@ -153,5 +153,6 @@ namespace TokuCinema.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

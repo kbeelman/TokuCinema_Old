@@ -233,9 +233,6 @@
           <Property Name="UPC" Type="nvarchar" MaxLength="13" Nullable="false" />
           <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
           <Property Name="DiscCount" Type="int" Nullable="false" />
-          <Property Name="AspectRatio" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Runtime" Type="int" Nullable="false" />
-          <Property Name="ChapterStops" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VideoReview">
           <Key>
@@ -271,6 +268,9 @@
           <Property Name="VideoVersionTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="VideoVersionDescription" Type="nvarchar(max)" Nullable="false" />
           <Property Name="VideoMediaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AspectRatio" Type="nvarchar" MaxLength="10" />
+          <Property Name="Runtime" Type="int" />
+          <Property Name="ChapterStops" Type="int" />
         </EntityType>
         <Association Name="FK_AudioTrack_Language">
           <End Role="Language" Type="Self.Language" Multiplicity="1" />
@@ -983,9 +983,6 @@
           <Property Name="UPC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DiscCount" Type="Int32" Nullable="false" />
-          <Property Name="AspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Runtime" Type="Int32" Nullable="false" />
-          <Property Name="ChapterStops" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AudioTracks" Relationship="Self.FK_AudioTrack_VideoRelease" FromRole="VideoRelease" ToRole="AudioTrack" />
           <NavigationProperty Name="Distributor" Relationship="Self.FK_VideoRelease_Distributor" FromRole="VideoRelease" ToRole="Distributor" />
           <NavigationProperty Name="Formats" Relationship="Self.FK_Format_VideoRelease" FromRole="VideoRelease" ToRole="Format" />
@@ -1038,6 +1035,9 @@
           <Property Name="VideoMediaId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="VideoMedia" Relationship="Self.FK_VideoVersionType_VideoMedia" FromRole="VideoVersionType" ToRole="VideoMedia" />
           <NavigationProperty Name="VideoVersions" Relationship="Self.FK_VideoVersion_VideoVersionType" FromRole="VideoVersionType" ToRole="VideoVersion" />
+          <Property Name="AspectRatio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Runtime" Type="Int32" />
+          <Property Name="ChapterStops" Type="Int32" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -1709,10 +1709,7 @@
                 <ScalarProperty Name="UPC" ColumnName="UPC" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="DiscCount" ColumnName="DiscCount" />
-                <ScalarProperty Name="AspectRatio" ColumnName="AspectRatio" />
-                <ScalarProperty Name="Runtime" ColumnName="Runtime" />
-                <ScalarProperty Name="ChapterStops" ColumnName="ChapterStops" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VideoReviews">
@@ -1746,6 +1743,9 @@
           <EntitySetMapping Name="VideoVersionTypes">
             <EntityTypeMapping TypeName="TokuCinema_DataModel.VideoVersionType">
               <MappingFragment StoreEntitySet="VideoVersionType">
+                <ScalarProperty Name="ChapterStops" ColumnName="ChapterStops" />
+                <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+                <ScalarProperty Name="AspectRatio" ColumnName="AspectRatio" />
                 <ScalarProperty Name="VideoVersionTypeId" ColumnName="VideoVersionTypeId" />
                 <ScalarProperty Name="VideoVersionTitle" ColumnName="VideoVersionTitle" />
                 <ScalarProperty Name="VideoVersionDescription" ColumnName="VideoVersionDescription" />

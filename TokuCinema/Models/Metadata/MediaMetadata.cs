@@ -4,12 +4,22 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TokuCinema.Domain;
 
 namespace TokuCinema.Models
 {
     [MetadataType(typeof(Medium.Metadata))]
-    public partial class Medium
+    public partial class Medium : IExposeProperty
     {
+        public string ExposePropertyValue(string propertyName)
+        {
+            string propertyValue = "";
+
+            propertyValue = GetType().GetProperty(propertyName).GetValue(this, null).ToString();
+
+            return propertyValue;
+        }
+
         class Metadata
         {
             [Key]

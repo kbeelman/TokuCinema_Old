@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TokuCinema.Models;
+using TokuCinema.Domain;
 
 
 namespace TokuCinema.Services 
@@ -44,27 +46,9 @@ namespace TokuCinema.Services
             }
             
             // Return constructed release name
-            return sb.ToString();    				
-			}
+            return sb.ToString();
+        }
 
-        //*Experimental - The goal is to create a reusable method that can get all records in a collection containing
-        //                the key specified.  
-        // Returns a list of associated records based on the passed arguments
-        //public static List<T> GetRelatives(Guid objectKey, List<T> relatedCollection, string relatedKeyName)
-        //{
-        //    // object to return
-        //    List<T> relatives = new List<T>();
-     
-        //    // get relatives
-        //    foreach (var relative in relatedCollection.Where(id => id.GetType().GetProperty(relatedKeyName).GetValue() == objectKey))
-        //    {
-        //        relatives.Add(relative);
-        //    }
-
-        //    // return children                  
-        //    return relatives;
-        //}
-        
         // Structure for decendents of media
         public struct MediaDecendents // :O <===8 
         {
@@ -77,8 +61,28 @@ namespace TokuCinema.Services
             // great grand in-law
             public List<VideoRelease> VideoReleases {get; set;}
         }
-        
-        // Get all data for media decendents  *TODO: this method is way to fucking long
+      
+        /*
+         * Experimental - The goal is to create a reusable method that can get all records in a collection containing
+                the key specified.
+                Returns a list of associated records based on the passed arguments
+        */
+        public static List<IExposeProperty> GetRelativesOfListFromList(List<IExposeProperty> sourceCollection /*relatives from this collection*/, List<IExposeProperty> relatedCollection, string relatedKeyName)
+        {
+            // object to return
+            List<IExposeProperty> relatives = new List<IExposeProperty>();
+
+            // get relatives
+            foreach (var relative in sourceCollection)
+            {
+                relatives.AddRange(relatedCollection.Where(id => id.ExposePropertyValue(relatedKeyName) == relative.ExposePropertyValue(relatedKeyName)));
+            }
+
+            // return children                  
+            return relatives;
+        }
+
+        // Get all data for media decendents 
         public static MediaDecendents GetMediaDecendents(Guid mediaId)
         {
             // data context
@@ -86,35 +90,24 @@ namespace TokuCinema.Services
             
             // return object
             MediaDecendents mediaDecendents = new MediaDecendents();
-            
+
             // set video medias
             mediaDecendents.VideoMedias = db.VideoMedias.Where(id => id.MediaId == mediaId).ToList();
 
-            // get video version types
-            List<VideoVersionType> videoVersionTypes = new List<VideoVersionType>();
-            foreach (VideoMedia videoMedia in mediaDecendents.VideoMedias)
-            {
-                videoVersionTypes.AddRange(db.VideoVersionTypes.Where(id => id.VideoMediaId == videoMedia.VideoMediaId));
-            }
-            // set video version types
-            mediaDecendents.VideoVersionTypes = videoVersionTypes;
-            
-            // get video versions
-            List<VideoVersion> videoVersions = new List<VideoVersion>();
-            foreach(VideoVersionType videoVersionType in mediaDecendents.VideoVersionTypes)
-            {
-                videoVersions.AddRange(db.VideoVersions.Where(id => id.VideoVersionTypeId == videoVersionType.VideoVersionTypeId));
-            }            
-            // set video versions
-            mediaDecendents.VideoVersions = videoVersions;
-            
-            // get video releases
+            // get and set version types
+            //mediaDecendents.VideoVersionTypes = getVideoVersionTypesFromVideoMedia(mediaDecendents.VideoMedias, db.VideoVersionTypes.ToList());
+            mediaDecendents.VideoVersionTypes = GetRelativesOfListFromList(mediaDecendents.VideoMedias.ToList<IExposeProperty>(), db.VideoVersionTypes.ToList<IExposeProperty>(), "VideoMediaId").ConvertAll(o => (VideoVersionType)o);
+
+            // get and set video versions
+            //mediaDecendents.VideoVersions = getVideoVersionsFromVersionTypes(mediaDecendents.VideoVersionTypes, db.VideoVersions.ToList());
+            mediaDecendents.VideoVersions = GetRelativesOfListFromList(mediaDecendents.VideoVersionTypes.ToList<IExposeProperty>(), db.VideoVersions.ToList<IExposeProperty>(), "VideoVersionTypeId").ConvertAll(o => (VideoVersion)o);
+          
+            // set video releases
             List<VideoRelease> videoReleases = new List<VideoRelease>();
             List<VideoRelease> tempList = new List<VideoRelease>();
-            foreach (VideoVersion videoVersion in mediaDecendents.VideoVersions)
-            {
-                tempList.AddRange(db.VideoReleases.Where(id => id.VideoReleaseId == videoVersion.VideoReleaseId));
-            }
+
+            // get and set temp list
+            tempList = GetRelativesOfListFromList(mediaDecendents.VideoVersions.ToList<IExposeProperty>(), db.VideoReleases.ToList<IExposeProperty>(), "VideoReleaseId").ConvertAll(o => (VideoRelease)o);
 
             // get ids from releases
             List<Guid> tempIdList = new List<Guid>();
@@ -134,6 +127,63 @@ namespace TokuCinema.Services
             
             // return media decendents
             return mediaDecendents;
+        }
+
+        // Structure for decendents of video releases
+        public struct ReleaseDecendents
+        {
+            public List<SubtitleTrack> SubtitleTracks { get; set; }
+            public List<AudioTrack> AudioTracks { get; set; }
+            public List<Region> Regions { get; set; }
+            public List<MediaFile> MediaFiles { get; set; }
+            public List<ShoppingItem> ShoppingItems { get; set; }
+            public List<Standard> Standards { get; set; }
+            public List<VideoBoxSet> VideoBoxSets { get; set; }
+            public List<Format> Formats { get; set; }
+            public List<VideoVersion> Versions { get; set; }
+            public List<VideoReview> Reviews { get; set; }
+        }
+
+        public static ReleaseDecendents GetReleaseDecendents(Guid videoReleaseId)
+        {
+            // data context
+            TokuCinema_DataEntities db = new TokuCinema_DataEntities();
+
+            // object to return
+            ReleaseDecendents releaseDecendents = new ReleaseDecendents();
+
+            // subtitle tracks
+            releaseDecendents.SubtitleTracks = db.SubtitleTracks.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // audio tracks
+            releaseDecendents.AudioTracks = db.AudioTracks.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // regions
+            releaseDecendents.Regions = db.Regions.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // media files
+            releaseDecendents.MediaFiles = db.MediaFiles.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // Shopping items
+            releaseDecendents.ShoppingItems = db.ShoppingItems.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // Standards
+            releaseDecendents.Standards = db.Standards.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // Video box sets
+            releaseDecendents.VideoBoxSets = db.VideoBoxSets.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // formats
+            releaseDecendents.Formats = db.Formats.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // versions
+            releaseDecendents.Versions = db.VideoVersions.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+
+            // reviews
+            releaseDecendents.Reviews = db.VideoReviews.Where(id => id.VideoreleaseId == videoReleaseId).ToList();
+
+            // return the object
+            return releaseDecendents;
         }
         
     }

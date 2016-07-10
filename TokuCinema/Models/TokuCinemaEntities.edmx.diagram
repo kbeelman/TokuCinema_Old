@@ -28,10 +28,10 @@
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSet" Width="1.5" PointX="13.5" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoBoxSetType" Width="1.5" PointX="11.25" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoMedia" Width="1.5" PointX="1" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoRelease" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoRelease" Width="1.5" PointX="17.25" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoReview" Width="1.5" PointX="7.5" PointY="39" IsExpanded="true" />
         <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersion" Width="1.5" PointX="10.5" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersionType" Width="1.5" PointX="5.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TokuCinema_DataModel.VideoVersionType" Width="1.5" PointX="20.5" PointY="16.625" IsExpanded="true" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="TokuCinema_DataModel.FK_AudioTrack_Language" ManuallyRouted="false" />

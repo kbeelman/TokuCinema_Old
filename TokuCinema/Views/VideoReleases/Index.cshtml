@@ -2,7 +2,11 @@
 
 @{
     ViewBag.Title = "Video Release Index";
+
     int iterationCounter = 0; /* Used for dynamically naming the collapsable divs */
+
+    // Data context
+    TokuCinema.Models.TokuCinema_DataEntities db = new TokuCinema.Models.TokuCinema_DataEntities();
 }
 
 <h2>@ViewBag.Title</h2>
@@ -11,8 +15,13 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@foreach (var item in Model.OrderBy(d => d.ReleaseDate))
+@foreach (var item in Model)
 {
+
+    // Get all media decendents
+    TokuCinema.Services.PresentationService.ReleaseDecendents releaseDecendents = new TokuCinema.Services.PresentationService.ReleaseDecendents();
+    releaseDecendents = TokuCinema.Services.PresentationService.GetReleaseDecendents(item.VideoReleaseId);
+
     iterationCounter++;
     string iterationCollapseName = "collapse" + iterationCounter.ToString();
 
@@ -21,24 +30,19 @@
         @*Video Releases*@
 
         <div>
-            <h2>@Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item), "Edit", new { id = item.VideoReleaseId})</h2>
-            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", new { id = item.VideoReleaseId })</p>
-            <div>
-                <div class="col-md-4">
-                    <label>Distributor</label><p>@Html.DisplayFor(model => item.Distributor.DistributorName)</p>
-                    <label>Release Date</label><p>@Html.DisplayFor(model => item.ReleaseDate.Year)</p>
-                    <label>Chapter Stops</label><p>@Html.DisplayFor(model => item.ChapterStops)</p>
-                </div>
-                <div class="col-md-4">
-                    <label>Packaging</label><p>@Html.DisplayFor(model => item.Packaging.PackagingName)</p>
-                    <label>Catalog Code</label><p>@Html.DisplayFor(model => item.CatalogCode)</p>
-                    <label>UPC</label><p>@Html.DisplayFor(model => item.UPC)</p>
-                </div>
-                <div class="col-md-4">
-                    <label>Aspect Ratio</label><p>@Html.DisplayFor(model => item.AspectRatio)</p>
-                    <label>Runtime</label><p>@Html.DisplayFor(model => item.Runtime)</p>
-                    <label>Disc Count</label><p>@Html.DisplayFor(model => item.DiscCount)</p>
-                </div>
+            <h2>@Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item), "Edit", new { id = item.VideoReleaseId })</h2>
+            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", new { id = item.VideoReleaseId })</p><br />
+            <div class="col-md-4">
+                <label>@Html.DisplayNameFor(i => i.Distributor) </label><p>@Html.DisplayFor(modelItem => item.Distributor.DistributorName)</p>
+                <label>@Html.DisplayNameFor(i => i.ReleaseDate)</label><p>@Html.DisplayFor(modelItem => item.ReleaseDate)</p>
+            </div>
+            <div class="col-md-4">
+                <label>@Html.DisplayNameFor(i => i.CatalogCode)</label><p>@Html.DisplayFor(modelItem => item.CatalogCode)</p>
+                <label>@Html.DisplayNameFor(i => i.UPC)</label><p>@Html.DisplayFor(modelItem => item.UPC)</p>
+            </div>
+            <div class="col-md-4">
+                <label>@Html.DisplayNameFor(i => i.DiscCount)</label><p>@Html.DisplayFor(modelItem => item.DiscCount)</p>
+                <label>@Html.DisplayNameFor(i => i.Packaging)</label><p>@Html.DisplayFor(modelItem => item.Packaging.PackagingName)</p>
             </div>
             <hr />
         </div>
@@ -56,118 +60,189 @@
                 </div>
                 <div id='@iterationCollapseName' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Subtitle Track", "Create", "SubtitleTracks", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Region", "Create", "Regions", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Shopping Item", "Create", "ShoppingItems", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Standard", "Create", "Standards", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Video Box Set", "Create", "VideoBoxSets", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Format", "Create", "Formats", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Version", "Create", "VideoVersion", new { id = item.VideoReleaseId }, null)</div>
-                    <div class="glyphicon-plus">@Html.ActionLink("Insert Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</div>
+                    @*Subtitle Tracks*@
 
-                    @*Video Version Types*@
-
-                    @*@if (mediaDecendents.VideoVersionTypes.Count > 0)
+                    @if (releaseDecendents.SubtitleTracks.Count > 0)
                     {
                         <div class="col-md-4">
-                            <h3>Versions of this Media</h3>
-                            @foreach (var videoMediaVersionTypeItem in mediaDecendents.VideoVersionTypes)
+                            <h3>Subtitle Tracks</h3>
+                            @foreach (var subtitleItem in releaseDecendents.SubtitleTracks)
                             {
                                 <div class="border-box">
-                                    <p>@Html.ActionLink(videoMediaVersionTypeItem.VideoVersionTitle.ToString(), "Edit", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersionTypes", new { id = videoMediaVersionTypeItem.VideoMediaId }, null)</p><br />
-                                    <label>Version Title </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionTitle)</p>
-                                    <label>Version Description </label><p>@Html.DisplayFor(modelItem => videoMediaVersionTypeItem.VideoVersionDescription)</p>
+                                    <p>@Html.ActionLink(subtitleItem.Language.ToString(), "Edit", "SubtitleTracks", new { id = subtitleItem.SubtitleTrackId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "SubtitleTracks", new { id = subtitleItem.SubtitleTrackId}, null)</p><br />
                                 </div>
                             }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Subtitle Tracks", "Create", "SubtitleTracks", new { id = item.VideoReleaseId }, null)</div>
                             <hr />
                         </div>
-                    }*@
+                    }
+
+                    @*Audio Tracks*@
+
+                    @if (releaseDecendents.AudioTracks.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Audio Tracks</h3>
+                            @foreach (var audioItem in releaseDecendents.AudioTracks)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(audioItem.Language.ToString(), "Edit", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Audio Track", "Create", "AudioTracks", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Regions*@
+
+                    @if (releaseDecendents.Regions.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Regions</h3>
+                            @foreach (var regionItem in releaseDecendents.Regions)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(regionItem.RegionType.RegionName.ToString(), "Edit", "Regions", new { id = regionItem.RegionId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Regions", new { id = regionItem.RegionId }, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Region", "Create", "Regions", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Media Files*@
+
+                    @if (releaseDecendents.MediaFiles.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Media Files</h3>
+                            @foreach (var mediaFileItem in releaseDecendents.MediaFiles)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(mediaFileItem.MediaFielId.ToString(), "Edit", "MediaFiles", new { id = mediaFileItem.MediaFielId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "MediaFiles", new { id = mediaFileItem.MediaFielId}, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Standards*@
+
+                    @if (releaseDecendents.Standards.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Standards</h3>
+                            @foreach (var standardItem in releaseDecendents.Standards)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(standardItem.StandardType.StandardName.ToString(), "Edit", "Standards", new { id = standardItem.StandardId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Standards", new { id = standardItem.StandardId }, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Standard", "Create", "Standards", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Video Box Sets*@
+
+                    @if (releaseDecendents.VideoBoxSets.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Video Box Sets</h3>
+                            @foreach (var boxSetItem in releaseDecendents.VideoBoxSets)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(boxSetItem.VideoBoxSetType.VideoBoxSetDescription.ToString(), "Edit", "VideoBoxSets", new { id = boxSetItem.VideoBoxSetId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoBoxSets", new { id = boxSetItem.VideoBoxSetId }, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Video Box Set", "Create", "VideoBoxSets", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Shopping Items*@
+
+                    @if (releaseDecendents.ShoppingItems.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Shopping Items</h3>
+                            @foreach (var shoppingItem in releaseDecendents.ShoppingItems)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(shoppingItem.PurchaseLink.ToString(), "Edit", "Shopping Items", new { id = shoppingItem.ShoppingItemId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Shopping Items", new { id = shoppingItem.ShoppingItemId}, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Shopping Item", "Create", "Shopping Items", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Formats*@
+
+                    @if (releaseDecendents.Formats.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Formats</h3>
+                            @foreach (var formatItem in releaseDecendents.Formats)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(formatItem.FormatType.FormatName.ToString(), "Edit", "Formats", new { id = formatItem.FormatId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Formats", new { id = formatItem.FormatId}, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Format", "Create", "Formats", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Video Versions*@
+
+                    @if (releaseDecendents.Versions.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Video Versions</h3>
+                            @foreach (var videoVersionItem in releaseDecendents.Versions)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(videoVersionItem.VideoVersionType.VideoVersionTitle.ToString(), "Edit", "VideoVersions", new { id = videoVersionItem.VideoVersionId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersions", new { id = videoVersionItem.VideoVersionId }, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version", "Create", "VideoVersions", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
+
+                    @*Video Reviews*@
+
+                    @if (releaseDecendents.Reviews.Count > 0)
+                    {
+                        <div class="col-md-4">
+                            <h3>Video Reviews</h3>
+                            @foreach (var reviewItem in releaseDecendents.Reviews)
+                            {
+                                <div class="border-box">
+                                    <p>@Html.ActionLink(reviewItem.Introduction.ToString(), "Edit", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p>
+                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p><br />
+                                </div>
+                            }
+                            <div class="glyphicon-plus">@Html.ActionLink("Insert Video Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</div>
+                            <hr />
+                        </div>
+                    }
 
                 </div>
             </div>
         </div>
     </div>
-}
 
-@*
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                <p>Release Name</p>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CatalogCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UPC)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiscCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AspectRatio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Runtime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChapterStops)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Distributor.DistributorName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Packaging.PackagingName)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @TokuCinema.Services.PresentationService.GetReleaseName(item)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CatalogCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UPC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspectRatio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Runtime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChapterStops)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Distributor.DistributorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Packaging.PackagingName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.VideoReleaseId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.VideoReleaseId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.VideoReleaseId })
-            </td>
-        </tr>
-    }
-
-    </table>*@
+        }

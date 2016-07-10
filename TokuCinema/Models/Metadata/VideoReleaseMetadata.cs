@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using TokuCinema.Domain;
 
 namespace TokuCinema.Models
 {
     [MetadataType(typeof(VideoRelease.Metadata))]
-    public partial class VideoRelease
+    public partial class VideoRelease : IExposeProperty
     {
+        public string ExposePropertyValue(string propertyName)
+        {
+            string propertyValue = "";
+
+            propertyValue = GetType().GetProperty(propertyName).GetValue(this, null).ToString();
+
+            return propertyValue;
+        }
+
         [MetadataType(typeof(VideoRelease.Metadata))]
         class Metadata
         {
@@ -40,18 +50,6 @@ namespace TokuCinema.Models
             [Required]
             [Display(Name = "Disc Count")]
             public int DiscCount { get; set; }
-
-            [Required]
-            [Display(Name = "Aspect Ratio")]
-            public string AspectRatio { get; set; }
-
-            [Required]
-            [Display(Name = "Runtime (minutes)")]
-            public int Runtime { get; set; }
-
-            [Required]
-            [Display(Name = "Chapter Stops")]
-            public int ChapterStops { get; set; }
         }
     }
 }
