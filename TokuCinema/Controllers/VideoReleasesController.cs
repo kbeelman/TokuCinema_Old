@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -45,6 +45,7 @@ namespace TokuCinema.Controllers
             return View();
         }
 
+        // GET: Versions Used with JavaScript/Ajax script
         public PartialViewResult GetVersions(string id)
         {
             List<VideoVersionType> videoVersionTypes = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
