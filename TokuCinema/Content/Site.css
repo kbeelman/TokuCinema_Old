@@ -65,3 +65,8 @@ textarea {
     padding: 5px;
     margin-bottom: 15px;
 }
+
+.future-dates{
+    color: red;
+    stroke: ActiveBorder;
+}

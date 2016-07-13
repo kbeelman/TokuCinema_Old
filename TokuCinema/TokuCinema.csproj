@@ -198,6 +198,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AudioTracksController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
@@ -403,6 +404,7 @@
     <Content Include="Models\TokuCinemaEntities.edmx.diagram">
       <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ChildFactory.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -613,9 +615,14 @@
     <Content Include="Views\VideoMedias\Edit.cshtml" />
     <Content Include="Views\VideoMedias\Index.cshtml" />
     <Content Include="Views\Shared\_VideoVersionTypeList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\dateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\MasterMedia\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

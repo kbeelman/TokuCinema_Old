@@ -1,0 +1,12 @@
+﻿@*Displays date times in the common format: MM/dd/yyyy*@
+
+@model DateTime
+
+@if (Model < DateTime.Now) // Dates in the past
+{
+    <span>@Model.ToString("MM/dd/yyyy")</span>
+}
+else // Dates in the future
+{
+    <span class="future-dates">To Be Released: @Model.ToString("MM/dd/yyyy")</span>
+}
