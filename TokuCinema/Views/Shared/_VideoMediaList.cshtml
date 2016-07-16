@@ -1,0 +1,4 @@
+﻿@model TokuCinema.Models.VideoMedia
+
+
+@Html.DropDownList("videoMediaId", null, "", htmlAttributes: new { @class = "form-control", @onchange = "versionFactory.getChildren();"})

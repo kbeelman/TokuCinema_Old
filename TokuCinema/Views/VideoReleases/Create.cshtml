@@ -23,29 +23,22 @@
             /* Instantiate Version Factory
 
             *Currently a child factory relies on the below markup:
-            - div element to hold the partial view returned by the Ajax request:    <div class="col-md-4" id="VideoVersionId"></div>
+            - span element to attach child selector markup                          <span id="versionSelectorPlaceHolder"></span>
             - div element to append versions:                                       <div class="form-group" id="selectedVersions"></div>
 
             *Optional 
-            - a control to filter results from Ajax request:                        Html.DropDownList("videoMediaId", new SelectList(db.VideoMedias.OrderBy(v => v.ReleaseDate), 
-                                                                                    "VideoMediaId", "Medium.MediaOfficialTitle"), "", htmlAttributes: new { class = "form-control", 
-                                                                                    onchange = "versionFactory.getChildren()" "getVideoVersions()" })
+            - specify controller action if child records need to be filtered by another parent (i.e. video media)                        
 
             * Relies on a partial view containing desired results to be retrieved through an Ajax call
             */
-            var versionFactory = new childFactory("Version", "GetVersions", "VideoReleases", "VideoVersionId", "VideoVersionTypeId", "selectedVersions", "videoMediaId");
+            var versionFactory = new childFactory("versionSelectorPlaceHolder", "Version", "GetVersions", "VideoReleases", "VideoVersionTypeId", "GetVideoMedia", "videoMediaId");
 
         </script>      
 
-        <div class="form-group" id="versionSelector">
-            @Html.Label("VideoMediaId", "Video Media", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
-            <div class="col-md-4">
-                @Html.DropDownList("videoMediaId", new SelectList(db.VideoMedias.OrderBy(v => v.ReleaseDate), "VideoMediaId", "Medium.MediaOfficialTitle"), "", htmlAttributes: new { @class = "form-control", @onchange = "versionFactory.getChildren();" })
-            </div>
-            @Html.Label("VideoVersionTypeId", "Video Version", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
-            <div class="col-md-4" id="VideoVersionId"></div>
-        </div>
+        @*Currently Used by versionFactory*@
+        <span id="versionSelectorPlaceHolder"></span>
 
+        @*Currently Used by versionFactory*@
         <div class="form-group" id="selectedVersions"></div>
 
         <div class="form-group">
@@ -110,4 +103,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            versionFactory.createChildSelector();
+        });
+    </script>
 }

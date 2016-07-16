@@ -616,6 +616,7 @@
     <Content Include="Views\VideoMedias\Index.cshtml" />
     <Content Include="Views\Shared\_VideoVersionTypeList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\dateTime.cshtml" />
+    <Content Include="Views\Shared\_VideoMediaList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

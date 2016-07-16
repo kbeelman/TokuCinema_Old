@@ -45,10 +45,17 @@ namespace TokuCinema.Controllers
             return View();
         }
 
+        // GET: Video Media Used with JavaScript/Ajax script
+        public PartialViewResult GetVideoMedia()
+        {
+            ViewBag.VideoMediaId = new SelectList(db.VideoMedias, "VideoMediaId", "Medium.MediaOfficialTitle");
+            return PartialView("_VideoMediaList");
+        }
+
         // GET: Versions Used with JavaScript/Ajax script
         public PartialViewResult GetVersions(string id)
         {
-            List<VideoVersionType> videoVersionTypes = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
+            //List<VideoVersionType> videoVersionTypes = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
             ViewBag.VideoVersionTypeId = new SelectList(db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id), "VideoVersionTypeId", "VideoVersionTitle");
             return PartialView("_VideoVersionTypeList");
         }

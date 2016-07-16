@@ -1,26 +1,43 @@
 /* ChildFactory Prototype - Last Updated 7/12/16 */
 
-function childFactory(childType /*Child Type (i.e. Version, MediaFile, etc...)*/,
-    actionName /*name of the action (partial view result) the Ajax query calls to*/,
+function childFactory(selectedPlaceHolder /*span id for markup to be appended to*/,
+    childType /*Child Type (i.e. Version, MediaFile, etc...)*/,
+    childActionName /*name of the action (partial view result) the Ajax query calls to get children*/,
     controllerName /*name of the controller where the action is found*/,
-    childHolderId /*The target element of the partial view returned*/,
     childSelectorId /*Id of the control returned by Ajax call to select child record*/,
-    selectedChildrenDivId /*Id of the control where the child objects will be appended*/,
+    parentActionName /*name of the action (partial view result) the Ajax query calls to get parents*/,
     selectionControlId /*Id of the control that sorts child records - optional*/) {
 
     // Properties
     this.numOfSelected = 0;
     this.countHolderExists = false;
+    this.selectedChildrenDivId = /*"selectedVersions"*/ "selected" + childType + "s";
+    var childHolderId = childType.toLowerCase() + "SelectorDiv";
     
     // Properties sourced by parameters
-    this.actionName = actionName;
+    this.selectedPlaceHolder = selectedPlaceHolder;
+    this.childActionName = childActionName;
     this.controllerName = controllerName;
-    this.childHolderId = childHolderId;
     this.childSelectorId = childSelectorId;
     this.childType = childType;
+    this.parentActionName = parentActionName;
     this.selectionControlId = selectionControlId;
 
     // Functions
+
+    // gets the parent records that can be used to filter child results
+    this.getParents = function () {
+        this.urlString = "/" + this.controllerName + "/" + this.parentActionName;
+
+        $.ajax({
+            url: this.urlString,
+            success: function (result) {
+                $("#" + selectionControlId + "Parent").html(result);
+            }
+        });
+    };
+
+    // gets the children desired - filtered by parent object if applicable
     this.getChildren = function () {
         // Call to create count holder only if it doesn't exist
         if (this.countHolderExists === false) {
@@ -29,11 +46,11 @@ function childFactory(childType /*Child Type (i.e. Version, MediaFile, etc...)*/
         }
 
         this.selectedId = document.getElementById(this.selectionControlId);
-        if (this.selectedId != null) { // Implementation of the 'optionality' of the the "selectionControlId"
+        if (this.selectedId !== null) { // Implementation of the 'optionality' of the the "selectionControlId"
             this.id = this.selectedId.options[this.selectedId.selectedIndex].value;
         }
 
-        this.urlString = "/" + this.controllerName + "/" + this.actionName + "?" + this.id;
+        this.urlString = "/" + this.controllerName + "/" + this.childActionName + "?" + this.id;
 
         $.ajax({
             url: this.urlString,
@@ -44,13 +61,37 @@ function childFactory(childType /*Child Type (i.e. Version, MediaFile, etc...)*/
         });
     };
 
+    // Changes the numOfSelected variable by the number passed
     this.modifyNumOfSelected = function(number) {
         this.numOfSelected = this.numOfSelected + number;
     };
     
+    // Resets child selector, but does not remove selected that were made
     this.cancel = function () {
-        $("#" + this.childHolderId).html("");
+        $("#" + childHolderId).html("");
         $("#" + this.selectionControlId).val($("#" + this.selectionControlId + ' option:first').val());
+    };
+
+    this.createChildSelector = function () {
+        // Create child selector div - delimiting field (i.e. dropdown list for Video Media) and dropdown list to display child options.
+        var childSelectorDiv = "<div class='form-group' id='" + this.childType.toLowerCase() + "Selector'></div>";
+
+        // add to span
+        $(/*'#versionSelectorPlaceHolder'*/ '#' + this.selectedPlaceHolder).append(childSelectorDiv);
+
+        // add label and selection control for delimitting field (i.e. parent records - video media) to childSelectorDiv
+        $('#' + this.childType.toLowerCase() + 'Selector').append("<label class='control-label col-md-2 required-field'>" + this.selectionControlId + "</label>" +
+            "<div class='col-md-4' id='" + this.selectionControlId + "Parent" + "'></div>");
+
+        // add label and div for selecting child elements
+        $('#' + this.childType.toLowerCase() + 'Selector').append("<label class='control-label col-md-2 required-field'>" + this.childType + "</label>" +
+            "<div class='col-md-4' id='" + childHolderId + "'></div>");
+
+        // Create div that will contain the selected children
+        var selectedChildHolder = "<div class='form-group' id='" + this.selectedChildrenDivId + "'></div>";
+
+        this.getParents();
+        
     };
 
     this.createCountHolder = function () {
@@ -60,6 +101,7 @@ function childFactory(childType /*Child Type (i.e. Version, MediaFile, etc...)*/
         $('#' + this.childType.toLowerCase() + 'Selector').append(inputCounter);
     };
 
+    // Adds a child to the selected children div, increments the num of selected variable
     this.addChild = function () {
         this.modifyNumOfSelected(1);
         var outerDivId = this.childType + this.numOfSelected;
@@ -73,7 +115,7 @@ function childFactory(childType /*Child Type (i.e. Version, MediaFile, etc...)*/
         var childName = $('#' + this.childSelectorId + ' option:selected').text();
         var selectedChild = '<option value="' + guid + '">' + childName + '</option>';
         //var deleteButton = '<button type="button" class="btn btn-default" onclick="deleteVersion(' + numOfSelected + ')">Delete</button>';
-        $('#' + selectedChildrenDivId).append(outerDiv);
+        $('#' + this.selectedChildrenDivId).append(outerDiv);
         $('#' + outerDivId).append(newLabel);
         $('#' + outerDivId).append(innerDiv);
         $('#' + innerDivId).append(childSelect);
@@ -82,6 +124,7 @@ function childFactory(childType /*Child Type (i.e. Version, MediaFile, etc...)*/
         $('#' + 'numberOf' + this.childType + 's').prop("value", this.numOfSelected);
     };
 
+    // Removes the selected versions
     this.restart = function () {
         this.numOfSelected = 0;
         $('#' + this.childCounter).prop("value", this.numOfSelected);
