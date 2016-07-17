@@ -20,26 +20,20 @@
         <script src="~/Scripts/ChildFactory.js"></script>
 
         <script>
-            /* Instantiate Version Factory
-
-            *Currently a child factory relies on the below markup:
-            - span element to attach child selector markup                          <span id="versionSelectorPlaceHolder"></span>
-            - div element to append versions:                                       <div class="form-group" id="selectedVersions"></div>
-
-            *Optional 
-            - specify controller action if child records need to be filtered by another parent (i.e. video media)                        
-
-            * Relies on a partial view containing desired results to be retrieved through an Ajax call
-            */
+            // Instantiate Child Factories
             var versionFactory = new childFactory("versionSelectorPlaceHolder", "Version", "GetVersions", "VideoReleases", "VideoVersionTypeId", "GetVideoMedia", "videoMediaId");
-
+            var regionFactory = new childFactory("regionSelectorPlaceHolder", "Region", "GetRegions", "VideoReleases", "RegionTypeId", "", "");
+            var boxSetFactory = new childFactory("boxSetSelectorPlaceHolder", "BoxSet", "GetBoxSets", "VideoReleases", "VideoBoxSetTypeId", "", "");
+            var standardFactory = new childFactory("standardSelectorPlaceHolder", "Standard", "GetStandards", "VideoReleases", "StandardTypeId", "", "");
+            var formatFactory = new childFactory("formatSelectorPlaceHolder", "Format", "GetFormats", "VideoReleases", "FormatTypeId", "", "");
         </script>      
 
-        @*Currently Used by versionFactory*@
+        @*Used by Child Factories*@
         <span id="versionSelectorPlaceHolder"></span>
-
-        @*Currently Used by versionFactory*@
-        <div class="form-group" id="selectedVersions"></div>
+        <span id="regionSelectorPlaceHolder"></span>
+        <span id="boxSetSelectorPlaceHolder"></span>
+        <span id="standardSelectorPlaceHolder"></span>
+        <span id="formatSelectorPlaceHolder"></span>
 
         <div class="form-group">
             @Html.LabelFor(model => model.DistributorId, "DistributorId", htmlAttributes: new { @class = "control-label col-md-2 required-field" })
@@ -106,7 +100,12 @@
 
     <script>
         $(document).ready(function () {
+            // Create child selector divs for child factories
             versionFactory.createChildSelector();
+            regionFactory.createChildSelector();
+            boxSetFactory.createChildSelector();
+            standardFactory.createChildSelector();
+            formatFactory.createChildSelector();
         });
     </script>
 }

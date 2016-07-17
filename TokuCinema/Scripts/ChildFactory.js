@@ -1,27 +1,54 @@
-/* ChildFactory Prototype - Last Updated 7/12/16 */
+/* ChildFactory Prototype - Last Updated 7/16/16 
 
-function childFactory(selectedPlaceHolder /*span id for markup to be appended to*/,
-    childType /*Child Type (i.e. Version, MediaFile, etc...)*/,
-    childActionName /*name of the action (partial view result) the Ajax query calls to get children*/,
-    controllerName /*name of the controller where the action is found*/,
-    childSelectorId /*Id of the control returned by Ajax call to select child record*/,
-    parentActionName /*name of the action (partial view result) the Ajax query calls to get parents*/,
-    selectionControlId /*Id of the control that sorts child records - optional*/) {
+    Documentation:
+
+        Required Parameters
+
+            [Parameter 1 - selectorPlaceHolder]             ***HAS REQUIRED MARKUP - SEE EXAMPLE***
+            -   Element to attach child selector markup that is generated from the script.         Ex.  <span id="versionSelectorPlaceHolder"></span>
+     
+            [Paramter 2 - childType]
+            -   This input is used as a naming modifier for markup that is generated - allows multiple factories to exist without generating
+                redundent element Ids.
+    
+            [Parameter 3 - childActionName]
+            -   This parameter represents the action result that the Ajax query will use to get a result containing child records.
+
+            [Parameter 4 - controllerName]
+            -   This parameter represents the name of the controller the childAction (and the parent action) action results are managed by.
+
+            [Parameter 5 - childSelectorId]
+            -   This parameter represents the name of the dropdown control that will be used to pick child records
+    
+        Optional Parameters
+    
+            [Parameter 6 -  parentActionName]
+            -   If a parent group is used to filter child results, this parameter is used to specify the action result that will be used to retrieve
+                a list of parents - Ex. gets a list of VideoMedia for use in filtering VideoVersionTypes.
+
+            [Parameter 7 -  selectionControlId]
+            -   If a parent group is used to filter child results, this parameter is used to pass the Id of the parent for further action by an
+                Ajax query.
+
+*/
+
+function childFactory(selectorPlaceHolder, childType, childActionName, controllerName, childSelectorId, parentActionName, selectionControlId) {
+
+    // Properties sourced by parameters
+    this.selectorPlaceHolder = selectorPlaceHolder;
+    this.childType = childType;
+    this.childActionName = childActionName;
+    this.controllerName = controllerName;
+    this.childSelectorId = childSelectorId;
+    this.parentActionName = parentActionName;
+    this.selectionControlId = selectionControlId;
 
     // Properties
     this.numOfSelected = 0;
     this.countHolderExists = false;
-    this.selectedChildrenDivId = /*"selectedVersions"*/ "selected" + childType + "s";
+    this.selectedChildrenDivId = "selected" + childType + "s";
     var childHolderId = childType.toLowerCase() + "SelectorDiv";
-    
-    // Properties sourced by parameters
-    this.selectedPlaceHolder = selectedPlaceHolder;
-    this.childActionName = childActionName;
-    this.controllerName = controllerName;
-    this.childSelectorId = childSelectorId;
-    this.childType = childType;
-    this.parentActionName = parentActionName;
-    this.selectionControlId = selectionControlId;
+    this.selectorDivName = this.childType.toLowerCase() + 'Selector';
 
     // Functions
 
@@ -72,25 +99,31 @@ function childFactory(selectedPlaceHolder /*span id for markup to be appended to
         $("#" + this.selectionControlId).val($("#" + this.selectionControlId + ' option:first').val());
     };
 
+    // Generates markup to display parent and child selector controls
     this.createChildSelector = function () {
-        // Create child selector div - delimiting field (i.e. dropdown list for Video Media) and dropdown list to display child options.
-        var childSelectorDiv = "<div class='form-group' id='" + this.childType.toLowerCase() + "Selector'></div>";
-
-        // add to span
-        $(/*'#versionSelectorPlaceHolder'*/ '#' + this.selectedPlaceHolder).append(childSelectorDiv);
+        // Create child selector div and add it to the place holder 
+        var childSelectorDiv = "<div class='form-group' id='" + this.selectorDivName + "'></div>";
+        $('#' + this.selectorPlaceHolder).append(childSelectorDiv);
 
         // add label and selection control for delimitting field (i.e. parent records - video media) to childSelectorDiv
-        $('#' + this.childType.toLowerCase() + 'Selector').append("<label class='control-label col-md-2 required-field'>" + this.selectionControlId + "</label>" +
+        $('#' + this.selectorDivName).append("<label class='control-label col-md-2 required-field'>" + this.childType +'s' + "</label>" +
             "<div class='col-md-4' id='" + this.selectionControlId + "Parent" + "'></div>");
 
-        // add label and div for selecting child elements
-        $('#' + this.childType.toLowerCase() + 'Selector').append("<label class='control-label col-md-2 required-field'>" + this.childType + "</label>" +
+        // add label and div for selecting child elements - Ajax result will be returned here
+        $('#' + this.selectorDivName).append("<label class='control-label col-md-2 required-field'>" + this.childType +' Options' + "</label>" +
             "<div class='col-md-4' id='" + childHolderId + "'></div>");
 
-        // Create div that will contain the selected children
-        var selectedChildHolder = "<div class='form-group' id='" + this.selectedChildrenDivId + "'></div>";
+        // Create and add div that will contain the selected children
+        $('#' + this.selectorPlaceHolder).append("<div class='form-group' id='" + this.selectedChildrenDivId + "'></div>");
 
-        this.getParents();
+        // get parents if the parent action property is supplied
+        // TODO: Test this
+        if (this.parentActionName === "") {
+            this.getChildren(); 
+        }
+        else {
+            this.getParents();
+        }
         
     };
 
@@ -98,7 +131,7 @@ function childFactory(selectedPlaceHolder /*span id for markup to be appended to
         // Create element
         inputCounter = "<input type='hidden' name='" + "numberOf" + this.childType + "s' id='" + "numberOf" + this.childType + "s'>";
         // Add element to parent div element ***Convention is this.childType.toLowerCase() + 'Selector' - not a parameter *** 
-        $('#' + this.childType.toLowerCase() + 'Selector').append(inputCounter);
+        $('#' + this.selectorDivName).append(inputCounter);
     };
 
     // Adds a child to the selected children div, increments the num of selected variable
@@ -106,7 +139,7 @@ function childFactory(selectedPlaceHolder /*span id for markup to be appended to
         this.modifyNumOfSelected(1);
         var outerDivId = this.childType + this.numOfSelected;
         var selectedId = "selected" + this.childType + this.numOfSelected;
-        var innerDivId = "innerDivId" + this.numOfSelected;
+        var innerDivId = this.childType + "InnerDivId" + this.numOfSelected;
         var outerDiv = "<div class='form-group' id='" + outerDivId + "'></div>";
         var newLabel = '<label class="control-label col-md-2" for="' + selectedId + '">Selected '+this.childType + ' ' + this.numOfSelected + '</label>';
         var innerDiv = '<div class="col-md-10" id="' + innerDivId + '"></div>';
@@ -114,13 +147,11 @@ function childFactory(selectedPlaceHolder /*span id for markup to be appended to
         var guid = $("#" + this.childSelectorId).val();
         var childName = $('#' + this.childSelectorId + ' option:selected').text();
         var selectedChild = '<option value="' + guid + '">' + childName + '</option>';
-        //var deleteButton = '<button type="button" class="btn btn-default" onclick="deleteVersion(' + numOfSelected + ')">Delete</button>';
         $('#' + this.selectedChildrenDivId).append(outerDiv);
         $('#' + outerDivId).append(newLabel);
         $('#' + outerDivId).append(innerDiv);
         $('#' + innerDivId).append(childSelect);
         $('#' + selectedId).append(selectedChild);
-        //$('#' + innerDivId).append(deleteButton);
         $('#' + 'numberOf' + this.childType + 's').prop("value", this.numOfSelected);
     };
 
@@ -128,7 +159,7 @@ function childFactory(selectedPlaceHolder /*span id for markup to be appended to
     this.restart = function () {
         this.numOfSelected = 0;
         $('#' + this.childCounter).prop("value", this.numOfSelected);
-        $('#' + selectedChildrenDivId).html("");
+        $('#' + this.selectedChildrenDivId).html("");
     };
 
     // Not used

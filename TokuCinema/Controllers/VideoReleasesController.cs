@@ -52,13 +52,43 @@ namespace TokuCinema.Controllers
             return PartialView("_VideoMediaList");
         }
 
-        // GET: Versions Used with JavaScript/Ajax script
+        #region Ajax PartialViewResults
+        // GET: Versions
         public PartialViewResult GetVersions(string id)
         {
             //List<VideoVersionType> videoVersionTypes = db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id).ToList();
             ViewBag.VideoVersionTypeId = new SelectList(db.VideoVersionTypes.Where(v => v.VideoMediaId.ToString() == id), "VideoVersionTypeId", "VideoVersionTitle");
             return PartialView("_VideoVersionTypeList");
         }
+
+        // GET: Regions 
+        public PartialViewResult GetRegions()
+        {
+            ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionName");
+            return PartialView("_RegionTypeList");
+        }
+
+        // GET: Box Sets
+        public PartialViewResult GetBoxSets()
+        {
+            ViewBag.VideoBoxSetTypeId = new SelectList(db.VideoBoxSetTypes, "VideoBoxSetTypeId", "VideoBoxSetTitle");
+            return PartialView("_VideoBoxSetTypeList");
+        }
+        
+        // GET: Standards
+        public PartialViewResult GetStandards()
+        {
+            ViewBag.StandardTypeId = new SelectList(db.StandardTypes, "StandardTypeId", "StandardName");
+            return PartialView("_StandardTypeList");
+        }
+
+        // GET: Formats
+        public PartialViewResult GetFormats()
+        {
+            ViewBag.FormatTypeId = new SelectList(db.FormatTypes, "FormatTypeId", "FormatName");
+            return PartialView("_FormatTypeList");
+        }
+        #endregion
 
         // POST: VideoReleases/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -71,9 +101,12 @@ namespace TokuCinema.Controllers
             {
                 videoRelease.VideoReleaseId = Guid.NewGuid();
                 db.VideoReleases.Add(videoRelease);
+
+                #region Add Children
+                // Add selected versions
                 string stringNumOfVersions = Request["numberOfVersions"];
                 int numberOfVersions = Int32.Parse(stringNumOfVersions);
-                for(int i = 1; i <= numberOfVersions; i++)
+                for (int i = 1; i <= numberOfVersions; i++)
                 {
                     VideoVersion videoVersion = new VideoVersion();
                     videoVersion.VideoVersionId = Guid.NewGuid();
@@ -81,7 +114,72 @@ namespace TokuCinema.Controllers
                     videoVersion.VideoVersionTypeId = Guid.Parse(Request["selectedVersion" + i]);
                     db.VideoVersions.Add(videoVersion);
                 }
-                
+
+                // Add selected regions
+                string stringNumOfRegions = Request["numberOfRegions"];
+                int numberOfRegions;
+                bool regionsExist = Int32.TryParse(stringNumOfRegions, out numberOfRegions);
+                if (regionsExist)
+                {
+                    for (int i = 1; i <= numberOfRegions; i++)
+                    {
+                        Region region = new Region();
+                        region.RegionId = Guid.NewGuid();
+                        region.VideoReleaseId = videoRelease.VideoReleaseId;
+                        region.RegionTypeId = Guid.Parse(Request["selectedRegion" + i]);
+                        db.Regions.Add(region);
+                    }
+                }
+
+                // Add selected box sets
+                string stringNumOfBoxSets = Request["numberOfBoxSets"];
+                int numberOfBoxSets;
+                bool boxSetsExist = Int32.TryParse(stringNumOfBoxSets, out numberOfBoxSets);
+                if (boxSetsExist)
+                {
+                    for (int i = 1; i <= numberOfBoxSets; i++)
+                    {
+                        VideoBoxSet boxSet = new VideoBoxSet();
+                        boxSet.VideoBoxSetId = Guid.NewGuid();
+                        boxSet.VideoReleaseId = videoRelease.VideoReleaseId;
+                        boxSet.VideoBoxSetTypeId = Guid.Parse(Request["selectedBoxSet" + i]);
+                        db.VideoBoxSets.Add(boxSet);
+                    }
+                }
+
+                // Add selected standard
+                string stringNumOfStandards = Request["numberOfStandards"];
+                int numberOfStandards;
+                bool standardsExist = Int32.TryParse(stringNumOfStandards, out numberOfStandards);
+                if (standardsExist)
+                {
+                    for (int i = 1; i <= numberOfStandards; i++)
+                    {
+                        Standard standard = new Standard();
+                        standard.StandardId= Guid.NewGuid();
+                        standard.VideoReleaseId = videoRelease.VideoReleaseId;
+                        standard.StandardTypeID = Guid.Parse(Request["selectedStandard" + i]);
+                        db.Standards.Add(standard);
+                    }
+                }
+
+                // Add selected format
+                string stringNumOfFormats = Request["numberOfFormats"];
+                int numberOfFormats;
+                bool formatsExist = Int32.TryParse(stringNumOfFormats, out numberOfFormats);
+                if (formatsExist)
+                {
+                    for (int i = 1; i <= numberOfFormats; i++)
+                    {
+                        Format format = new Format();
+                        format.FormatId = Guid.NewGuid();
+                        format.VideoReleaseId = videoRelease.VideoReleaseId;
+                        format.FormatTypeId = Guid.Parse(Request["selectedFormat" + i]);
+                        db.Formats.Add(format);
+                    }
+                }
+                #endregion
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

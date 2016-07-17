@@ -617,6 +617,10 @@
     <Content Include="Views\Shared\_VideoVersionTypeList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\dateTime.cshtml" />
     <Content Include="Views\Shared\_VideoMediaList.cshtml" />
+    <Content Include="Views\Shared\_RegionTypeList.cshtml" />
+    <Content Include="Views\Shared\_VideoBoxSetTypeList.cshtml" />
+    <Content Include="Views\Shared\_StandardTypeList.cshtml" />
+    <Content Include="Views\Shared\_FormatTypeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

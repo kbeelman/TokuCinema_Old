@@ -1,0 +1,5 @@
+﻿@model TokuCinema.Models.FormatType
+
+@Html.DropDownList("FormatTypeId", null, htmlAttributes: new { @class = "form-control"})
+<button type="button" class="btn btn-default" onclick="formatFactory.addChild()">Add</button>
+<button type="button" class="btn btn-default" onclick="formatFactory.restart()">Restart</button>

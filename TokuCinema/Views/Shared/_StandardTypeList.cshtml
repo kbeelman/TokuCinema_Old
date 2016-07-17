@@ -1,0 +1,5 @@
+﻿@model TokuCinema.Models.StandardType
+
+@Html.DropDownList("StandardTypeId", null, htmlAttributes: new { @class = "form-control"})
+<button type="button" class="btn btn-default" onclick="standardFactory.addChild()">Add</button>
+<button type="button" class="btn btn-default" onclick="standardFactory.restart()">Restart</button>
