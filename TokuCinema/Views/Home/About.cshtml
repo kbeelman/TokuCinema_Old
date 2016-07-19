@@ -1,7 +1,35 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout_Landing.cshtml";
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div id="about" class="item-active">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+                <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
+                    <div class="carousel-inner">
+                        <h1>
+                            About Toku Cinema
+                        </h1>
+                        <div class="item active smallTopMargin">
+                            <h4>
+                                Lorem ipsumdolor sitamet, consect adipiscing elit
+                                Lorem ipsumdolor sitamet, consect adipiscing elit.
+                                Lorem ipsumdolor sitamet, consect adipiscing elit
+                                Lorem ipsumdolor sitamet, consect adipiscing elit.
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center header smallTopMargin">
+            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
+                @Html.ActionLink("Back to home page", "Index", "Home", new { @class = "btn button-custom btn-custom-two" })
+            </div>
+        </div>
+    </div>
+</div>

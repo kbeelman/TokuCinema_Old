@@ -10,7 +10,7 @@ namespace TokuCinema.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("Index", "_Layout_Landing");
         }
 
         public ActionResult About()
