@@ -23,6 +23,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Region Description")]
+            [DataType(DataType.MultilineText)]
             public string RegionDescription { get; set; }
         }
     }

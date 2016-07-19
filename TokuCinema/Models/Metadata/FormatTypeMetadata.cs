@@ -23,6 +23,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Format Description")]
+            [DataType(DataType.MultilineText)]
             public string FormatDescription { get; set; }
         }
     }

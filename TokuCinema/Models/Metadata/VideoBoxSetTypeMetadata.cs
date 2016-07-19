@@ -23,6 +23,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Video Box Set Description")]
+            [DataType(DataType.MultilineText)]
             public string VideoBoxSetDescription { get; set; }
         }
     }

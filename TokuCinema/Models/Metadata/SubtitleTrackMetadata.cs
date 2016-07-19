@@ -31,6 +31,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Subtitle Track Description")]
+            [DataType(DataType.MultilineText)]
             public string SubtitleTrackDescription { get; set; }
         }
     }

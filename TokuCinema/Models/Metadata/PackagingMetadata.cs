@@ -18,7 +18,9 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Packaging Description")]
+            [DataType(DataType.MultilineText)]
             public string PackagingDescription { get; set; }
+
 
             [Required]
             [Display(Name = "Packaging Name")]

@@ -23,6 +23,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Standard Description")]
+            [DataType(DataType.MultilineText)]
             public string StandardDescription { get; set; }
         }
     }

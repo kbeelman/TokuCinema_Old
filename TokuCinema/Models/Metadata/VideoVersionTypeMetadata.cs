@@ -33,6 +33,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Video Version Description")]
+            [DataType(DataType.MultilineText)]
             public string VideoVersionDescription { get; set; }
 
             [Required]

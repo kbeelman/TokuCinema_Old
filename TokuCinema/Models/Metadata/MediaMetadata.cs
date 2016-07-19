@@ -33,6 +33,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Media Description")]
+            [DataType(DataType.MultilineText)]
             public string MediaDescription { get; set; }
 
             [Display(Name = "Wikipedia Link")]

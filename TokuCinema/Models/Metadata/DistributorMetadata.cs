@@ -23,6 +23,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Distributor Description")]
+            [DataType(DataType.MultilineText)]
             public string DistributorDescription { get; set; }
         }
     }

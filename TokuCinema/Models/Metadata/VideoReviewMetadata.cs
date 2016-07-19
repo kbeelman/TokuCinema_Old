@@ -22,10 +22,12 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Introduction")]
+            [DataType(DataType.MultilineText)]
             public string Introduction { get; set; }
 
             [Required]
             [Display(Name = "Presentation Comments")]
+            [DataType(DataType.MultilineText)]
             public string PresentationComments { get; set; }
 
             [Required]
@@ -34,6 +36,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Video Comments")]
+            [DataType(DataType.MultilineText)]
             public string VideoComments { get; set; }
 
             [Required]
@@ -42,6 +45,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Audio Comments")]
+            [DataType(DataType.MultilineText)]
             public string AudioComments { get; set; }
 
             [Required]
@@ -50,6 +54,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Bonus Feature Comments")]
+            [DataType(DataType.MultilineText)]
             public string BonusFeatureComments { get; set; }
 
             [Required]
@@ -58,6 +63,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Verdict Comments")]
+            [DataType(DataType.MultilineText)]
             public string VerdictComments { get; set; }
 
             [Required]

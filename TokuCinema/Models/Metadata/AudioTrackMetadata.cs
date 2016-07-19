@@ -31,6 +31,7 @@ namespace TokuCinema.Models
 
             [Required]
             [Display(Name = "Audio Track Description")]
+            [DataType(DataType.MultilineText)]
             public string AudioTrackDescription { get; set; }
 
             [Required]
