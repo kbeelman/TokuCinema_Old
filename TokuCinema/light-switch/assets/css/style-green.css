@@ -438,10 +438,26 @@ color:#fff;
 text-decoration:none;
 }
 
+/*Custom Styles Below*/
+
 .mediumTopMargin{
     margin-top: 30%;
 }
 
 .smallTopMargin{
     margin-top: 10%;
+}
+
+.quickPageNav{
+    float: left;
+}
+
+.nonLinks{
+background-color: none;
+}
+
+.nonLinks a, .nonLinks a:hover {
+font-size:14px;
+color:#fff;
+text-decoration:none;
 }

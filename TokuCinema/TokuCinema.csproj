@@ -375,6 +375,8 @@
     <Content Include="img\intro-bg.jpg" />
     <Content Include="img\intro-bg_bak.jpg" />
     <Content Include="img\intro-bg_bakcs.jpg" />
+    <Content Include="img\joey.jpeg" />
+    <Content Include="img\kiefer.jpg" />
     <Content Include="img\map-marker.png" />
     <Content Include="js\grayscale.js" />
     <Content Include="js\grayscale.min.js" />
