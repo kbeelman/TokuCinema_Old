@@ -38,11 +38,24 @@ namespace TokuCinema.Controllers
         }
 
         // GET: VideoBoxSets/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.VideoBoxSetTypeId = new SelectList(db.VideoBoxSetTypes, "VideoBoxSetTypeId", "VideoBoxSetTitle");
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
-            return View();
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.VideoBoxSetTypeId = new SelectList(db.VideoBoxSetTypes, "VideoBoxSetTypeId", "VideoBoxSetTitle");
+                ViewBag.VideoReleaseId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.VideoBoxSetTypeId = new SelectList(db.VideoBoxSetTypes, "VideoBoxSetTypeId", "VideoBoxSetTitle");
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.idPassed = false;
+                return View();
+            }
         }
 
         // POST: VideoBoxSets/Create
@@ -57,7 +70,7 @@ namespace TokuCinema.Controllers
                 videoBoxSet.VideoBoxSetId = Guid.NewGuid();
                 db.VideoBoxSets.Add(videoBoxSet);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
             }
 
             ViewBag.VideoBoxSetTypeId = new SelectList(db.VideoBoxSetTypes, "VideoBoxSetTypeId", "VideoBoxSetTitle", videoBoxSet.VideoBoxSetTypeId);

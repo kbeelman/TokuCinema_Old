@@ -37,11 +37,25 @@ namespace TokuCinema.Controllers
         }
 
         // GET: Standards/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.StandardTypeID = new SelectList(db.StandardTypes, "StandardTypeId", "StandardName");
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
-            return View();
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.StandardTypeID = new SelectList(db.StandardTypes, "StandardTypeId", "StandardName");
+                ViewBag.VideoReleaseId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.StandardTypeID = new SelectList(db.StandardTypes, "StandardTypeId", "StandardName");
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.idPassed = false;
+                return View();
+            }
+            
         }
 
         // POST: Standards/Create
@@ -56,7 +70,7 @@ namespace TokuCinema.Controllers
                 standard.StandardId = Guid.NewGuid();
                 db.Standards.Add(standard);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
             }
 
             ViewBag.StandardTypeID = new SelectList(db.StandardTypes, "StandardTypeId", "StandardName", standard.StandardTypeID);

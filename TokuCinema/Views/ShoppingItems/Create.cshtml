@@ -37,6 +37,13 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
+        @*Hide field entry if id is dynamically passed*@
+        @if (ViewBag.idPassed == true)
+        {
+            @Html.Hidden("VideoReleaseId", (object)ViewBag.VideoReleaseId)
+        }
+
     </div>
 }
 

@@ -76,13 +76,25 @@ namespace TokuCinema.Controllers
 
         // GET: VideoReviews/Create
 
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
 
         {
 
-            ViewBag.VideoreleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+            ViewBag.idPassed = false;
 
-            return View();
+            if (id.HasValue)
+            {
+                ViewBag.VideoreleaseId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.VideoreleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.idPassed = false;
+                return View();
+            }
+            
 
         }
 
@@ -112,7 +124,7 @@ namespace TokuCinema.Controllers
 
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
 
             }
 

@@ -37,11 +37,26 @@ namespace TokuCinema.Controllers
         }
 
         // GET: Regions/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionName");
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
-            return View();
+            //bool will allow for dynamically passed ids or manual entry
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionName");
+                ViewBag.VideoReleaseId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionName");
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.IdPassed = false;
+                return View();
+            }
+
         }
 
         // POST: Regions/Create
@@ -56,7 +71,7 @@ namespace TokuCinema.Controllers
                 region.RegionId = Guid.NewGuid();
                 db.Regions.Add(region);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
             }
 
             ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionName", region.RegionTypeId);

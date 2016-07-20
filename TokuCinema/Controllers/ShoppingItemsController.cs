@@ -37,10 +37,22 @@ namespace TokuCinema.Controllers
         }
 
         // GET: ShoppingItems/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName");
-            return View();
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.CompanyId = id;
+                ViewBag.idPassed = true; 
+                return View();
+            }
+            else
+            {
+                ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName");
+                ViewBag.idPassed = false;
+                return View();
+            }
         }
 
         // POST: ShoppingItems/Create

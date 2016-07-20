@@ -37,11 +37,24 @@ namespace TokuCinema.Controllers
         }
 
         // GET: Formats/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.FormatTypeId = new SelectList(db.FormatTypes, "FormatTypeId", "FormatName");
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
-            return View();
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.FormatTypeId = new SelectList(db.FormatTypes, "FormatTypeId", "FormatName");
+                ViewBag.VideoReleaseId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.FormatTypeId = new SelectList(db.FormatTypes, "FormatTypeId", "FormatName");
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.idPassed = false;
+                return View();
+            }
         }
 
         // POST: Formats/Create
@@ -56,7 +69,7 @@ namespace TokuCinema.Controllers
                 format.FormatId = Guid.NewGuid();
                 db.Formats.Add(format);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
             }
 
             ViewBag.FormatTypeId = new SelectList(db.FormatTypes, "FormatTypeId", "FormatName", format.FormatTypeId);

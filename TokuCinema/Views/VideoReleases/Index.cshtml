@@ -60,6 +60,26 @@
                 </div>
                 <div id='@iterationCollapseName' class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 
+                    @*Universal Add Dropdown*@
+                    <ul style="list-style:none;">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Add Child Records <i class="glyphicon glyphicon-collapse-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Insert Subtitle Tracks", "Create", "SubtitleTracks", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Audio Track", "Create", "AudioTracks", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Region", "Create", "Regions", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Standard", "Create", "Standards", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Video Box Set", "Create", "VideoBoxSets", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Shopping Item", "Create", "Shopping Items", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Format", "Create", "Formats", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Video Version", "Create", "VideoVersions", new { id = item.VideoReleaseId }, null)</li>
+                                <li>@Html.ActionLink("Insert Video Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
                     @*Subtitle Tracks*@
 
                     @if (releaseDecendents.SubtitleTracks.Count > 0)
@@ -78,169 +98,176 @@
                         </div>
                     }
 
-                    @*Audio Tracks*@
+                            @*Audio Tracks*@
 
-                    @if (releaseDecendents.AudioTracks.Count > 0)
+                            @if (releaseDecendents.AudioTracks.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Audio Tracks</h3>
-                            @foreach (var audioItem in releaseDecendents.AudioTracks)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(audioItem.Language.ToString(), "Edit", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Audio Tracks</h3>
+                                    @foreach (var audioItem in releaseDecendents.AudioTracks)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(audioItem.Language.ToString(), "Edit", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Audio Track", "Create", "AudioTracks", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Audio Track", "Create", "AudioTracks", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
+                            @*Regions*@
 
-                    @*Regions*@
-
-                    @if (releaseDecendents.Regions.Count > 0)
+                            @if (releaseDecendents.Regions.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Regions</h3>
-                            @foreach (var regionItem in releaseDecendents.Regions)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(regionItem.RegionType.RegionName.ToString(), "Edit", "Regions", new { id = regionItem.RegionId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Regions", new { id = regionItem.RegionId }, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Regions</h3>
+                                    @foreach (var regionItem in releaseDecendents.Regions)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(regionItem.RegionType.RegionName.ToString(), "Edit", "Regions", new { id = regionItem.RegionId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Regions", new { id = regionItem.RegionId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Region", "Create", "Regions", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Region", "Create", "Regions", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Media Files*@
+                            @*Media Files*@
 
-                    @if (releaseDecendents.MediaFiles.Count > 0)
+                            @if (releaseDecendents.MediaFiles.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Media Files</h3>
-                            @foreach (var mediaFileItem in releaseDecendents.MediaFiles)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(mediaFileItem.MediaFielId.ToString(), "Edit", "MediaFiles", new { id = mediaFileItem.MediaFielId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "MediaFiles", new { id = mediaFileItem.MediaFielId}, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Media Files</h3>
+                                    @foreach (var mediaFileItem in releaseDecendents.MediaFiles)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(mediaFileItem.MediaFielId.ToString(), "Edit", "MediaFiles", new { id = mediaFileItem.MediaFielId }, null)</p>
+                                            @if (mediaFileItem.Image == true)
+                                            {
+                                                <img src="data:image/png;base64,@Convert.ToBase64String(mediaFileItem.MediaFile1,0,mediaFileItem.MediaFile1.Length)" width="100" />
+                                            }
+                                            else
+                                            {
+                                                mediaFileItem.MediaFielId.ToString();
+                                            }
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "MediaFiles", new { id = mediaFileItem.MediaFielId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Standards*@
+                            @*Standards*@
 
-                    @if (releaseDecendents.Standards.Count > 0)
+                            @if (releaseDecendents.Standards.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Standards</h3>
-                            @foreach (var standardItem in releaseDecendents.Standards)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(standardItem.StandardType.StandardName.ToString(), "Edit", "Standards", new { id = standardItem.StandardId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Standards", new { id = standardItem.StandardId }, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Standards</h3>
+                                    @foreach (var standardItem in releaseDecendents.Standards)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(standardItem.StandardType.StandardName.ToString(), "Edit", "Standards", new { id = standardItem.StandardId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Standards", new { id = standardItem.StandardId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Standard", "Create", "Standards", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Standard", "Create", "Standards", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Video Box Sets*@
+                            @*Video Box Sets*@
 
-                    @if (releaseDecendents.VideoBoxSets.Count > 0)
+                            @if (releaseDecendents.VideoBoxSets.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Video Box Sets</h3>
-                            @foreach (var boxSetItem in releaseDecendents.VideoBoxSets)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(boxSetItem.VideoBoxSetType.VideoBoxSetDescription.ToString(), "Edit", "VideoBoxSets", new { id = boxSetItem.VideoBoxSetId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoBoxSets", new { id = boxSetItem.VideoBoxSetId }, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Video Box Sets</h3>
+                                    @foreach (var boxSetItem in releaseDecendents.VideoBoxSets)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(boxSetItem.VideoBoxSetType.VideoBoxSetDescription.ToString(), "Edit", "VideoBoxSets", new { id = boxSetItem.VideoBoxSetId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoBoxSets", new { id = boxSetItem.VideoBoxSetId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Video Box Set", "Create", "VideoBoxSets", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Video Box Set", "Create", "VideoBoxSets", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Shopping Items*@
+                            @*Shopping Items*@
 
-                    @if (releaseDecendents.ShoppingItems.Count > 0)
+                            @if (releaseDecendents.ShoppingItems.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Shopping Items</h3>
-                            @foreach (var shoppingItem in releaseDecendents.ShoppingItems)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(shoppingItem.PurchaseLink.ToString(), "Edit", "Shopping Items", new { id = shoppingItem.ShoppingItemId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Shopping Items", new { id = shoppingItem.ShoppingItemId}, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Shopping Items</h3>
+                                    @foreach (var shoppingItem in releaseDecendents.ShoppingItems)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(shoppingItem.PurchaseLink.ToString(), "Edit", "Shopping Items", new { id = shoppingItem.ShoppingItemId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Shopping Items", new { id = shoppingItem.ShoppingItemId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Shopping Item", "Create", "Shopping Items", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Shopping Item", "Create", "Shopping Items", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Formats*@
+                            @*Formats*@
 
-                    @if (releaseDecendents.Formats.Count > 0)
+                            @if (releaseDecendents.Formats.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Formats</h3>
-                            @foreach (var formatItem in releaseDecendents.Formats)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(formatItem.FormatType.FormatName.ToString(), "Edit", "Formats", new { id = formatItem.FormatId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Formats", new { id = formatItem.FormatId}, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Formats</h3>
+                                    @foreach (var formatItem in releaseDecendents.Formats)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(formatItem.FormatType.FormatName.ToString(), "Edit", "Formats", new { id = formatItem.FormatId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Formats", new { id = formatItem.FormatId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Format", "Create", "Formats", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Format", "Create", "Formats", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Video Versions*@
+                            @*Video Versions*@
 
-                    @if (releaseDecendents.Versions.Count > 0)
+                            @if (releaseDecendents.Versions.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Video Versions</h3>
-                            @foreach (var videoVersionItem in releaseDecendents.Versions)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(videoVersionItem.VideoVersionType.VideoVersionTitle.ToString(), "Edit", "VideoVersions", new { id = videoVersionItem.VideoVersionId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersions", new { id = videoVersionItem.VideoVersionId }, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Video Versions</h3>
+                                    @foreach (var videoVersionItem in releaseDecendents.Versions)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(videoVersionItem.VideoVersionType.VideoVersionTitle.ToString(), "Edit", "VideoVersions", new { id = videoVersionItem.VideoVersionId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoVersions", new { id = videoVersionItem.VideoVersionId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version", "Create", "VideoVersions", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version", "Create", "VideoVersions", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                    @*Video Reviews*@
+                            @*Video Reviews*@
 
-                    @if (releaseDecendents.Reviews.Count > 0)
+                            @if (releaseDecendents.Reviews.Count > 0)
                     {
-                        <div class="col-md-4">
-                            <h3>Video Reviews</h3>
-                            @foreach (var reviewItem in releaseDecendents.Reviews)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(reviewItem.Introduction.ToString(), "Edit", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p><br />
+                                <div class="col-md-4">
+                                    <h3>Video Reviews</h3>
+                                    @foreach (var reviewItem in releaseDecendents.Reviews)
+                                    {
+                                        <div class="border-box">
+                                            <p>@Html.ActionLink(reviewItem.Introduction.ToString(), "Edit", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p>
+                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p><br />
+                                        </div>
+                                    }
+                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Video Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</div>
+                                    <hr />
                                 </div>
                             }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Video Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
 
-                </div>
+                        </div>
             </div>
         </div>
     </div>

@@ -37,8 +37,20 @@ namespace TokuCinema.Controllers
         }
 
         // GET: SubtitleTracks/Create
-        public ActionResult Create()
+        public ActionResult Create(/*Guid? id*/)
         {
+
+            // Implement Once Database is updated to reflect SubtitleTrack belonging to VideoVersions
+            // bool will allow for dynamically passed ids or manual entry
+            //ViewBag.idPassed = false;
+
+            //if (id.HasValue)
+            //{
+            //    ViewBag.VideoVersionId = id;
+            //    ViewBag.idPassed = true;
+            //    return View();
+            //}
+
             ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName");
             ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
             return View();

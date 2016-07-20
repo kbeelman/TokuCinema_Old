@@ -37,10 +37,22 @@ namespace TokuCinema.Controllers
         }
 
         // GET: MediaFiles/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
-            return View();
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.VideoReleaseId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.idPassed = false;
+                return View();
+            }
         }
 
         // POST: MediaFiles/Create
@@ -48,14 +60,14 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaFielId,VideoReleaseId,MediaFile1,Image,Video,Location")] MediaFile mediaFile)
+        public ActionResult Create(/*[Bind(Include = "MediaFielId,VideoReleaseId,MediaFile1,Image,Video,Location")]*/ MediaFile mediaFile)
         {
             if (ModelState.IsValid)
             {
                 mediaFile.MediaFielId = Guid.NewGuid();
                 db.MediaFiles.Add(mediaFile);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
             }
 
             ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", mediaFile.VideoReleaseId);
@@ -67,9 +79,9 @@ namespace TokuCinema.Controllers
         [HttpPost]
         public ActionResult Upload(MediaFile mediaFile)
         {
-            if (ModelState.IsValid)
-            {
-                // Set Company Id
+            //if (ModelState.IsValid)
+            //{
+                // Set mediafile Id
                 mediaFile.MediaFielId = Guid.NewGuid();
 
                 if (mediaFile.File != null)
@@ -105,9 +117,9 @@ namespace TokuCinema.Controllers
                     db.MediaFiles.Add(mediaFile);
                     db.SaveChanges();
                 }
-            }
+            //}
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "VideoReleases");
         }
 
         // GET: MediaFiles/Edit/5

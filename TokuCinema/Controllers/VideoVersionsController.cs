@@ -37,11 +37,24 @@ namespace TokuCinema.Controllers
         }
 
         // GET: VideoVersions/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? id)
         {
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
-            ViewBag.VideoVersionTypeId = new SelectList(db.VideoVersionTypes, "VideoVersionTypeId", "VideoVersionTitle");
-            return View();
+            ViewBag.idPassed = false;
+
+            if (id.HasValue)
+            {
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.VideoVersionTypeId = id;
+                ViewBag.idPassed = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+                ViewBag.VideoVersionTypeId = new SelectList(db.VideoVersionTypes, "VideoVersionTypeId", "VideoVersionTitle");
+                ViewBag.idPassed = false;
+                return View();
+            }
         }
 
         // POST: VideoVersions/Create
@@ -56,7 +69,7 @@ namespace TokuCinema.Controllers
                 videoVersion.VideoVersionId = Guid.NewGuid();
                 db.VideoVersions.Add(videoVersion);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "VideoReleases");
             }
 
             ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", videoVersion.VideoReleaseId);
