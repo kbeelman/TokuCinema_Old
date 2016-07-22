@@ -7,7 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/dashboard-theme/css")
-    
+    <script src="~/Scripts/ajax-helpers.js"></script>
+
 </head>
 
 <body>
@@ -29,57 +30,73 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid strokeme">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
-                <h2>Core</h2>
+                <h1>Quick Navigation</h1>
+                @*Core Forms*@
+                <a href="javascript:;" data-toggle="collapse" data-target="#coreDropdown"><h3>Core <span class="glyphicon glyphicon-chevron-down"></span></h3></a>
                 <ul class="nav nav-sidebar">
-                    <li>@Html.ActionLink("Dashboard Home", "Index", "Dashboard")</li>
-                    <li>@Html.ActionLink("Media", "Index", "Media")</li>
-                    <li>@Html.ActionLink("Video Media", "Index", "VideoMedias")</li>
-                    <li>@Html.ActionLink("Video Release", "Index", "VideoReleases")</li>
-                    <li>@Html.ActionLink("Video Review", "Index", "VideoReviews")</li>
+                    <li>
+                        <ul id="coreDropdown" class="collapse" style="list-style:none;">
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Dashboard', 'bodyContainer', '');">Dashboard Main</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Media', 'bodyContainer', '');">Media</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoMedias', 'bodyContainer', '');">Video Media</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoReleases', 'bodyContainer', '');">Video Relases</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoReviews', 'bodyContainer', '');">Video Reviews</button></li>
+                        </ul>
+                    </li>
                 </ul>
-                <h2>Types</h2>
+
+                @*Type Forms*@
+                <a href="javascript:;" data-toggle="collapse" data-target="#typeDropdown"><h3>Types <span class="glyphicon glyphicon-chevron-down"></span></h3></a>
                 <ul class="nav nav-sidebar">
-                    <li>@Html.ActionLink("Region Types", "Index", "RegionTypes")</li>
-                    <li>@Html.ActionLink("Video Box Set Types", "Index", "VideoBoxSetTypes")</li>
-                    <li>@Html.ActionLink("Standard Types", "Index", "StandardTypes")</li>
-                    <li>@Html.ActionLink("Format Types", "Index", "FormatTypes")</li>
-                    <li>@Html.ActionLink("Video Version Types", "Index", "VideoVersionTypes")</li>
-                    <li>@Html.ActionLink("Languages", "Index", "Languages")</li>
-                    <li>@Html.ActionLink("Companies", "Index", "Companies")</li>
-                    <li>@Html.ActionLink("Distributors", "Index", "Distributors")</li>
-                    <li>@Html.ActionLink("Packagings", "Index", "Packagings")</li>
-                    @*<li>@Html.ActionLink("Subtitle Track Type", "Index", "SubtitleTrackType")</li>
-                    <li>@Html.ActionLink("Audio Track Type", "Index", "AudioTrackType")</li>
-                    <li>@Html.ActionLink("Shopping Item Type", "Index", "ShoppingItemType")</li>*@
+                    <li>
+                        <ul id="typeDropdown" class="collapse" style="list-style:none;">
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'RegionTypes', 'bodyContainer', '');">Region Types</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoBoxSetTypes', 'bodyContainer', '');">Video Box Set Types</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'StandardTypes', 'bodyContainer', '');">Standard Types</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'FormatTypes', 'bodyContainer', '');">Format Types</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoVersionTypes', 'bodyContainer', '');">Video Version Types</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Languages', 'bodyContainer', '');">Languages</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Companies', 'bodyContainer', '');">Companies</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Distributors', 'bodyContainer', '');">Distributors</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Packagings', 'bodyContainer', '');">Packagings</button></li>
+                        </ul>
+                    </li>
                 </ul>
-                <h2>Others</h2>
+
+
+                @*Other Forms*@
+                <a href="javascript:;" data-toggle="collapse" data-target="#otherDropdown"><h3>Others <span class="glyphicon glyphicon-chevron-down"></span></h3></a>
                 <ul class="nav nav-sidebar">
-                    <li>@Html.ActionLink("Regions", "Index", "Regions")</li>
-                    <li>@Html.ActionLink("Video Box Sets", "Index", "VideoBoxSets")</li>
-                    <li>@Html.ActionLink("Standards", "Index", "Standards")</li>
-                    <li>@Html.ActionLink("Formats", "Index", "Formats")</li>
-                    <li>@Html.ActionLink("Video Versions", "Index", "VideoVersions")</li>
-                    <li>@Html.ActionLink("Audio Tracks", "Index", "AudioTracks")</li>
-                    <li>@Html.ActionLink("Subtitle Tracks", "Index", "SubtitleTracks")</li>
-                    <li>@Html.ActionLink("Shopping Items", "Index", "ShoppingItems")</li>
-                    <li>@Html.ActionLink("Media Files", "Index", "MediaFiles")</li>
+                    <li>
+                        <ul id="otherDropdown" class="collapse" style="list-style:none;">
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Regions', 'bodyContainer', '');">Regions</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoBoxSets', 'bodyContainer', '');">VideoBoxSets</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Standards', 'bodyContainer', '');">Standards</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'Formats', 'bodyContainer', '');">Formats</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'VideoVersions', 'bodyContainer', '');">VideoVersions</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'AudioTracks', 'bodyContainer', '');">AudioTracks</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'SubtitleTracks', 'bodyContainer', '');">SubtitleTracks</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'ShoppingItems', 'bodyContainer', '');">ShoppingItems</button></li>
+                            <li><button class="btn btn-link" onclick="ajaxMethodToElement('Index', 'MediaFiles', 'bodyContainer', '');">MediaFiles</button></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
 
-                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main background-godzilla1" style="min-height: 1080px;">
-                        <div class="container body-content back-gloss-light">
-                            @RenderBody()
-                            <hr />
-                            <footer>
-                                <p>&copy; @DateTime.Now.Year - Toku Cinema</p>
-                            </footer>
-                        </div>
-                    </div>
-
-            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main background-godzilla1" style="min-height: 1080px;">
+        <div id="bodyContainer" class="container body-content back-gloss-light">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <p class="strokeme">&copy; @DateTime.Now.Year - Toku Cinema</p>
+        </footer>
     </div>
 
     @*@Scripts.Render("~/bundles/dashboardScripts")*@
