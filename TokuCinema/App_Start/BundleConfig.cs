@@ -27,24 +27,7 @@ namespace TokuCinema
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            // Original Custom Theme
-            #region Grayscale
-            bundles.Add(new StyleBundle("~/vendor/css").Include(
-                "~/vendor/bootstrap/css/bootstrap.css",
-                "~/vendor/font-awesome/css/font-awesome.min.css"));
-
-
-            bundles.Add(new StyleBundle("~/css/css").Include(
-                "~/css/grayscale.css"));
-
-
-            bundles.Add(new ScriptBundle("~/bundles/GrayscaleScripts").Include(
-                "~/vendor/jquery/jquery.js",
-                "~/vendor/bootstrap/js/bootstrap.min.js",
-                "~/js/grayscale.min.js"));
-            #endregion
-
-            // Second Custom Theme
+            // Landing Page Theme
             #region light-wave
 
             bundles.Add(new StyleBundle("~/light-switch/assets/css").Include(
@@ -68,6 +51,13 @@ namespace TokuCinema
                 "~/light-switch/assets/js/animations.min.js",
                 "~/light-switch/assets/js/custom.js"
                 ));
+
+            #endregion
+
+            // Dashboard Theme
+            #region Dashboard
+
+
 
             #endregion
 
