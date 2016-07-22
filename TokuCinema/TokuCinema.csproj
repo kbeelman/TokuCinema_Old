@@ -649,7 +649,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\VideoReviews\CreateReview.cshtml" />
     <Content Include="Views\VideoMedias\Create.cshtml" />
     <Content Include="Views\VideoMedias\Delete.cshtml" />

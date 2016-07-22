@@ -75,6 +75,9 @@ namespace TokuCinema.Controllers
                 originalVersion.VideoMediaId = videoMedia.VideoMediaId;
                 originalVersion.VideoVersionTitle = media.MediaOfficialTitle;
                 originalVersion.VideoVersionDescription = "Original Version";
+                originalVersion.AspectRatio = videoMedia.OriginalAspectRatio;
+                originalVersion.Runtime = videoMedia.OriginalRuntime;
+                originalVersion.ChapterStops = 0; //Populate this with dummy values for now
                 db.VideoVersionTypes.Add(originalVersion);
 
                 db.SaveChanges();
