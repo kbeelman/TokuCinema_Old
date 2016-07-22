@@ -3,6 +3,62 @@
     ViewBag.Title = "Dashboard Index";
 }
 
-    <div>
-        <h1>@ViewBag.Title</h1>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">@ViewBag.Title</h1>
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="http://vignette3.wikia.nocookie.net/godzilla/images/f/f1/Godzilla.jp_-_Godzilla_2003.jpg/revision/latest/scale-to-width-down/200?cb=20140131120836" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Media</h4>
+                @Html.ActionLink("Manage Media", "Index", "Media")
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="http://www.godzilla-movies.com/images/defaultavatar.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Releases</h4>
+                @Html.ActionLink("Manage Releases", "Index", "VideoReleases")
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="http://vignette1.wikia.nocookie.net/godzilla/images/f/f5/MosuGoji_2.jpg/revision/latest/scale-to-width-down/200?cb=20140129175236" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Reviews</h4>
+                @Html.ActionLink("Manage Reviews", "Index", "VideoReviews")
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="http://vignette3.wikia.nocookie.net/godzilla/images/c/ce/Godzilla.jp_-_Flying_Godzilla.jpg/revision/latest/scale-to-width-down/200?cb=20140803055024" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Accounts</h4>
+                @Html.ActionLink("Manage Account", "Index", "Manage")
+            </div>
+        </div>
+
+        @{ 
+            TokuCinema.Models.TokuCinema_DataEntities db = new TokuCinema.Models.TokuCinema_DataEntities();
+            List<TokuCinema.Models.Medium> mediaList = db.Media.ToList();
+        }
+
+        <h2 class="sub-header"> Media Library So Far... </h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Offical Title</th>
+                        <th>Description</th>
+                        <th>Wikipedia Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(TokuCinema.Models.Medium item in mediaList)
+                    {
+                        <tr>
+                            <td>
+                                <h2>@Html.DisplayFor(modelItem => item.MediaOfficialTitle)</h2>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MediaDescription)
+                            </td>
+                            <td>
+                                <a href="@Html.DisplayFor(modelItem => item.WikipediaLink)" target="_blank">Wikipedia link</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>

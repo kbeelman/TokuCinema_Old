@@ -6,57 +6,10 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-
-            @*Temporary Admin Navigation of Views - Most views will be consolidated within other "parent" views*@
-
-            @*Provides admin access to core views (i.e. VideoReview, VideoRelease, Media, etc...)*@
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Core <i class="glyphicon glyphicon-collapse-down"></i></a>
-            <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Media", "Index", "Media")</li>
-                @*<li>@Html.ActionLink("Video Media", "Index", "VideoMedias")</li>
-                Edit video media from the media index view*@
-                <li>@Html.ActionLink("Video Release", "Index", "VideoReleases")</li>
-                <li>@Html.ActionLink("Video Review", "Index", "VideoReviews")</li>
-            </ul>
-        </li>
-
-        @*Provides admin access to "metadata" views - data that exists to inform other data (i.e. Language, RegionType, StandardType, etc...)*@
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">MetaData <i class="glyphicon glyphicon-collapse-down"></i></a>
-            <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Language", "Index", "Languages")</li>
-                <li>@Html.ActionLink("Region Type", "Index", "RegionTypes")</li>
-                <li>@Html.ActionLink("Standard Type", "Index", "StandardTypes")</li>
-                <li>@Html.ActionLink("Video Box Set Type", "Index", "VideoBoxSetTypes")</li>
-                <li>@Html.ActionLink("Format Type", "Index", "FormatTypes")</li>
-                @*<li>@Html.ActionLink("Video Version Type", "Index", "VideoVersionTypes")</li>
-                Edit Video Version Types from the Media Index View*@
-                <li>@Html.ActionLink("Packaging", "Index", "Packagings")</li>
-                <li>@Html.ActionLink("Company", "Index", "Companies")</li>
-                <li>@Html.ActionLink("Shopping Item", "Index", "ShoppingItems")</li>
-                <li>@Html.ActionLink("Distributor", "Index", "Distributors")</li>
-            </ul>
-        </li>
-
-        @*Provides admin access to associative views - data that exists to connect core data with metadata or child elements (i.e. VideoVersion,
-        Standard, VideoBoxSet, etc...)*@
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Associative <i class="glyphicon glyphicon-collapse-down"></i></a>
-            <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Format", "Index", "Formats")</li>
-                <li>@Html.ActionLink("Video Version", "Index", "VideoVersions")</li>
-                <li>@Html.ActionLink("Video Box Set", "Index", "VideoBoxSets")</li>
-                <li>@Html.ActionLink("Standard", "Index", "Standards")</li>
-                <li>@Html.ActionLink("Subtitle Track", "Index", "SubtitleTracks")</li>
-                <li>@Html.ActionLink("Audio Track", "Index", "AudioTracks")</li>
-                <li>@Html.ActionLink("Region", "Index", "Regions")</li>
-                <li>@Html.ActionLink("Media File", "Index", "MediaFiles")</li>
-            </ul>
-        </li>
-
+        <li>@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+        
+        <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>    
+        
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }

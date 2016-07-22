@@ -367,6 +367,14 @@
     <Content Include="bak_favicon.ico" />
     <Content Include="css\grayscale.css" />
     <Content Include="css\grayscale.min.css" />
+    <Content Include="dashboard-theme\bootstrap.min.css" />
+    <Content Include="dashboard-theme\bootstrap.min.js" />
+    <Content Include="dashboard-theme\dashboard.css" />
+    <Content Include="dashboard-theme\holder.min.js" />
+    <Content Include="dashboard-theme\ie-emulation-modes-warning.js" />
+    <Content Include="dashboard-theme\ie10-viewport-bug-workaround.css" />
+    <Content Include="dashboard-theme\ie10-viewport-bug-workaround.js" />
+    <Content Include="dashboard-theme\jquery.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -471,7 +479,6 @@
     <Content Include="Models\TokuCinemaEntities.edmx.diagram">
       <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="light-switch\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="light-switch\assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="light-switch\assets\fonts\fontawesome-webfont.woff" />
@@ -484,6 +491,7 @@
     <Content Include="light-switch\assets\fonts\ionicons.eot" />
     <Content Include="light-switch\assets\fonts\ionicons.ttf" />
     <Content Include="light-switch\assets\fonts\ionicons.woff" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ChildFactory.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -658,7 +666,7 @@
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Dashboard\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

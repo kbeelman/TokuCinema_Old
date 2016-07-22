@@ -57,7 +57,17 @@ namespace TokuCinema
             // Dashboard Theme
             #region Dashboard
 
+            bundles.Add(new StyleBundle("~/dashboard-theme/css").Include(
+                "~/dashboard-theme/bootstrap.min.css",
+                "~/dashboard-theme/dashboard.css",
+                "~/dashboard-theme/ie10-viewport-bug-workaround.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/dashboardScripts").Include(
+                "~/dashboard-theme/bootstrap.min.js",
+                "~/dashboard-theme/holder.min.js",
+                "~/dashboard-theme/ie-emulation-modes-warning.js",
+                "~/dashboard-theme/ie10-viewport-bug-workaround.js",
+                "~/dashboard-theme/jquery.min.js"));
 
             #endregion
 

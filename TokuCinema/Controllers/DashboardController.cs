@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace TokuCinema.Controllers
 {
+    [Authorize] /*Must be logged in to view - no role specified*/
     public class DashboardController : Controller
     {
         public ActionResult Index()
