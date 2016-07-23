@@ -38,6 +38,9 @@ namespace TokuCinema.Models
 
             [Display(Name = "Wikipedia Link")]
             public string WikipediaLink { get; set; }
+
+            [Display(Name = "Image Link")]
+            public string MediaImageLink { get; set; }
         }
     }
 }

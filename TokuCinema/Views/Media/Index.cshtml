@@ -31,6 +31,7 @@
         <div>
             <h1>@Html.ActionLink(item.MediaOfficialTitle.ToString(), "Edit", new { id = item.MediaId })</h1>
             <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", new { id = item.MediaId })</p><br />
+            <img class="img-responsive" src="@item.MediaImageLink" alt="Media Image" />
             <a href="@Html.DisplayFor(model => item.WikipediaLink)" target="_blank">Wikipedia Link</a><br />
             <p>@item.MediaDescription</p>
             <hr />

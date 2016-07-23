@@ -186,5 +186,26 @@ namespace TokuCinema.Services
             return releaseDecendents;
         }
         
+        //public static byte[] GetPrimaryMediaImage(Guid mediaId)
+        //{
+        //    // Context 
+        //    TokuCinema_DataEntities db = new TokuCinema_DataEntities();
+        //    VideoMedia firstVideoMedia = db.VideoMedias.Where(m => m.MediaId == mediaId).FirstOrDefault();
+        //    VideoVersionType firstVersionType = db.VideoVersionTypes.Where(v => v.VideoMediaId == firstVideoMedia.VideoMediaId).FirstOrDefault();
+        //    VideoVersion firstVideoVersion = db.VideoVersions.Where(v => v.VideoVersionTypeId == firstVersionType.VideoVersionTypeId).FirstOrDefault();
+        //    VideoRelease firstRelease = db.VideoReleases.Where(v => v.VideoReleaseId == firstVideoVersion.VideoReleaseId).FirstOrDefault();
+        //    try
+        //    {
+        //        byte[] returnFile = db.MediaFiles.Where(m => m.VideoReleaseId == firstRelease.VideoReleaseId).FirstOrDefault().MediaFile1;
+        //        return returnFile;
+        //    }
+        //    catch (NullReferenceException)
+        //    {
+
+        //        throw new NullReferenceException();
+        //    }
+            
+        //}
+
     }
 }

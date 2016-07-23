@@ -24,6 +24,7 @@ namespace TokuCinema.Models
         public string MediaOfficialTitle { get; set; }
         public string MediaDescription { get; set; }
         public string WikipediaLink { get; set; }
+        public string MediaImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoMedia> VideoMedias { get; set; }

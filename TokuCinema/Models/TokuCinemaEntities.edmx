@@ -123,6 +123,7 @@
           <Property Name="MediaId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MediaOfficialTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MediaDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MediaImageLink" Type="nvarchar(max)" />
           <Property Name="WikipediaLink" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MediaFile">
@@ -857,6 +858,7 @@
           <Property Name="MediaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WikipediaLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="VideoMedias" Relationship="Self.FK_VideoMedia_Media" FromRole="Media" ToRole="VideoMedia" />
+          <Property Name="MediaImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MediaFile">
           <Key>
@@ -1584,6 +1586,7 @@
           <EntitySetMapping Name="Media">
             <EntityTypeMapping TypeName="TokuCinema_DataModel.Medium">
               <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="MediaImageLink" ColumnName="MediaImageLink" />
                 <ScalarProperty Name="MediaId" ColumnName="MediaId" />
                 <ScalarProperty Name="MediaOfficialTitle" ColumnName="MediaOfficialTitle" />
                 <ScalarProperty Name="MediaDescription" ColumnName="MediaDescription" />

@@ -39,6 +39,10 @@ namespace TokuCinema.Models
             [Required]
             [Display(Name = "Location")]
             public int Location { get; set; }
+
+            [Required]
+            [Display(Name ="Video Link")]
+            public string VideoLink { get; set; }
         }
     }
 }

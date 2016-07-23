@@ -364,7 +364,6 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="bak_favicon.ico" />
     <Content Include="css\grayscale.css" />
     <Content Include="css\grayscale.min.css" />
     <Content Include="dashboard-theme\bootstrap.min.css" />
@@ -381,6 +380,7 @@
     <Content Include="favicon.ico" />
     <Content Include="img\downloads-bg.jpg" />
     <Content Include="img\godzilla-2747178.jpg" />
+    <Content Include="img\godzilla-56cce2340bedf.jpg" />
     <Content Include="img\intro-bg.jpg" />
     <Content Include="img\intro-bg_bak.jpg" />
     <Content Include="img\intro-bg_bakcs.jpg" />
@@ -668,12 +668,12 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Dashboard\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout_Front.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Views\MasterMedia\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>

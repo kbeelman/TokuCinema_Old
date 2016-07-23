@@ -46,7 +46,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink")] Medium media)
+        public ActionResult Create([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,MediaImageLink,WikipediaLink")] Medium media)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,WikipediaLink")] Medium media)
+        public ActionResult Edit([Bind(Include = "MediaId,MediaOfficialTitle,MediaDescription,MediaImageLink,WikipediaLink")] Medium media)
         {
             if (ModelState.IsValid)
             {

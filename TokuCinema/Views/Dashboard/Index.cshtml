@@ -47,7 +47,7 @@
                     {
                         <tr>
                             <td>
-                                <h2>@Html.DisplayFor(modelItem => item.MediaOfficialTitle)</h2>
+                                <h2>@Html.ActionLink(item.MediaOfficialTitle, "Details", "Media", new { id = item.MediaId }, null)</h2>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.MediaDescription)
