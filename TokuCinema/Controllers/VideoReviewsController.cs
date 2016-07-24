@@ -39,7 +39,7 @@ namespace TokuCinema.Controllers
         // GET: VideoReviews/Create
         public ActionResult Create()
         {
-            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId");
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionType.VideoVersionTitle");
             return View();
         }
 

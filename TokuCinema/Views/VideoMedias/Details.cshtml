@@ -68,12 +68,12 @@
             }*@
         <div id="tabs">
             <ul>
-                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count-1; i++)
+                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count; i++)
                 {
                     <li><a href="#tabs-@i">@Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersionTitle</a></li>
                 }
             </ul>
-                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count - 1; i++)
+                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count; i++)
                 {
                     <div id="tabs-@i">
                         <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().VideoVersionDescription):</label>

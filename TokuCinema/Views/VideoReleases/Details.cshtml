@@ -1,68 +1,128 @@
 ﻿@model TokuCinema.Models.VideoRelease
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Release Details";
+    Layout = "~/Views/Shared/_Layout_Front.cshtml";
+
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>VideoRelease</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CatalogCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CatalogCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UPC)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UPC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiscCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiscCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Distributor.DistributorName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Distributor.DistributorName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Packaging.PackagingDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Packaging.PackagingDescription)
-        </dd>
-
+<h2>@ViewBag.Title</h2>
+<!-- Page Content -->
+<div class="container">
+    <!-- Portfolio Item Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Release Name: @TokuCinema.Services.PresentationService.GetReleaseName(Model)
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- Portfolio Item Row -->
+    <div class="row">
+        <div class="col-md-8">
+            @*TODO: Replace image once Media Files situation is worked out*@
+            @if (Model.VideoVersions.FirstOrDefault().VideoVersionType.VideoMedia.Medium.MediaImageLink != null)
+            {
+                <img class="img-responsive" src="@Model.VideoVersions.FirstOrDefault().VideoVersionType.VideoMedia.Medium.MediaImageLink" alt="@Html.DisplayFor(model => model.Distributor.DistributorName)"/>
+            }
+            else
+            {
+                <img class="img-responsive" src="http://placehold.it/750x500" alt="@Html.DisplayFor(model => model.Distributor.DistributorName)"/>
+            }
+        </div>
+        <div class="col-md-4">
+            @*<h3>@Html.DisplayNameFor(model => model.Media.MediaDescription)</h3>
+            @Html.DisplayFor(model => model.Media.MediaDescription)*@
+            <h3>Details</h3>
+            <ul>
+                <li>
+                    <label>@Html.DisplayNameFor(model => model.Distributor)</label>
+                    @Html.DisplayFor(model => model.Distributor.DistributorName)
+                </li>
+                <li>
+                    <label>@Html.DisplayNameFor(model => model.CatalogCode)</label>
+                    @Html.DisplayFor(model => model.CatalogCode)
+                </li>
+                <li>
+                    <label>@Html.DisplayNameFor(model => model.UPC)</label>
+                    @Html.DisplayFor(model => model.UPC)
+                </li>
+                <li>
+                    <label>@Html.DisplayNameFor(model => model.Packaging)</label>
+                    @Html.DisplayFor(model => model.Packaging.PackagingName)
+                </li>
+                <li>
+                    <label>@Html.DisplayNameFor(model => model.DiscCount)</label>
+                    @Html.DisplayFor(model => model.DiscCount)
+                </li>
+                <li>
+                    <label>@Html.DisplayNameFor(model => model.ReleaseDate)</label>
+                    @Html.DisplayFor(model => model.ReleaseDate)
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.row -->
         
+        <!-- Related Projects Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Related Projects</h3>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
 
-    </dl>
-</div>
+        <div class="col-lg-12">
+            <h3 class="page-header">Movie Reviews For This Release</h3>
+        </div>
+
+        @*Tabs*@
+        <div id="tabs">
+            <ul>
+                @for (int i = 0; i < Model.VideoVersions.Count-1; i++)
+                {
+                    <li><a href="#tabs-@i">@Model.VideoVersions.ElementAt(i).VideoVersionType.VideoVersionTitle</a></li>
+                }
+            </ul>
+            @for (int i = 0; i < Model.VideoVersions.Count-1; i++)
+            {
+                <div id="tabs-@i">
+                    @foreach (var item in Model.VideoVersions.ElementAt(i).VideoReviews)
+                    {
+                        <br />
+                            <span class="glyphicon glyphicon-link"></span>
+                            @Html.ActionLink(item.Introduction, "Details", "VideoReviews", new { id = item.VideoReviewId}, null)
+                    }
+                </div>
+            }
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+    <hr>
+
+<!-- /.container -->
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoReleaseId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Dashboard")
 </p>
