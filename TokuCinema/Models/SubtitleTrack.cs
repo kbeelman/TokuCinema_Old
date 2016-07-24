@@ -15,12 +15,10 @@ namespace TokuCinema.Models
     public partial class SubtitleTrack
     {
         public System.Guid SubtitleTrackId { get; set; }
-        public System.Guid VideoReleaseId { get; set; }
-        public System.Guid LanguageId { get; set; }
-        public string SubtitleTrackName { get; set; }
-        public string SubtitleTrackDescription { get; set; }
+        public System.Guid VideoVersionId { get; set; }
+        public System.Guid SubtitleTrackTypeId { get; set; }
     
-        public virtual Language Language { get; set; }
-        public virtual VideoRelease VideoRelease { get; set; }
+        public virtual SubtitleTrackType SubtitleTrackType { get; set; }
+        public virtual VideoVersion VideoVersion { get; set; }
     }
 }

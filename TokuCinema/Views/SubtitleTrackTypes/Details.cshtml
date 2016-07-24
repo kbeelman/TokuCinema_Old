@@ -1,0 +1,42 @@
+﻿@model TokuCinema.Models.SubtitleTrackType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SubtitleTrackType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubtitleTrackName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubtitleTrackName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubtitleTrackDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubtitleTrackDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language.LanguageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language.LanguageName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubtitleTrackTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

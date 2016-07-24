@@ -12,14 +12,13 @@ namespace TokuCinema.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ShoppingItem
+    public partial class VideoShoppingItem
     {
-        public System.Guid ShoppingItemId { get; set; }
-        public System.Guid CompanyId { get; set; }
-        public string PurchaseLink { get; set; }
+        public System.Guid VideoShoppingItemId { get; set; }
+        public System.Guid ShoppingItemTypeId { get; set; }
         public System.Guid VideoReleaseId { get; set; }
     
-        public virtual Company Company { get; set; }
+        public virtual ShoppingItemType ShoppingItemType { get; set; }
         public virtual VideoRelease VideoRelease { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace TokuCinema.Models
     public partial class VideoReview
     {
         public System.Guid VideoReviewId { get; set; }
-        public System.Guid VideoreleaseId { get; set; }
+        public System.Guid VideoVersionId { get; set; }
         public string Introduction { get; set; }
         public string PresentationComments { get; set; }
         public int PresentationScore { get; set; }
@@ -28,6 +28,6 @@ namespace TokuCinema.Models
         public string VerdictComments { get; set; }
         public int VerdictScore { get; set; }
     
-        public virtual VideoRelease VideoRelease { get; set; }
+        public virtual VideoVersion VideoVersion { get; set; }
     }
 }

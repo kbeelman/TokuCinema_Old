@@ -10,125 +10,113 @@ using TokuCinema.Models;
 
 namespace TokuCinema.Controllers
 {
-    public class ShoppingItemsController : Controller
+    public class ShoppingItemTypesController : Controller
     {
         private TokuCinema_DataEntities db = new TokuCinema_DataEntities();
 
-        // GET: ShoppingItems
+        // GET: ShoppingItemTypes
         public ActionResult Index()
         {
-            var shoppingItems = db.ShoppingItems.Include(s => s.Company);
-            return View(shoppingItems.ToList());
+            var shoppingItemTypes = db.ShoppingItemTypes.Include(s => s.Company);
+            return View(shoppingItemTypes.ToList());
         }
 
-        // GET: ShoppingItems/Details/5
+        // GET: ShoppingItemTypes/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShoppingItem shoppingItem = db.ShoppingItems.Find(id);
-            if (shoppingItem == null)
+            ShoppingItemType shoppingItemType = db.ShoppingItemTypes.Find(id);
+            if (shoppingItemType == null)
             {
                 return HttpNotFound();
             }
-            return View(shoppingItem);
+            return View(shoppingItemType);
         }
 
-        // GET: ShoppingItems/Create
-        public ActionResult Create(Guid? id)
+        // GET: ShoppingItemTypes/Create
+        public ActionResult Create()
         {
-            ViewBag.idPassed = false;
-
-            if (id.HasValue)
-            {
-                ViewBag.CompanyId = id;
-                ViewBag.idPassed = true; 
-                return View();
-            }
-            else
-            {
-                ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName");
-                ViewBag.idPassed = false;
-                return View();
-            }
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName");
+            return View();
         }
 
-        // POST: ShoppingItems/Create
+        // POST: ShoppingItemTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShoppingItemId,CompanyId,PurchaseLink")] ShoppingItem shoppingItem)
+        public ActionResult Create([Bind(Include = "ShoppingItemTypeId,CompanyId,ShoppingItemName,PurchaseLink")] ShoppingItemType shoppingItemType)
         {
             if (ModelState.IsValid)
             {
-                shoppingItem.ShoppingItemId = Guid.NewGuid();
-                db.ShoppingItems.Add(shoppingItem);
+                shoppingItemType.ShoppingItemTypeId = Guid.NewGuid();
+                db.ShoppingItemTypes.Add(shoppingItemType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName", shoppingItem.CompanyId);
-            return View(shoppingItem);
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName", shoppingItemType.CompanyId);
+            return View(shoppingItemType);
         }
 
-        // GET: ShoppingItems/Edit/5
+        // GET: ShoppingItemTypes/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShoppingItem shoppingItem = db.ShoppingItems.Find(id);
-            if (shoppingItem == null)
+            ShoppingItemType shoppingItemType = db.ShoppingItemTypes.Find(id);
+            if (shoppingItemType == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName", shoppingItem.CompanyId);
-            return View(shoppingItem);
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName", shoppingItemType.CompanyId);
+            return View(shoppingItemType);
         }
 
-        // POST: ShoppingItems/Edit/5
+        // POST: ShoppingItemTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ShoppingItemId,CompanyId,PurchaseLink")] ShoppingItem shoppingItem)
+        public ActionResult Edit([Bind(Include = "ShoppingItemTypeId,CompanyId,ShoppingItemName,PurchaseLink")] ShoppingItemType shoppingItemType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(shoppingItem).State = EntityState.Modified;
+                db.Entry(shoppingItemType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName", shoppingItem.CompanyId);
-            return View(shoppingItem);
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "CompanyName", shoppingItemType.CompanyId);
+            return View(shoppingItemType);
         }
 
-        // GET: ShoppingItems/Delete/5
+        // GET: ShoppingItemTypes/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShoppingItem shoppingItem = db.ShoppingItems.Find(id);
-            if (shoppingItem == null)
+            ShoppingItemType shoppingItemType = db.ShoppingItemTypes.Find(id);
+            if (shoppingItemType == null)
             {
                 return HttpNotFound();
             }
-            return View(shoppingItem);
+            return View(shoppingItemType);
         }
 
-        // POST: ShoppingItems/Delete/5
+        // POST: ShoppingItemTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            ShoppingItem shoppingItem = db.ShoppingItems.Find(id);
-            db.ShoppingItems.Remove(shoppingItem);
+            ShoppingItemType shoppingItemType = db.ShoppingItemTypes.Find(id);
+            db.ShoppingItemTypes.Remove(shoppingItemType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -14,14 +14,16 @@ namespace TokuCinema.Models
     
     public partial class MediaFile
     {
-        public System.Guid MediaFielId { get; set; }
-        public System.Guid VideoReleaseId { get; set; }
+        public System.Guid MediaFileId { get; set; }
+        public System.Guid VideoVersionId { get; set; }
         public byte[] MediaFile1 { get; set; }
         public bool Image { get; set; }
         public bool Video { get; set; }
         public int Location { get; set; }
         public string VideoLink { get; set; }
+        public string ImageLink { get; set; }
+        public bool UseFileOverLink { get; set; }
     
-        public virtual VideoRelease VideoRelease { get; set; }
+        public virtual VideoVersion VideoVersion { get; set; }
     }
 }

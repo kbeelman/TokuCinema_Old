@@ -17,7 +17,7 @@ namespace TokuCinema.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Company()
         {
-            this.ShoppingItems = new HashSet<ShoppingItem>();
+            this.ShoppingItemTypes = new HashSet<ShoppingItemType>();
         }
     
         public System.Guid CompanyId { get; set; }
@@ -25,6 +25,6 @@ namespace TokuCinema.Models
         public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoppingItem> ShoppingItems { get; set; }
+        public virtual ICollection<ShoppingItemType> ShoppingItemTypes { get; set; }
     }
 }

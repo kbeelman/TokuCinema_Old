@@ -17,7 +17,7 @@ namespace TokuCinema.Controllers
         // GET: AudioTracks
         public ActionResult Index()
         {
-            var audioTracks = db.AudioTracks.Include(a => a.Language).Include(a => a.VideoRelease);
+            var audioTracks = db.AudioTracks.Include(a => a.AudioTrackType).Include(a => a.VideoVersion);
             return View(audioTracks.ToList());
         }
 
@@ -37,21 +37,10 @@ namespace TokuCinema.Controllers
         }
 
         // GET: AudioTracks/Create
-        public ActionResult Create(/*Guid? id*/)
+        public ActionResult Create()
         {
-            // Implement Once Database is updated to reflect AudioTrack belonging to VideoVersions
-            // bool will allow for dynamically passed ids or manual entry
-            //ViewBag.idPassed = false;
-
-            //if (id.HasValue)
-            //{
-            //    ViewBag.VideoVersionId = id;
-            //    ViewBag.idPassed = true;
-            //    return View();
-            //}
-
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName");
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+            ViewBag.AudioTrackTypeId = new SelectList(db.AudioTrackTypes, "AudioTrackTypeId", "AudioTrackName");
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId");
             return View();
         }
 
@@ -60,7 +49,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AudioTrackid,VideoReleaseId,LanguageId,AudioTrackName,AudioTrackDescription,Channel")] AudioTrack audioTrack)
+        public ActionResult Create([Bind(Include = "AudioTrackid,VideoVersionId,AudioTrackTypeId")] AudioTrack audioTrack)
         {
             if (ModelState.IsValid)
             {
@@ -70,8 +59,8 @@ namespace TokuCinema.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName", audioTrack.LanguageId);
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", audioTrack.VideoReleaseId);
+            ViewBag.AudioTrackTypeId = new SelectList(db.AudioTrackTypes, "AudioTrackTypeId", "AudioTrackName", audioTrack.AudioTrackTypeId);
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId", audioTrack.VideoVersionId);
             return View(audioTrack);
         }
 
@@ -87,8 +76,8 @@ namespace TokuCinema.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName", audioTrack.LanguageId);
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", audioTrack.VideoReleaseId);
+            ViewBag.AudioTrackTypeId = new SelectList(db.AudioTrackTypes, "AudioTrackTypeId", "AudioTrackName", audioTrack.AudioTrackTypeId);
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId", audioTrack.VideoVersionId);
             return View(audioTrack);
         }
 
@@ -97,7 +86,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AudioTrackid,VideoReleaseId,LanguageId,AudioTrackName,AudioTrackDescription,Channel")] AudioTrack audioTrack)
+        public ActionResult Edit([Bind(Include = "AudioTrackid,VideoVersionId,AudioTrackTypeId")] AudioTrack audioTrack)
         {
             if (ModelState.IsValid)
             {
@@ -105,8 +94,8 @@ namespace TokuCinema.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName", audioTrack.LanguageId);
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", audioTrack.VideoReleaseId);
+            ViewBag.AudioTrackTypeId = new SelectList(db.AudioTrackTypes, "AudioTrackTypeId", "AudioTrackName", audioTrack.AudioTrackTypeId);
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId", audioTrack.VideoVersionId);
             return View(audioTrack);
         }
 

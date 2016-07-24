@@ -31,6 +31,7 @@ namespace TokuCinema.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AudioTrack> AudioTracks { get; set; }
+        public virtual DbSet<AudioTrackType> AudioTrackTypes { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Distributor> Distributors { get; set; }
         public virtual DbSet<Format> Formats { get; set; }
@@ -41,15 +42,17 @@ namespace TokuCinema.Models
         public virtual DbSet<Packaging> Packagings { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<RegionType> RegionTypes { get; set; }
-        public virtual DbSet<ShoppingItem> ShoppingItems { get; set; }
+        public virtual DbSet<ShoppingItemType> ShoppingItemTypes { get; set; }
         public virtual DbSet<Standard> Standards { get; set; }
         public virtual DbSet<StandardType> StandardTypes { get; set; }
         public virtual DbSet<SubtitleTrack> SubtitleTracks { get; set; }
+        public virtual DbSet<SubtitleTrackType> SubtitleTrackTypes { get; set; }
         public virtual DbSet<VideoBoxSet> VideoBoxSets { get; set; }
         public virtual DbSet<VideoBoxSetType> VideoBoxSetTypes { get; set; }
         public virtual DbSet<VideoMedia> VideoMedias { get; set; }
         public virtual DbSet<VideoRelease> VideoReleases { get; set; }
         public virtual DbSet<VideoReview> VideoReviews { get; set; }
+        public virtual DbSet<VideoShoppingItem> VideoShoppingItems { get; set; }
         public virtual DbSet<VideoVersion> VideoVersions { get; set; }
         public virtual DbSet<VideoVersionType> VideoVersionTypes { get; set; }
     }

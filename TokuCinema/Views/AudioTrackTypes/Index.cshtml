@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TokuCinema.Models.AudioTrackType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AudioTrackName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AudioTrackDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Channel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Language.LanguageName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudioTrackName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudioTrackDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Channel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language.LanguageName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AudioTrackTypeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AudioTrackTypeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AudioTrackTypeId })
+        </td>
+    </tr>
+}
+
+</table>

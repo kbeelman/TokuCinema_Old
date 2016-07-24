@@ -12,19 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AudioTrackName)
+            @Html.DisplayNameFor(model => model.AudioTrackType.AudioTrackName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AudioTrackDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Channel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Language.LanguageName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+            @Html.DisplayNameFor(model => model.VideoVersion.VideoVersionId)
         </th>
         <th></th>
     </tr>
@@ -32,19 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AudioTrackName)
+            @Html.DisplayFor(modelItem => item.AudioTrackType.AudioTrackName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AudioTrackDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Channel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Language.LanguageName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoRelease.CatalogCode)
+            @Html.DisplayFor(modelItem => item.VideoVersion.VideoVersionId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AudioTrackid }) |

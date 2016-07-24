@@ -80,41 +80,7 @@
                     </ul>
 
 
-                    @*Subtitle Tracks*@
-
-                    @if (releaseDecendents.SubtitleTracks.Count > 0)
-                    {
-                        <div class="col-md-4">
-                            <h3>Subtitle Tracks</h3>
-                            @foreach (var subtitleItem in releaseDecendents.SubtitleTracks)
-                            {
-                                <div class="border-box">
-                                    <p>@Html.ActionLink(subtitleItem.Language.ToString(), "Edit", "SubtitleTracks", new { id = subtitleItem.SubtitleTrackId }, null)</p>
-                                    <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "SubtitleTracks", new { id = subtitleItem.SubtitleTrackId}, null)</p><br />
-                                </div>
-                            }
-                            <div class="glyphicon-plus">@Html.ActionLink("Insert Subtitle Tracks", "Create", "SubtitleTracks", new { id = item.VideoReleaseId }, null)</div>
-                            <hr />
-                        </div>
-                    }
-
-                            @*Audio Tracks*@
-
-                            @if (releaseDecendents.AudioTracks.Count > 0)
-                    {
-                                <div class="col-md-4">
-                                    <h3>Audio Tracks</h3>
-                                    @foreach (var audioItem in releaseDecendents.AudioTracks)
-                                    {
-                                        <div class="border-box">
-                                            <p>@Html.ActionLink(audioItem.Language.ToString(), "Edit", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p>
-                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "AudioTracks", new { id = audioItem.AudioTrackid }, null)</p><br />
-                                        </div>
-                                    }
-                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Audio Track", "Create", "AudioTracks", new { id = item.VideoReleaseId }, null)</div>
-                                    <hr />
-                                </div>
-                            }
+                    
                             @*Regions*@
 
                             @if (releaseDecendents.Regions.Count > 0)
@@ -133,31 +99,6 @@
                                 </div>
                             }
 
-                            @*Media Files*@
-
-                            @if (releaseDecendents.MediaFiles.Count > 0)
-                    {
-                                <div class="col-md-4">
-                                    <h3>Media Files</h3>
-                                    @foreach (var mediaFileItem in releaseDecendents.MediaFiles)
-                                    {
-                                        <div class="border-box">
-                                            <p>@Html.ActionLink(mediaFileItem.MediaFielId.ToString(), "Edit", "MediaFiles", new { id = mediaFileItem.MediaFielId }, null)</p>
-                                            @if (mediaFileItem.Image == true)
-                                            {
-                                                <img src="data:image/png;base64,@Convert.ToBase64String(mediaFileItem.MediaFile1,0,mediaFileItem.MediaFile1.Length)" width="100" />
-                                            }
-                                            else
-                                            {
-                                                mediaFileItem.MediaFielId.ToString();
-                                            }
-                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "MediaFiles", new { id = mediaFileItem.MediaFielId }, null)</p><br />
-                                        </div>
-                                    }
-                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Media File", "Create", "MediaFiles", new { id = item.VideoReleaseId }, null)</div>
-                                    <hr />
-                                </div>
-                            }
 
                             @*Standards*@
 
@@ -195,23 +136,6 @@
                                 </div>
                             }
 
-                            @*Shopping Items*@
-
-                            @if (releaseDecendents.ShoppingItems.Count > 0)
-                    {
-                                <div class="col-md-4">
-                                    <h3>Shopping Items</h3>
-                                    @foreach (var shoppingItem in releaseDecendents.ShoppingItems)
-                                    {
-                                        <div class="border-box">
-                                            <p>@Html.ActionLink(shoppingItem.PurchaseLink.ToString(), "Edit", "Shopping Items", new { id = shoppingItem.ShoppingItemId }, null)</p>
-                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "Shopping Items", new { id = shoppingItem.ShoppingItemId }, null)</p><br />
-                                        </div>
-                                    }
-                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Shopping Item", "Create", "Shopping Items", new { id = item.VideoReleaseId }, null)</div>
-                                    <hr />
-                                </div>
-                            }
 
                             @*Formats*@
 
@@ -245,24 +169,6 @@
                                         </div>
                                     }
                                     <div class="glyphicon-plus">@Html.ActionLink("Insert Video Version", "Create", "VideoVersions", new { id = item.VideoReleaseId }, null)</div>
-                                    <hr />
-                                </div>
-                            }
-
-                            @*Video Reviews*@
-
-                            @if (releaseDecendents.Reviews.Count > 0)
-                    {
-                                <div class="col-md-4">
-                                    <h3>Video Reviews</h3>
-                                    @foreach (var reviewItem in releaseDecendents.Reviews)
-                                    {
-                                        <div class="border-box">
-                                            <p>@Html.ActionLink(reviewItem.Introduction.ToString(), "Edit", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p>
-                                            <p class="glyphicon glyphicon-trash">@Html.ActionLink("Delete", "Delete", "VideoReviews", new { id = reviewItem.VideoReviewId }, null)</p><br />
-                                        </div>
-                                    }
-                                    <div class="glyphicon-plus">@Html.ActionLink("Insert Video Review", "Create", "VideoReviews", new { id = item.VideoReleaseId }, null)</div>
                                     <hr />
                                 </div>
                             }

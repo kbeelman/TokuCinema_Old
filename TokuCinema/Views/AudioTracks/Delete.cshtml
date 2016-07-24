@@ -12,43 +12,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AudioTrackName)
+            @Html.DisplayNameFor(model => model.AudioTrackType.AudioTrackName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AudioTrackName)
+            @Html.DisplayFor(model => model.AudioTrackType.AudioTrackName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AudioTrackDescription)
+            @Html.DisplayNameFor(model => model.VideoVersion.VideoVersionId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AudioTrackDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Channel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Channel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Language.LanguageName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Language.LanguageName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoRelease.CatalogCode)
+            @Html.DisplayFor(model => model.VideoVersion.VideoVersionId)
         </dd>
 
     </dl>

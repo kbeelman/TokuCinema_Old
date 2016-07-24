@@ -15,13 +15,10 @@ namespace TokuCinema.Models
     public partial class AudioTrack
     {
         public System.Guid AudioTrackid { get; set; }
-        public System.Guid VideoReleaseId { get; set; }
-        public System.Guid LanguageId { get; set; }
-        public string AudioTrackName { get; set; }
-        public string AudioTrackDescription { get; set; }
-        public string Channel { get; set; }
+        public System.Guid VideoVersionId { get; set; }
+        public System.Guid AudioTrackTypeId { get; set; }
     
-        public virtual Language Language { get; set; }
-        public virtual VideoRelease VideoRelease { get; set; }
+        public virtual AudioTrackType AudioTrackType { get; set; }
+        public virtual VideoVersion VideoVersion { get; set; }
     }
 }

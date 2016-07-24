@@ -17,7 +17,7 @@ namespace TokuCinema.Controllers
         // GET: SubtitleTracks
         public ActionResult Index()
         {
-            var subtitleTracks = db.SubtitleTracks.Include(s => s.Language).Include(s => s.VideoRelease);
+            var subtitleTracks = db.SubtitleTracks.Include(s => s.SubtitleTrackType).Include(s => s.VideoVersion);
             return View(subtitleTracks.ToList());
         }
 
@@ -37,22 +37,10 @@ namespace TokuCinema.Controllers
         }
 
         // GET: SubtitleTracks/Create
-        public ActionResult Create(/*Guid? id*/)
+        public ActionResult Create()
         {
-
-            // Implement Once Database is updated to reflect SubtitleTrack belonging to VideoVersions
-            // bool will allow for dynamically passed ids or manual entry
-            //ViewBag.idPassed = false;
-
-            //if (id.HasValue)
-            //{
-            //    ViewBag.VideoVersionId = id;
-            //    ViewBag.idPassed = true;
-            //    return View();
-            //}
-
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName");
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode");
+            ViewBag.SubtitleTrackTypeId = new SelectList(db.SubtitleTrackTypes, "SubtitleTrackTypeId", "SubtitleTrackName");
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId");
             return View();
         }
 
@@ -61,7 +49,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubtitleTrackId,VideoReleaseId,LanguageId,SubtitleTrackName,SubtitleTrackDescription")] SubtitleTrack subtitleTrack)
+        public ActionResult Create([Bind(Include = "SubtitleTrackId,VideoVersionId,SubtitleTrackTypeId")] SubtitleTrack subtitleTrack)
         {
             if (ModelState.IsValid)
             {
@@ -71,8 +59,8 @@ namespace TokuCinema.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName", subtitleTrack.LanguageId);
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", subtitleTrack.VideoReleaseId);
+            ViewBag.SubtitleTrackTypeId = new SelectList(db.SubtitleTrackTypes, "SubtitleTrackTypeId", "SubtitleTrackName", subtitleTrack.SubtitleTrackTypeId);
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId", subtitleTrack.VideoVersionId);
             return View(subtitleTrack);
         }
 
@@ -88,8 +76,8 @@ namespace TokuCinema.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName", subtitleTrack.LanguageId);
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", subtitleTrack.VideoReleaseId);
+            ViewBag.SubtitleTrackTypeId = new SelectList(db.SubtitleTrackTypes, "SubtitleTrackTypeId", "SubtitleTrackName", subtitleTrack.SubtitleTrackTypeId);
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId", subtitleTrack.VideoVersionId);
             return View(subtitleTrack);
         }
 
@@ -98,7 +86,7 @@ namespace TokuCinema.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SubtitleTrackId,VideoReleaseId,LanguageId,SubtitleTrackName,SubtitleTrackDescription")] SubtitleTrack subtitleTrack)
+        public ActionResult Edit([Bind(Include = "SubtitleTrackId,VideoVersionId,SubtitleTrackTypeId")] SubtitleTrack subtitleTrack)
         {
             if (ModelState.IsValid)
             {
@@ -106,8 +94,8 @@ namespace TokuCinema.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "LanguageName", subtitleTrack.LanguageId);
-            ViewBag.VideoReleaseId = new SelectList(db.VideoReleases, "VideoReleaseId", "CatalogCode", subtitleTrack.VideoReleaseId);
+            ViewBag.SubtitleTrackTypeId = new SelectList(db.SubtitleTrackTypes, "SubtitleTrackTypeId", "SubtitleTrackName", subtitleTrack.SubtitleTrackTypeId);
+            ViewBag.VideoVersionId = new SelectList(db.VideoVersions, "VideoVersionId", "VideoVersionId", subtitleTrack.VideoVersionId);
             return View(subtitleTrack);
         }
 

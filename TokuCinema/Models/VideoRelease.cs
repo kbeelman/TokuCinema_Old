@@ -17,15 +17,11 @@ namespace TokuCinema.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VideoRelease()
         {
-            this.AudioTracks = new HashSet<AudioTrack>();
             this.Formats = new HashSet<Format>();
-            this.MediaFiles = new HashSet<MediaFile>();
             this.Regions = new HashSet<Region>();
-            this.ShoppingItems = new HashSet<ShoppingItem>();
             this.Standards = new HashSet<Standard>();
-            this.SubtitleTracks = new HashSet<SubtitleTrack>();
             this.VideoBoxSets = new HashSet<VideoBoxSet>();
-            this.VideoReviews = new HashSet<VideoReview>();
+            this.VideoShoppingItems = new HashSet<VideoShoppingItem>();
             this.VideoVersions = new HashSet<VideoVersion>();
         }
     
@@ -37,26 +33,18 @@ namespace TokuCinema.Models
         public System.DateTime ReleaseDate { get; set; }
         public int DiscCount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AudioTrack> AudioTracks { get; set; }
         public virtual Distributor Distributor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Format> Formats { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MediaFile> MediaFiles { get; set; }
         public virtual Packaging Packaging { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Region> Regions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoppingItem> ShoppingItems { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Standard> Standards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubtitleTrack> SubtitleTracks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoBoxSet> VideoBoxSets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VideoReview> VideoReviews { get; set; }
+        public virtual ICollection<VideoShoppingItem> VideoShoppingItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoVersion> VideoVersions { get; set; }
     }

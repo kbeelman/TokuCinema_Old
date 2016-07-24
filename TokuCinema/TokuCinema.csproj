@@ -203,6 +203,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AudioTracksController.cs" />
+    <Compile Include="Controllers\AudioTrackTypesController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\DistributorsController.cs" />
     <Compile Include="Controllers\FormatsController.cs" />
@@ -212,19 +213,20 @@
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
-    <Compile Include="Controllers\MediaFilesController.cs" />
     <Compile Include="Controllers\PackagingsController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\RegionTypesController.cs" />
-    <Compile Include="Controllers\ShoppingItemsController.cs" />
+    <Compile Include="Controllers\ShoppingItemTypesController.cs" />
     <Compile Include="Controllers\StandardsController.cs" />
     <Compile Include="Controllers\StandardTypesController.cs" />
     <Compile Include="Controllers\SubtitleTracksController.cs" />
+    <Compile Include="Controllers\SubtitleTrackTypesController.cs" />
     <Compile Include="Controllers\VideoBoxSetsController.cs" />
     <Compile Include="Controllers\VideoBoxSetTypesController.cs" />
     <Compile Include="Controllers\VideoMediasController.cs" />
     <Compile Include="Controllers\VideoReleasesController.cs" />
     <Compile Include="Controllers\VideoReviewsController.cs" />
+    <Compile Include="Controllers\VideoShoppingItemsController.cs" />
     <Compile Include="Controllers\VideoVersionsController.cs" />
     <Compile Include="Controllers\VideoVersionTypesController.cs" />
     <Compile Include="Domain\IExposeProperty.cs" />
@@ -245,6 +247,9 @@
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AudioTrack.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AudioTrackType.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
@@ -273,26 +278,21 @@
     <Compile Include="Models\Medium.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Metadata\AudioTrackMetadata.cs" />
     <Compile Include="Models\Metadata\CompanyMetadata.cs" />
     <Compile Include="Models\Metadata\DistributorMetadata.cs" />
     <Compile Include="Models\Metadata\FormatMetadata.cs" />
     <Compile Include="Models\Metadata\FormatTypeMetadata.cs" />
     <Compile Include="Models\Metadata\LanguageMetadata.cs" />
-    <Compile Include="Models\Metadata\MediaFileMetadata.cs" />
     <Compile Include="Models\Metadata\MediaMetadata.cs" />
     <Compile Include="Models\Metadata\PackagingMetadata.cs" />
     <Compile Include="Models\Metadata\RegionMetadata.cs" />
     <Compile Include="Models\Metadata\RegionTypeMetadata.cs" />
-    <Compile Include="Models\Metadata\ShoppingItemMetadata.cs" />
     <Compile Include="Models\Metadata\StandardMetadata.cs" />
     <Compile Include="Models\Metadata\StandardTypeMetadata.cs" />
-    <Compile Include="Models\Metadata\SubtitleTrackMetadata.cs" />
     <Compile Include="Models\Metadata\VideoBoxSetMetadata.cs" />
     <Compile Include="Models\Metadata\VideoBoxSetTypeMetadata.cs" />
     <Compile Include="Models\Metadata\VideoMediaMetadata.cs" />
     <Compile Include="Models\Metadata\VideoReleaseMetadata.cs" />
-    <Compile Include="Models\Metadata\VideoReviewMetadata.cs" />
     <Compile Include="Models\Metadata\VideoVersionTypeMetadata.cs" />
     <Compile Include="Models\Metadata\VideoVersionMetadata.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -305,7 +305,7 @@
     <Compile Include="Models\RegionType.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShoppingItem.cs">
+    <Compile Include="Models\ShoppingItemType.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Standard.cs">
@@ -315,6 +315,9 @@
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubtitleTrack.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubtitleTrackType.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TokuCinemaEntities.Context.cs">
@@ -347,6 +350,9 @@
     <Compile Include="Models\VideoReview.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VideoShoppingItem.cs">
+      <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\VideoVersion.cs">
       <DependentUpon>TokuCinemaEntities.tt</DependentUpon>
     </Compile>
@@ -364,6 +370,8 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="css\grayscale.css" />
     <Content Include="css\grayscale.min.css" />
     <Content Include="dashboard-theme\bootstrap.min.css" />
@@ -473,13 +481,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="DesignDocuments\TokuCinemaDatabase_CrowsFeet.vsdx" />
-    <EntityDeploy Include="Models\TokuCinemaEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TokuCinemaEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TokuCinemaEntities.edmx.diagram">
-      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
-    </Content>
     <Content Include="light-switch\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="light-switch\assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="light-switch\assets\fonts\fontawesome-webfont.woff" />
@@ -493,11 +494,20 @@
     <Content Include="light-switch\assets\fonts\ionicons.ttf" />
     <Content Include="light-switch\assets\fonts\ionicons.woff" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <EntityDeploy Include="Models\TokuCinemaEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TokuCinemaEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TokuCinemaEntities.edmx.diagram">
+      <DependentUpon>TokuCinemaEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ChildFactory.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -567,11 +577,6 @@
     <Content Include="Views\VideoVersions\Details.cshtml" />
     <Content Include="Views\VideoVersions\Edit.cshtml" />
     <Content Include="Views\VideoVersions\Index.cshtml" />
-    <Content Include="Views\VideoReviews\Create.cshtml" />
-    <Content Include="Views\VideoReviews\Delete.cshtml" />
-    <Content Include="Views\VideoReviews\Details.cshtml" />
-    <Content Include="Views\VideoReviews\Edit.cshtml" />
-    <Content Include="Views\VideoReviews\Index.cshtml" />
     <Content Include="Views\Packagings\Create.cshtml" />
     <Content Include="Views\Packagings\Delete.cshtml" />
     <Content Include="Views\Packagings\Details.cshtml" />
@@ -582,11 +587,6 @@
     <Content Include="Views\Companies\Details.cshtml" />
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Companies\Index.cshtml" />
-    <Content Include="Views\ShoppingItems\Create.cshtml" />
-    <Content Include="Views\ShoppingItems\Delete.cshtml" />
-    <Content Include="Views\ShoppingItems\Details.cshtml" />
-    <Content Include="Views\ShoppingItems\Edit.cshtml" />
-    <Content Include="Views\ShoppingItems\Index.cshtml" />
     <Content Include="Views\VideoBoxSets\Create.cshtml" />
     <Content Include="Views\VideoBoxSets\Delete.cshtml" />
     <Content Include="Views\VideoBoxSets\Details.cshtml" />
@@ -622,21 +622,6 @@
     <Content Include="Views\Languages\Details.cshtml" />
     <Content Include="Views\Languages\Edit.cshtml" />
     <Content Include="Views\Languages\Index.cshtml" />
-    <Content Include="Views\SubtitleTracks\Create.cshtml" />
-    <Content Include="Views\SubtitleTracks\Delete.cshtml" />
-    <Content Include="Views\SubtitleTracks\Details.cshtml" />
-    <Content Include="Views\SubtitleTracks\Edit.cshtml" />
-    <Content Include="Views\SubtitleTracks\Index.cshtml" />
-    <Content Include="Views\AudioTracks\Create.cshtml" />
-    <Content Include="Views\AudioTracks\Delete.cshtml" />
-    <Content Include="Views\AudioTracks\Details.cshtml" />
-    <Content Include="Views\AudioTracks\Edit.cshtml" />
-    <Content Include="Views\AudioTracks\Index.cshtml" />
-    <Content Include="Views\MediaFiles\Create.cshtml" />
-    <Content Include="Views\MediaFiles\Delete.cshtml" />
-    <Content Include="Views\MediaFiles\Details.cshtml" />
-    <Content Include="Views\MediaFiles\Edit.cshtml" />
-    <Content Include="Views\MediaFiles\Index.cshtml" />
     <Content Include="Views\Regions\Create.cshtml" />
     <Content Include="Views\Regions\Delete.cshtml" />
     <Content Include="Views\Regions\Details.cshtml" />
@@ -650,7 +635,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\VideoReviews\CreateReview.cshtml" />
     <Content Include="Views\VideoMedias\Create.cshtml" />
     <Content Include="Views\VideoMedias\Delete.cshtml" />
     <Content Include="Views\VideoMedias\Details.cshtml" />
@@ -669,6 +653,41 @@
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Dashboard\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout_Front.cshtml" />
+    <Content Include="Views\AudioTrackTypes\Create.cshtml" />
+    <Content Include="Views\AudioTrackTypes\Delete.cshtml" />
+    <Content Include="Views\AudioTrackTypes\Details.cshtml" />
+    <Content Include="Views\AudioTrackTypes\Edit.cshtml" />
+    <Content Include="Views\AudioTrackTypes\Index.cshtml" />
+    <Content Include="Views\AudioTracks\Create.cshtml" />
+    <Content Include="Views\AudioTracks\Delete.cshtml" />
+    <Content Include="Views\AudioTracks\Details.cshtml" />
+    <Content Include="Views\AudioTracks\Edit.cshtml" />
+    <Content Include="Views\AudioTracks\Index.cshtml" />
+    <Content Include="Views\SubtitleTrackTypes\Create.cshtml" />
+    <Content Include="Views\SubtitleTrackTypes\Delete.cshtml" />
+    <Content Include="Views\SubtitleTrackTypes\Details.cshtml" />
+    <Content Include="Views\SubtitleTrackTypes\Edit.cshtml" />
+    <Content Include="Views\SubtitleTrackTypes\Index.cshtml" />
+    <Content Include="Views\SubtitleTracks\Create.cshtml" />
+    <Content Include="Views\SubtitleTracks\Delete.cshtml" />
+    <Content Include="Views\SubtitleTracks\Details.cshtml" />
+    <Content Include="Views\SubtitleTracks\Edit.cshtml" />
+    <Content Include="Views\SubtitleTracks\Index.cshtml" />
+    <Content Include="Views\ShoppingItemTypes\Create.cshtml" />
+    <Content Include="Views\ShoppingItemTypes\Delete.cshtml" />
+    <Content Include="Views\ShoppingItemTypes\Details.cshtml" />
+    <Content Include="Views\ShoppingItemTypes\Edit.cshtml" />
+    <Content Include="Views\ShoppingItemTypes\Index.cshtml" />
+    <Content Include="Views\VideoShoppingItems\Create.cshtml" />
+    <Content Include="Views\VideoShoppingItems\Delete.cshtml" />
+    <Content Include="Views\VideoShoppingItems\Details.cshtml" />
+    <Content Include="Views\VideoShoppingItems\Edit.cshtml" />
+    <Content Include="Views\VideoShoppingItems\Index.cshtml" />
+    <Content Include="Views\VideoReviews\Create.cshtml" />
+    <Content Include="Views\VideoReviews\Delete.cshtml" />
+    <Content Include="Views\VideoReviews\Details.cshtml" />
+    <Content Include="Views\VideoReviews\Edit.cshtml" />
+    <Content Include="Views\VideoReviews\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

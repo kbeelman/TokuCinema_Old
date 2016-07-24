@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout_Front.cshtml";
 
 }
-<h2>Video Media Details</h2>
+<h2>@ViewBag.Title</h2>
 <!-- Page Content -->
 <div class="container">
     <!-- Portfolio Item Heading -->
@@ -59,13 +59,42 @@
         <div class="col-lg-12">
             <h3 class="page-header">Versions</h3>
         </div>
-        @foreach (var item in Model.VideoMedia.VideoVersionTypes)
+        @*@foreach (var item in Model.VideoMedia.VideoVersionTypes)
             {
             <div class="col-sm-3 col-xs-6">
                 @Html.ActionLink(item.VideoVersionTitle, "Details", "VideoVersionTypes", new { id = item.VideoVersionTypeId }, null)
                 <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
             </div>
-        }
+            }*@
+        <div id="tabs">
+            <ul>
+                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count-1; i++)
+                {
+                    <li><a href="#tabs-@i">@Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersionTitle</a></li>
+                }
+            </ul>
+                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count - 1; i++)
+                {
+                    <div id="tabs-@i">
+                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().VideoVersionDescription):</label>
+                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersionDescription)</p>
+                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().Runtime):</label>
+                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).Runtime)</p>
+                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().AspectRatio):</label>
+                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).AspectRatio)</p>
+                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().ChapterStops):</label>
+                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).ChapterStops)</p>
+                        <br />
+                        <label>Releases with this version:</label>
+                        @foreach (var item in Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersions)
+                        {
+                            <br />
+                            <span class="glyphicon glyphicon-link"></span>
+                            @Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item.VideoRelease), "Details", "VideoReleases", new { id = item.VideoReleaseId }, null)
+                        }
+                    </div>
+                }
+        </div>
     </div>
     <!-- /.row -->
     <hr>
@@ -74,65 +103,3 @@
 <p>
     @Html.ActionLink("Back to List", "Index", "Dashboard")
 </p>
-
-@*<h2>Details</h2>
-
-<div>
-    <h4>VideoMedia</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Media.MediaOfficialTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Media.MediaOfficialTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Media.MediaDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Media.MediaDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoMedia.ReleaseDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoMedia.ReleaseDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoMedia.OriginalAspectRatio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoMedia.OriginalAspectRatio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoMedia.OriginalRuntime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoMedia.OriginalRuntime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Media.WikipediaLink)
-        </dt>
-
-        <dd>
-            <a href="@Html.DisplayFor(model => model.Media.WikipediaLink)" target="_blank">Wikipedia Link</a>
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.VideoMedia.VideoMediaId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>-->
-*@

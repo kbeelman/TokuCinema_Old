@@ -17,16 +17,16 @@ namespace TokuCinema.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Language()
         {
-            this.AudioTracks = new HashSet<AudioTrack>();
-            this.SubtitleTracks = new HashSet<SubtitleTrack>();
+            this.AudioTrackTypes = new HashSet<AudioTrackType>();
+            this.SubtitleTrackTypes = new HashSet<SubtitleTrackType>();
         }
     
         public System.Guid LanguageId { get; set; }
         public string LanguageName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AudioTrack> AudioTracks { get; set; }
+        public virtual ICollection<AudioTrackType> AudioTrackTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubtitleTrack> SubtitleTracks { get; set; }
+        public virtual ICollection<SubtitleTrackType> SubtitleTrackTypes { get; set; }
     }
 }

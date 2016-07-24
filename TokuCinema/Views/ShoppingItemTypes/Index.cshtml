@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TokuCinema.Models.ShoppingItem>
+﻿@model IEnumerable<TokuCinema.Models.ShoppingItemType>
 
 @{
     ViewBag.Title = "Index";
@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ShoppingItemName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PurchaseLink)
         </th>
         <th>
@@ -23,15 +26,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.ShoppingItemName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.PurchaseLink)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Company.CompanyName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShoppingItemId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShoppingItemId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShoppingItemId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ShoppingItemTypeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShoppingItemTypeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShoppingItemTypeId })
         </td>
     </tr>
 }

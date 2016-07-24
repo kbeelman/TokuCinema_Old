@@ -132,16 +132,12 @@ namespace TokuCinema.Services
         // Structure for decendents of video releases
         public struct ReleaseDecendents
         {
-            public List<SubtitleTrack> SubtitleTracks { get; set; }
-            public List<AudioTrack> AudioTracks { get; set; }
-            public List<Region> Regions { get; set; }
-            public List<MediaFile> MediaFiles { get; set; }
-            public List<ShoppingItem> ShoppingItems { get; set; }
+            public List<Region> Regions { get; set; }            
+            public List<VideoShoppingItem> ShoppingItems { get; set; }
             public List<Standard> Standards { get; set; }
             public List<VideoBoxSet> VideoBoxSets { get; set; }
             public List<Format> Formats { get; set; }
             public List<VideoVersion> Versions { get; set; }
-            public List<VideoReview> Reviews { get; set; }
         }
 
         public static ReleaseDecendents GetReleaseDecendents(Guid videoReleaseId)
@@ -151,21 +147,12 @@ namespace TokuCinema.Services
 
             // object to return
             ReleaseDecendents releaseDecendents = new ReleaseDecendents();
-
-            // subtitle tracks
-            releaseDecendents.SubtitleTracks = db.SubtitleTracks.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
-
-            // audio tracks
-            releaseDecendents.AudioTracks = db.AudioTracks.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
-
+            
             // regions
             releaseDecendents.Regions = db.Regions.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
-
-            // media files
-            releaseDecendents.MediaFiles = db.MediaFiles.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
-
+            
             // Shopping items
-            releaseDecendents.ShoppingItems = db.ShoppingItems.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
+            releaseDecendents.ShoppingItems = db.VideoShoppingItems.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
 
             // Standards
             releaseDecendents.Standards = db.Standards.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
@@ -178,9 +165,6 @@ namespace TokuCinema.Services
 
             // versions
             releaseDecendents.Versions = db.VideoVersions.Where(id => id.VideoReleaseId == videoReleaseId).ToList();
-
-            // reviews
-            releaseDecendents.Reviews = db.VideoReviews.Where(id => id.VideoreleaseId == videoReleaseId).ToList();
 
             // return the object
             return releaseDecendents;

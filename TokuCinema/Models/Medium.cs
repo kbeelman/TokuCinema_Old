@@ -23,8 +23,8 @@ namespace TokuCinema.Models
         public System.Guid MediaId { get; set; }
         public string MediaOfficialTitle { get; set; }
         public string MediaDescription { get; set; }
-        public string WikipediaLink { get; set; }
         public string MediaImageLink { get; set; }
+        public string WikipediaLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VideoMedia> VideoMedias { get; set; }

@@ -14,11 +14,28 @@ namespace TokuCinema.Models
     
     public partial class VideoVersion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public VideoVersion()
+        {
+            this.AudioTracks = new HashSet<AudioTrack>();
+            this.MediaFiles = new HashSet<MediaFile>();
+            this.SubtitleTracks = new HashSet<SubtitleTrack>();
+            this.VideoReviews = new HashSet<VideoReview>();
+        }
+    
         public System.Guid VideoVersionId { get; set; }
         public System.Guid VideoVersionTypeId { get; set; }
         public System.Guid VideoReleaseId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AudioTrack> AudioTracks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MediaFile> MediaFiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubtitleTrack> SubtitleTracks { get; set; }
         public virtual VideoRelease VideoRelease { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VideoReview> VideoReviews { get; set; }
         public virtual VideoVersionType VideoVersionType { get; set; }
     }
 }

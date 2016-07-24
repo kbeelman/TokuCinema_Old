@@ -1,195 +1,99 @@
 ﻿@model IEnumerable<TokuCinema.Models.VideoReview>
 
-
 @{
-
-    ViewBag.Title = "Review Index";
-
+    ViewBag.Title = "Index";
 }
 
-
-<h2>@ViewBag.Title</h2>
-
+<h2>Index</h2>
 
 <p>
-
     @Html.ActionLink("Create New", "Create")
-
 </p>
-
 <table class="table">
-
     <tr>
-
         <th>
-
             @Html.DisplayNameFor(model => model.Introduction)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.PresentationComments)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.PresentationScore)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.VideoComments)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.VideoScore)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.AudioComments)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.AudioScore)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.BonusFeatureComments)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.BonusFeatureScore)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.VerdictComments)
-
         </th>
-
         <th>
-
             @Html.DisplayNameFor(model => model.VerdictScore)
-
         </th>
-
         <th>
-
-            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
-
+            @Html.DisplayNameFor(model => model.VideoVersion.VideoVersionId)
         </th>
-
         <th></th>
-
     </tr>
 
-
-    @foreach (var item in Model)
-    {
-
-        <tr>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.Introduction)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.PresentationComments)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.PresentationScore)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.VideoComments)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.VideoScore)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.AudioComments)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.AudioScore)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.BonusFeatureComments)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.BonusFeatureScore)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.VerdictComments)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.VerdictScore)
-
-            </td>
-
-            <td>
-
-                @Html.DisplayFor(modelItem => item.VideoRelease.CatalogCode)
-
-            </td>
-
-            <td>
-
-                @Html.ActionLink("Edit", "Edit", new { id = item.VideoReviewId }) |
-
-                @Html.ActionLink("Details", "Details", new { id = item.VideoReviewId }) |
-
-                @Html.ActionLink("Delete", "Delete", new { id = item.VideoReviewId })
-
-            </td>
-
-        </tr>
-
-
-
-     }
-
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Introduction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PresentationComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PresentationScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudioComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudioScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BonusFeatureComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BonusFeatureScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VerdictComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VerdictScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoVersion.VideoVersionId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VideoReviewId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VideoReviewId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VideoReviewId })
+        </td>
+    </tr>
+}
 
 </table>

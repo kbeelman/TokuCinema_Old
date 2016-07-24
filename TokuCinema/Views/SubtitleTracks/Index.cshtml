@@ -12,16 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SubtitleTrackName)
+            @Html.DisplayNameFor(model => model.SubtitleTrackType.SubtitleTrackName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SubtitleTrackDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Language.LanguageName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VideoRelease.CatalogCode)
+            @Html.DisplayNameFor(model => model.VideoVersion.VideoVersionId)
         </th>
         <th></th>
     </tr>
@@ -29,16 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.SubtitleTrackName)
+            @Html.DisplayFor(modelItem => item.SubtitleTrackType.SubtitleTrackName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SubtitleTrackDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Language.LanguageName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoRelease.CatalogCode)
+            @Html.DisplayFor(modelItem => item.VideoVersion.VideoVersionId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SubtitleTrackId }) |
