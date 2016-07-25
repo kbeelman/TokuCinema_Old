@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TokuCinema.Models.VideoVersionType>
+﻿@model IEnumerable<TokuCinema.Models.VideoMedia>
 
 @{
     Layout = "~/Views/Shared/_Layout_Front.cshtml";
@@ -25,14 +25,26 @@
                 <div class="row">
                     <div class="col-md-7">
                         <a href="#">
-                            <img class="img-responsive" src="@item.VideoMedia.Medium.MediaImageLink" alt="Picture for @item.VideoVersionTitle">
+                            <img class="img-responsive" src="@item.Medium.MediaImageLink" alt="Picture for @item.Medium.MediaOfficialTitle">
                         </a>
                     </div>
                     <div class="col-md-5">
-                        <h3>@Html.DisplayFor(modelItem => item.VideoVersionTitle)</h3>
-                        <h4>Original Title: @Html.DisplayFor(modelItem => item.VideoMedia.Medium.MediaOfficialTitle)</h4>
-                        <p>@Html.DisplayFor(modelItem => item.VideoVersionDescription)</p>
-                        @Html.ActionLink("View Details", "Details", "VideoMedias", new { id = item.VideoMedia.VideoMediaId }, null)
+                        <h3>@Html.DisplayFor(modelItem => item.Medium.MediaOfficialTitle)</h3>
+                        <p>@Html.DisplayFor(modelItem => item.Medium.MediaDescription)</p>
+                        @Html.ActionLink("View Details", "Details", "VideoMedias", new { id = item.VideoMediaId }, null)
+                        <br />
+                        @*Display other titles that aren't equal to the original*@
+                        @if (item.VideoVersionTypes.Count > 1)
+                        {
+                            <h4>Other Titles: </h4>
+                            foreach (var videoItem in item.VideoVersionTypes)
+                            {
+                                if (videoItem.VideoVersionTitle != item.Medium.MediaOfficialTitle)
+                                {
+                                    <h4><strong>@videoItem.VideoVersionTitle</strong></h4>
+                                }
+                            }
+                        }
                     </div>
                 </div>
             <!-- /.row -->

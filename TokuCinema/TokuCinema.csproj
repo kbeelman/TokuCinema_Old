@@ -699,6 +699,7 @@
     <Content Include="Views\MediaFiles\Edit.cshtml" />
     <Content Include="Views\MediaFiles\Index.cshtml" />
     <Content Include="Views\Shared\_VideoVersionTypeTitleList.cshtml" />
+    <Content Include="Views\VideoMedias\MovieIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />
