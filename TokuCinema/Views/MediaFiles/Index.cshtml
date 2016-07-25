@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TokuCinema.Models.MediaFile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MediaFile1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Video)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MediaLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseFileOverLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoVersion.VideoVersionId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MediaFile1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Video)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MediaLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseFileOverLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoVersion.VideoVersionId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MediaFileId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MediaFileId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MediaFileId })
+        </td>
+    </tr>
+}
+
+</table>

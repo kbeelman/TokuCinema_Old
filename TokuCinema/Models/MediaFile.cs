@@ -11,7 +11,8 @@ namespace TokuCinema.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class MediaFile
     {
         public System.Guid MediaFileId { get; set; }
@@ -20,10 +21,12 @@ namespace TokuCinema.Models
         public bool Image { get; set; }
         public bool Video { get; set; }
         public int Location { get; set; }
-        public string VideoLink { get; set; }
-        public string ImageLink { get; set; }
         public bool UseFileOverLink { get; set; }
-    
+        public string MediaLink { get; set; }
+        
+        // Used for file uploads
+        public HttpPostedFileBase File { get; set; }
+
         public virtual VideoVersion VideoVersion { get; set; }
     }
 }

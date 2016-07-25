@@ -213,6 +213,7 @@
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\MediaFilesController.cs" />
     <Compile Include="Controllers\PackagingsController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\RegionTypesController.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Models\Metadata\FormatMetadata.cs" />
     <Compile Include="Models\Metadata\FormatTypeMetadata.cs" />
     <Compile Include="Models\Metadata\LanguageMetadata.cs" />
+    <Compile Include="Models\Metadata\MediaFileMetadata.cs" />
     <Compile Include="Models\Metadata\MediaMetadata.cs" />
     <Compile Include="Models\Metadata\PackagingMetadata.cs" />
     <Compile Include="Models\Metadata\RegionMetadata.cs" />
@@ -361,6 +363,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PresentationService.cs" />
+    <Compile Include="Services\SearchingService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -503,6 +506,7 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ChildFactory.js" />
+    <Content Include="Scripts\javaScript-helpers.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -688,6 +692,13 @@
     <Content Include="Views\VideoReviews\Details.cshtml" />
     <Content Include="Views\VideoReviews\Edit.cshtml" />
     <Content Include="Views\VideoReviews\Index.cshtml" />
+    <Content Include="Views\VideoVersionTypes\MovieIndex.cshtml" />
+    <Content Include="Views\MediaFiles\Create.cshtml" />
+    <Content Include="Views\MediaFiles\Delete.cshtml" />
+    <Content Include="Views\MediaFiles\Details.cshtml" />
+    <Content Include="Views\MediaFiles\Edit.cshtml" />
+    <Content Include="Views\MediaFiles\Index.cshtml" />
+    <Content Include="Views\Shared\_VideoVersionTypeTitleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

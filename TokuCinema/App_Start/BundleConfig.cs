@@ -27,6 +27,17 @@ namespace TokuCinema
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            // Searching Scripts
+            bundles.Add(new ScriptBundle("~/bundles/search").Include(
+                "~/Scripts/jquery-1.10.2.js",
+                "~/Scripts/javaScript-helpers.js"));
+
+            // jQuery UI
+            bundles.Add(new ScriptBundle("~/bundles/jQueryUi").Include(
+                "~/Scripts/jquery-ui.js"));
+            bundles.Add(new StyleBundle("~/Content/jQueryUi").Include(
+                "~/Content/jquery-ui.css"));
+
             // Landing Page Theme
             #region light-wave
 

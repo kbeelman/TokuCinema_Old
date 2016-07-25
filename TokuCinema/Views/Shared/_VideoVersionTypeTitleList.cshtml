@@ -1,0 +1,6 @@
+﻿@model IEnumerable<TokuCinema.Models.VideoVersionType>
+
+
+@foreach (var item in Model){
+    @Html.DisplayFor(modelItem => item.VideoVersionTitle)
+}

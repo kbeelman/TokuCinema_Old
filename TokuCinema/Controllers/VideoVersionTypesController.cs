@@ -20,6 +20,17 @@ namespace TokuCinema.Controllers
             return View(db.VideoVersionTypes.ToList());
         }
 
+        // GET: MovieIndex
+        public ActionResult MovieIndex(string id)
+        {
+            ViewBag.queryId = id;
+
+            List<VideoVersionType> searchResults = new List<VideoVersionType>();
+            searchResults = TokuCinema.Services.SearchingService.MovieSearch(db.VideoVersionTypes.ToList(), id);
+
+            return View(searchResults.OrderBy(t => Math.Abs(t.VideoVersionTitle.Length - id.Length)));
+        }
+
         // GET: VideoVersionTypes/Details/5
         public ActionResult Details(Guid? id)
         {

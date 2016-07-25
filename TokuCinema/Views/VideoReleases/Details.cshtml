@@ -99,12 +99,12 @@
         @*Tabs*@
         <div id="tabs">
             <ul>
-                @for (int i = 0; i < Model.VideoVersions.Count-1; i++)
+                @for (int i = 0; i < Model.VideoVersions.Count; i++)
                 {
                     <li><a href="#tabs-@i">@Model.VideoVersions.ElementAt(i).VideoVersionType.VideoVersionTitle</a></li>
                 }
             </ul>
-            @for (int i = 0; i < Model.VideoVersions.Count-1; i++)
+            @for (int i = 0; i < Model.VideoVersions.Count; i++)
             {
                 <div id="tabs-@i">
                     @foreach (var item in Model.VideoVersions.ElementAt(i).VideoReviews)

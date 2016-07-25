@@ -23,9 +23,9 @@
                 @Html.ActionLink("Toku Cinema", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
+                @*<form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
-                </form>
+                </form>*@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -34,6 +34,9 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <h1>Quick Navigation</h1>
+                <div>
+                    <input type="search" id="searchBox" class="form-control" placeholder="Search...">
+                </div>
                 @*Core Forms*@
                 <a href="javascript:;" data-toggle="collapse" data-target="#coreDropdown"><h3>Core <span class="glyphicon glyphicon-chevron-down"></span></h3></a>
                 <ul class="nav nav-sidebar">
@@ -84,6 +87,7 @@
                         </ul>
                     </li>
                 </ul>
+                
             </div>
 
         </div>
@@ -99,11 +103,20 @@
         </footer>
     </div>
 
-    @*@Scripts.Render("~/bundles/dashboardScripts")*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/search")
 
+    <script>
+    $(document).ready(function () {
+        $("input").on("keydown", function search(e) {
+            if (e.keyCode == 13) {
+                goToView('MovieIndex', 'VideoVersionTypes', $(this).val());
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>
