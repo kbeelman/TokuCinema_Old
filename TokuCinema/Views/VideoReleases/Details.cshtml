@@ -66,7 +66,7 @@
         
         <!-- Related Projects Row -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12"><br />
                 <h3 class="page-header">Related Projects</h3>
             </div>
             <div class="col-sm-3 col-xs-6">
@@ -91,11 +91,13 @@
             </div>
         </div>
         <!-- /.row -->
-
-        <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-12"><br />
             <h3 class="page-header">Movie Reviews For This Release</h3>
         </div>
+    </div>
 
+    <div class="row">
         @*Tabs*@
         <div id="tabs">
             <ul>
@@ -110,12 +112,13 @@
                     @foreach (var item in Model.VideoVersions.ElementAt(i).VideoReviews)
                     {
                         <br />
-                            <span class="glyphicon glyphicon-link"></span>
-                            @Html.ActionLink(item.Introduction, "Details", "VideoReviews", new { id = item.VideoReviewId}, null)
+                        <span class="glyphicon glyphicon-link"></span>
+                            @Html.ActionLink(item.Introduction, "Details", "VideoReviews", new { id = item.VideoReviewId }, null)
                     }
                 </div>
             }
         </div>
+    </div>
 
 
     </div>

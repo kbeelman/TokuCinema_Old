@@ -697,12 +697,13 @@
     <Content Include="Views\VideoReviews\Details.cshtml" />
     <Content Include="Views\VideoReviews\Edit.cshtml" />
     <Content Include="Views\VideoReviews\Index.cshtml" />
-    <Content Include="Views\VideoVersionTypes\MovieIndex.cshtml" />
+    <Content Include="Views\VideoVersionTypes\SearchIndex.cshtml" />
     <Content Include="Views\MediaFiles\Create.cshtml" />
     <Content Include="Views\MediaFiles\Delete.cshtml" />
     <Content Include="Views\MediaFiles\Details.cshtml" />
     <Content Include="Views\MediaFiles\Edit.cshtml" />
     <Content Include="Views\MediaFiles\Index.cshtml" />
+    <Content Include="Views\VideoMedias\SearchIndex.cshtml" />
     <Content Include="Views\VideoMedias\MovieIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>

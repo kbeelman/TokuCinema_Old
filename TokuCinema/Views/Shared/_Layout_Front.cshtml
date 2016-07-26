@@ -6,65 +6,65 @@
     <title>@ViewBag.Title - Toku Cinema</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/dashboard-theme/css")
     @Styles.Render("~/Content/jquery-ui.css")
+    <script src="~/Scripts/ajax-helpers.js"></script>
 
-    @*jQuery UI*@
-    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-
-    <script type="text/javascript">
-        var appInsights=window.appInsights||function(config){
-            function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace","Ajax"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
-        }({
-            instrumentationKey:"723381a5-1f17-4295-b3c5-2c8744bdbdc7"
-        });
-        
-        window.appInsights=appInsights;
-        appInsights.trackPageView();
-    </script>
 </head>
 <body class="background-godzilla2">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 @Html.ActionLink("Toku Cinema", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="strokeme">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="strokeme">@Html.Partial("_LoginPartial")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content back-gloss-light">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Toku Cinema</p>
-        </footer>
+
+    <div class="container-fluid strokeme">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 frontSidebar">
+                <h3>Content Navigation</h3>
+                <div class="form-group-sm ui-widget">
+                    <input id="tagsHome" class="form-control" placeholder="Search...">
+                </div>
+                @Html.ActionLink(" Movie Info ", "MovieIndex", "VideoMedias", null, new { @class = "btn button-custom specialButton" })
+                @Html.ActionLink("Reviews", "Index", "VideoReviews", null, new { @class = "btn btn-custom specialButton" })
+            </div>
+            
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 main" style="min-height: 1080px;">
+        <div id="bodyContainer" class="container body-content back-gloss-light">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Toku Cinema</p>
+            </footer>
+        </div>  
+    </div>
 
-    @*jQuery UI*@
-    <script src="~/Scripts/jquery-ui.js"></script>
+        @*@Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")*@
+        @RenderSection("scripts", required: false)
 
-    @*Tabs*@
-    <script>
-      $( function() {
-        $( "#tabs" ).tabs({
-          collapsible: true
-        });
-      } );
-    </script>
+        @*jQuery UI*@
+        <script src="~/Scripts/jquery-ui.js"></script>
+
+        @*Tabs*@
+        <script>
+            $(function () {
+                $("#tabs").tabs({
+                    collapsible: true
+                });
+            });
+        </script>
 
 </body>
 </html>

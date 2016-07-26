@@ -69,18 +69,19 @@
                 <div class="row animate-in" data-anim-type="fade-in-up">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                         <div class="services-wrapper">
-                            <i class="ion-document"></i>
-                            <h3> Media Release Data </h3>
-                            Morbi mollis lectus et ipsum sollicitudin varius.
-                            Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                            <i class="ion-ios-film-outline"></i>
+                            <h3>@Html.ActionLink(" Movie Info ", "MovieIndex", "VideoMedias", null, new { @class = "btn button-custom btn-custom-two" })</h3>
+                            View an index of all the movies we've documented or reviewed.
                         </div>
+                        
+                        
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                         <div class="services-wrapper">
                             <i class="ion-clipboard"></i>
-                            <h3> Reviews </h3>
-                            Morbi mollis lectus et ipsum sollicitudin varius.
-                            Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                            <h3>@Html.ActionLink(" Reviews ", "Index", "VideoReviews", null, new { @class = "btn button-custom btn-custom-two" })</h3>
+                            Read our comprehensive reviews, which dive deep into the nuances between different versions and 
+                            releases of the films in our database.
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">

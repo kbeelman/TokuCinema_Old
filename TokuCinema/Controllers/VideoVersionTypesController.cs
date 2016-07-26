@@ -20,8 +20,8 @@ namespace TokuCinema.Controllers
             return View(db.VideoVersionTypes.ToList());
         }
 
-        // GET: MovieIndex
-        public ActionResult MovieIndex(string id)
+        // GET: SearchIndex
+        public ActionResult SearchIndex(string id)
         {
             ViewBag.queryId = id;
 

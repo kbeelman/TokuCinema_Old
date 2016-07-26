@@ -27,8 +27,8 @@ namespace TokuCinema.Controllers
             return View(movies);
         }
 
-        // GET: MovieIndex
-        public ActionResult MovieIndex(string id)
+        // GET: SearchIndex
+        public ActionResult SearchIndex(string id)
         {
             ViewBag.queryId = id;
 
@@ -36,6 +36,12 @@ namespace TokuCinema.Controllers
             searchResults = TokuCinema.Services.SearchingService.VideoMediaMovieSearch(db.VideoVersionTypes.ToList(), id);
 
             return View(searchResults.OrderBy(t => Math.Abs(t.Medium.MediaOfficialTitle.Length - id.Length)));
+        }
+
+        // GET: MovieIndex
+        public ActionResult MovieIndex()
+        {
+            return View(db.VideoMedias.OrderBy(v => v.ReleaseDate));
         }
 
         // GET: VideoMedias/Details/5

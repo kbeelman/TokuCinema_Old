@@ -56,7 +56,7 @@
     <!-- /.row -->
     <!-- Related Projects Row -->
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12"><br />
             <h3 class="page-header">Versions</h3>
         </div>
         @*@foreach (var item in Model.VideoMedia.VideoVersionTypes)
@@ -66,6 +66,8 @@
                 <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
             </div>
             }*@
+     </div>
+    <div class="row">
         <div id="tabs">
             <ul>
                 @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count; i++)
@@ -73,28 +75,30 @@
                     <li><a href="#tabs-@i">@Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersionTitle</a></li>
                 }
             </ul>
-                @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count; i++)
-                {
-                    <div id="tabs-@i">
-                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().VideoVersionDescription):</label>
-                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersionDescription)</p>
-                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().Runtime):</label>
-                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).Runtime)</p>
-                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().AspectRatio):</label>
-                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).AspectRatio)</p>
-                        <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().ChapterStops):</label>
-                        <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).ChapterStops)</p>
+            @for (int i = 0; i < Model.VideoMedia.VideoVersionTypes.Count; i++)
+            {
+                <div id="tabs-@i">
+                    <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().VideoVersionDescription):</label>
+                    <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersionDescription)</p>
+                    <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().Runtime):</label>
+                    <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).Runtime)</p>
+                    <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().AspectRatio):</label>
+                    <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).AspectRatio)</p>
+                    <label>@Html.DisplayNameFor(Model => Model.VideoMedia.VideoVersionTypes.FirstOrDefault().ChapterStops):</label>
+                    <p>@Html.DisplayFor(Model => Model.VideoMedia.VideoVersionTypes.ElementAt(i).ChapterStops)</p>
+                    <br />
+                    <label>Releases with this version:</label>
+                    @foreach (var item in Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersions)
+                    {
                         <br />
-                        <label>Releases with this version:</label>
-                        @foreach (var item in Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersions)
-                        {
-                            <br />
                             <span class="glyphicon glyphicon-link"></span>
                             @Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item.VideoRelease), "Details", "VideoReleases", new { id = item.VideoReleaseId }, null)
-                        }
-                    </div>
-                }
+                    }
+                </div>
+            }
         </div>
+    </div>
+
     </div>
     <!-- /.row -->
     <hr>
