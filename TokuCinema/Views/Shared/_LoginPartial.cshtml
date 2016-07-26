@@ -20,18 +20,39 @@ else
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         <li>
-            <input type="search" id="searchBox" class="form-control navbar-form navbar-right" placeholder="Search...">
+            <input type="search" id="tags" class="form-control navbar-form navbar-right" placeholder="Search...">
         </li>
     </ul>
 }
 
+
 @Scripts.Render("~/bundles/search")
 <script>
     $(document).ready(function () {
-        $("input").on("keydown", function search(e) {
+        $("#tags, #tagsHome").on("keydown", function search(e) {
             if (e.keyCode == 13) {
                 goToView('MovieIndex', 'VideoMedias', $(this).val());
             }
+        });        
+
+        // Dynamically pull autocomplete options from VideoVersionType titles
+        var availableTags = []; 
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/VideoVersionTypes/GetVideoVersionTypeTitleList',
+            success: function (outputfromserver) {
+                for (var i = 0; i < outputfromserver.length; i++) {
+                    availableTags[i] = outputfromserver[i];
+                }
+            }
+        });
+
+        $("#tags, #tagsHome").autocomplete({
+
+            source: availableTags
+            
         });
     });
 </script>

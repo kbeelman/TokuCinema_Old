@@ -164,5 +164,16 @@ namespace TokuCinema.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult GetVideoVersionTypeTitleList()
+        {
+            List<string> titleList = new List<string>();
+            foreach (var item in db.VideoVersionTypes)
+            {
+                titleList.Add(item.VideoVersionTitle);
+            }
+
+            return Json(titleList, JsonRequestBehavior.AllowGet);
+        }
     }
 }

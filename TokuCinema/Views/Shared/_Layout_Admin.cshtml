@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/dashboard-theme/css")
+    @Styles.Render("~/Content/jquery-ui.css")
     <script src="~/Scripts/ajax-helpers.js"></script>
 
 </head>
@@ -34,8 +35,8 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <h1>Quick Navigation</h1>
-                <div>
-                    <input type="search" id="searchBox" class="form-control" placeholder="Search...">
+                <div class="form-group-sm ui-widget">
+                    <input id="tagsHome" class="form-control" placeholder="Search...">
                 </div>
                 @*Core Forms*@
                 <a href="javascript:;" data-toggle="collapse" data-target="#coreDropdown"><h3>Core <span class="glyphicon glyphicon-chevron-down"></span></h3></a>
@@ -103,7 +104,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

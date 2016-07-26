@@ -12,6 +12,7 @@ namespace TokuCinema.Services
 {
     public static class SearchingService
     {
+        // *Deprecated in favor of VideoMediaMovieSearch
         // Returns a list of Video Version Types that have titles containing a desired string from a list of Video Version Types
         public static List<VideoVersionType> MovieSearch(List<VideoVersionType> searchableList, string queryString)
         {
@@ -66,7 +67,7 @@ namespace TokuCinema.Services
         public static List<VideoMedia> VideoMediaMovieSearch(List<VideoVersionType> searchableList, string queryString)
         {
             // return object
-            List<VideoVersionType> results = new List<VideoVersionType>();
+            List<VideoVersionType> results = new List<VideoVersionType>();          
 
             try
             {
@@ -103,6 +104,10 @@ namespace TokuCinema.Services
 
             }
             catch (ArgumentNullException)
+            {
+                // Allow operation to continue and return an empty list.
+            }
+            catch (NullReferenceException)
             {
                 // Allow operation to continue and return an empty list.
             }

@@ -73,7 +73,7 @@ type: 'inside'
 /*====================================
 FILTER FUNCTIONALITY SCRIPTS
 ======================================*/
-$(window).load(function () {
+$(window).on('load', function () {
 var $container = $('#work-div');
 $container.isotope({
 filter: '*',

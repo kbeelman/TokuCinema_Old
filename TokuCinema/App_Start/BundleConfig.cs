@@ -29,12 +29,13 @@ namespace TokuCinema
 
             // Searching Scripts
             bundles.Add(new ScriptBundle("~/bundles/search").Include(
-                "~/Scripts/jquery-1.10.2.js",
-                "~/Scripts/javaScript-helpers.js"));
+                "~/Scripts/jquery-3.1.0.js",
+                "~/Scripts/javaScript-helpers.js",
+                "~/Scripts/jquery-ui.js"));
 
             // jQuery UI
-            bundles.Add(new ScriptBundle("~/bundles/jQueryUi").Include(
-                "~/Scripts/jquery-ui.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/jQueryUi").Include(
+            //    "~/Scripts/jquery-ui.js"));
             bundles.Add(new StyleBundle("~/Content/jQueryUi").Include(
                 "~/Content/jquery-ui.css"));
 
@@ -52,7 +53,7 @@ namespace TokuCinema
                 "~/light-switch/assets/js/source/jquery.fancybox.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/lightWaveScripts").Include(
-                "~/light-switch/assets/js/jquery-1.11.1.js",
+                //"~/light-switch/assets/js/jquery-1.11.1.js",
                 "~/light-switch/assets/js/bootstrap.js",
                 "~/light-switch/assets/js/vegas/jquery.vegas.min.js",
                 "~/light-switch/assets/js/jquery.easing.min.js",

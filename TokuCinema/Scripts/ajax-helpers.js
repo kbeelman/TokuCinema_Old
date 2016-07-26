@@ -15,3 +15,17 @@
             }
         });
     }
+
+// get list of video version types for autocomplete feature
+    function getVersionTypeTitleList(objectToSet) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/VideoVersionTypes/GetVideoVersionTypeTitleList',
+            success: function (outputfromserver) {
+                for (var i = 0; i < outputfromserver.length; i++) {
+                    objectToSet[i] = outputfromserver[i];
+                }
+            }
+        });
+    }
