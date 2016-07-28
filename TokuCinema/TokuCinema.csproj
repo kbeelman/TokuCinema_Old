@@ -389,15 +389,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="img\downloads-bg.jpg" />
+    <Content Include="img\ajax-loader.gif" />
     <Content Include="img\godzilla-2747178.jpg" />
     <Content Include="img\godzilla-56cce2340bedf.jpg" />
-    <Content Include="img\intro-bg.jpg" />
-    <Content Include="img\intro-bg_bak.jpg" />
-    <Content Include="img\intro-bg_bakcs.jpg" />
     <Content Include="img\joey.jpeg" />
     <Content Include="img\kiefer.jpg" />
-    <Content Include="img\map-marker.png" />
     <Content Include="light-switch\assets\css\animations.min.css" />
     <Content Include="light-switch\assets\css\bootstrap.css" />
     <Content Include="light-switch\assets\css\font-awesome.css" />
@@ -521,6 +517,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\layoutPartialScript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

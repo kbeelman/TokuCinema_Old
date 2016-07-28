@@ -5,7 +5,11 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul id="main" class="nav navbar-nav navbar-right">
+        <li>
+            <img src="~/img/ajax-loader.gif" id="ajaxSpinnerImage" title="Loading content..." style="margin-top: 75%;">
+        </li>
+        
         <li>@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
         
         <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>    
@@ -25,34 +29,5 @@ else
     </ul>
 }
 
-
 @Scripts.Render("~/bundles/search")
-<script>
-    $(document).ready(function () {
-        $("#tags, #tagsHome").on("keydown", function search(e) {
-            if (e.keyCode == 13) {
-                goToView('SearchIndex', 'VideoMedias', $(this).val());
-            }
-        });        
-
-        // Dynamically pull autocomplete options from VideoVersionType titles
-        var availableTags = []; 
-
-        $.ajax({
-            type: 'GET',
-            dataType: 'json',
-            url: '/VideoVersionTypes/GetVideoVersionTypeTitleList',
-            success: function (outputfromserver) {
-                for (var i = 0; i < outputfromserver.length; i++) {
-                    availableTags[i] = outputfromserver[i];
-                }
-            }
-        });
-
-        $("#tags, #tagsHome").autocomplete({
-
-            source: availableTags
-            
-        });
-    });
-</script>
+<script src="~/Scripts/layoutPartialScript.js"></script>
