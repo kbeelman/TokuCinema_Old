@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Release Details";
-    Layout = "~/Views/Shared/_Layout_Front.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout_Front.cshtml";
 
 }
 <h2>@ViewBag.Title</h2>
@@ -125,7 +125,10 @@
     <!-- /.row -->
     <hr>
 
-<!-- /.container -->
-<p>
-    @Html.ActionLink("Back to List", "Index", "Dashboard")
-</p>
+<script>
+    $(function () {
+        $("#tabs").tabs({
+            collapsible: true
+        });
+    });
+</script>

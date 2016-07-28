@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/dashboard-theme/css")
     @Styles.Render("~/Content/jquery-ui.css")
-    <script src="~/Scripts/ajax-helpers.js"></script>
+    @*<script src="~/Scripts/ajax-helpers.js"></script>*@
 
 </head>
 <body class="background-godzilla2">
@@ -25,28 +25,32 @@
         </div>
     </div>
 
-    <div id="contentNav" class="container-fluid strokeme">
+    <div class="container-fluid strokeme">
         <div class="row">
-            <div class="col-sm-3 col-md-2 frontSidebar">
+            <div class="btn showButton" id="showNav"><span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div id="contentNav" class="col-sm-3 col-md-2 frontSidebar" style="display: none;">
                 <h3>Content Navigation</h3>
                 <div class="form-group-sm ui-widget">
                     <input id="tagsHome" class="form-control" placeholder="Search...">
                 </div>
-                @Html.ActionLink(" Movie Info ", "MovieIndex", "VideoMedias", null, new { @class = "btn button-custom specialButton" })
+                @*Ajax*@
+                <button class="btn specialButton" onclick="ajaxMethodToElement('MovieIndex', 'VideoMedias', 'bodyContainer', '');">Movie Info</button>
+                @*Not Ajax*@
                 @Html.ActionLink("Reviews", "Index", "VideoReviews", null, new { @class = "btn btn-custom specialButton" })
+                <div class="btn" id="hideNav" style="font-size: 30px; margin-top: 50px;"><span class="glyphicon glyphicon-chevron-left"></span></div>
             </div>
-            
         </div>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 main" style="min-height: 1080px;">
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main background-godzilla2" style="min-height: 1080px;">
         <div id="bodyContainer" class="container body-content back-gloss-light">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Toku Cinema</p>
-            </footer>
-        </div>  
+        </div>
+        <hr />
+        <footer>
+            <p class="strokeme">&copy; @DateTime.Now.Year - Toku Cinema</p>
+        </footer>
     </div>
 
         @*@Scripts.Render("~/bundles/jquery")
@@ -58,11 +62,21 @@
 
         @*Tabs*@
         <script>
-            $(function () {
-                $("#tabs").tabs({
-                    collapsible: true
+            //$(function () {
+            //    $("#tabs").tabs({
+            //        collapsible: true
+            //    });
+            //});
+
+            $(document)
+                $("#showNav").click(function() {
+                    $("#contentNav").show();
                 });
-            });
+
+                $("#hideNav").click(function () {
+                    $("#contentNav").hide();
+                });
+            
         </script>
 
 </body>

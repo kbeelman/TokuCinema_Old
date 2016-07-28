@@ -29,9 +29,9 @@ $(document).ready(function () {
     // Show and hide Ajax spinner based on whether or not an ajax query is loading.
     $(document)
         .ajaxStart(function () {
-            $("#ajaxSpinnerImage").show();
+            $("#ajaxSpinnerImage, #ajaxSpinnerImageNoLog").show();
         })
         .ajaxStop(function () {
-            $("#ajaxSpinnerImage").hide();
+            $("#ajaxSpinnerImage, #ajaxSpinnerImageNoLog").hide();
         });
 });

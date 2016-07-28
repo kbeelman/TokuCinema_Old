@@ -5,7 +5,7 @@
             var id = OptionalId;
         }
         
-        var urlString = "/" + ControllerName + "/" + ActionName + "?" + id;
+        var urlString = "/" + ControllerName + "/" + ActionName + "/" + id;
 
         $.ajax({
             url: urlString,
@@ -14,6 +14,8 @@
                 $("#" + ElementId).html(result);
             }
         });
+
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
     }
 
 // get list of video version types for autocomplete feature

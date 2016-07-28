@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Movie Details";
-    Layout = "~/Views/Shared/_Layout_Front.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout_Front.cshtml";
 
 }
 <h2>@ViewBag.Title</h2>
@@ -91,8 +91,8 @@
                     @foreach (var item in Model.VideoMedia.VideoVersionTypes.ElementAt(i).VideoVersions)
                     {
                         <br />
-                            <span class="glyphicon glyphicon-link"></span>
-                            @Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item.VideoRelease), "Details", "VideoReleases", new { id = item.VideoReleaseId }, null)
+                            @*@Html.ActionLink(TokuCinema.Services.PresentationService.GetReleaseName(item.VideoRelease), "Details", "VideoReleases", new { id = item.VideoReleaseId }, null)*@
+                            <button class="btn btn-link" onclick="ajaxMethodToElement('Details', 'VideoReleases', 'bodyContainer', '@item.VideoReleaseId');"><span class="glyphicon glyphicon-link"></span>@TokuCinema.Services.PresentationService.GetReleaseName(item.VideoRelease)</button>
                     }
                 </div>
             }
@@ -102,8 +102,11 @@
     </div>
     <!-- /.row -->
     <hr>
-</div>
-<!-- /.container -->
-<p>
-    @Html.ActionLink("Back to List", "Index", "Dashboard")
-</p>
+
+<script>
+    $(function () {
+        $("#tabs").tabs({
+            collapsible: true
+        });
+    });
+</script>
