@@ -191,3 +191,21 @@ body {
   color: #fff;
   background-color: #428bca;
 }
+
+/* Hide for mobile, show later */
+.breadCrumb-nav {
+  display: none;
+}
+@media (min-width: 768px) {
+    .breadCrumb-nav {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        z-index: 0;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: transparent;       
+        font-size: 30px;
+    }
+}

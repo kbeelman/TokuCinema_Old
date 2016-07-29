@@ -25,6 +25,7 @@
         </div>
     </div>
 
+    @*Nav*@
     <div class="container-fluid strokeme">
         <div class="row">
             <div class="btn showButton" id="showNav"><span class="glyphicon glyphicon-chevron-right"></span></div>
@@ -42,42 +43,33 @@
         </div>
     </div>
 
-
+    @*Content / Body*@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main background-godzilla2" style="min-height: 1080px;">
         <div id="bodyContainer" class="container body-content back-gloss-light">
             @RenderBody()
         </div>
+
+        @*Custom Breadcrumb Nav*@
+        <nav class="breadCrumb-nav strokeme">
+            <div class="col-md-6">
+                <div id="goBack" class="btn btn-lg"><span class="glyphicon glyphicon-chevron-left glyphicon-align-left"></span></div>
+            </div>
+            <div class="col-md-6">
+                <div id="goForward" class="btn btn-lg"><span class="glyphicon glyphicon-chevron-right glyphicon-align-right"></span></div>
+            </div>
+        </nav>
+        
         <hr />
         <footer>
             <p class="strokeme">&copy; @DateTime.Now.Year - Toku Cinema</p>
         </footer>
     </div>
 
-        @*@Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")*@
         @RenderSection("scripts", required: false)
 
         @*jQuery UI*@
         <script src="~/Scripts/jquery-ui.js"></script>
-
-        @*Tabs*@
-        <script>
-            //$(function () {
-            //    $("#tabs").tabs({
-            //        collapsible: true
-            //    });
-            //});
-
-            $(document)
-                $("#showNav").click(function() {
-                    $("#contentNav").show();
-                });
-
-                $("#hideNav").click(function () {
-                    $("#contentNav").hide();
-                });
-            
-        </script>
+        <script src="~/Scripts/layoutFrontScript.js"></script>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TokuCinema.Models.VideoMedia>
 
 @{
-    Layout = "~/Views/Shared/_Layout_Front.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout_Front.cshtml";
     ViewBag.Title = "Search Results";
 }
 
@@ -31,7 +31,8 @@
                     <div class="col-md-5">
                         <h3>@Html.DisplayFor(modelItem => item.Medium.MediaOfficialTitle)</h3>
                         <p>@Html.DisplayFor(modelItem => item.Medium.MediaDescription)</p>
-                        @Html.ActionLink("View Details", "Details", "VideoMedias", new { id = item.VideoMediaId }, null)
+                        @*@Html.ActionLink("View Details", "Details", "VideoMedias", new { id = item.VideoMediaId }, null)*@
+                        <button class="btn btn-link" onclick="ajaxMethodToElement('Details', 'VideoMedias', 'bodyContainer', '@item.VideoMediaId');">View Details</button>
                         <br />
                         @*Display other titles that aren't equal to the original*@
                         @if (item.VideoVersionTypes.Count > 1)

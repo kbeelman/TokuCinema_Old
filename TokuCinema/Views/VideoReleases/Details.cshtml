@@ -112,8 +112,8 @@
                     @foreach (var item in Model.VideoVersions.ElementAt(i).VideoReviews)
                     {
                         <br />
-                        <span class="glyphicon glyphicon-link"></span>
-                            @Html.ActionLink(item.Introduction, "Details", "VideoReviews", new { id = item.VideoReviewId }, null)
+                            @*@Html.ActionLink(item.Introduction, "Details", "VideoReviews", new { id = item.VideoReviewId }, null)*@
+                            <button class="btn btn-link" onclick="ajaxMethodToElement('Details', 'VideoReviews', 'bodyContainer', '@item.VideoReviewId');"><span class="glyphicon glyphicon-link"></span>@item.Introduction</button>
                     }
                 </div>
             }

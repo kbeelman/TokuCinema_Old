@@ -1,6 +1,6 @@
 ﻿@model TokuCinema.Models.VideoReview
 @{
-    Layout = "~/Views/Shared/_Layout_Front.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout_Front.cshtml";
     ViewBag.Title = "Review Details";
 }
 <!-- Page Content -->

@@ -16,6 +16,24 @@
         });
 
         $('html, body').animate({ scrollTop: 0 }, 'slow');
+
+        addRequestToNav(urlString);
+        
+    }
+
+    // overload if request is already constructed - i.e. whole url
+    function ajaxRequestToElement(RequestString, ElementId) {
+        var urlString = RequestString;
+
+        $.ajax({
+            url: urlString,
+            //data: { 'id': id },
+            success: function (result) {
+                $("#" + ElementId).html(result);
+            }
+        });
+
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
     }
 
 // get list of video version types for autocomplete feature
