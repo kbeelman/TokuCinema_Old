@@ -32,12 +32,12 @@ $(document)
 
     // go forward to the next ajax request in the requests array - like browser forward button, but for ajax requests
     $("#goForward").click(function () {
-        if (frontNav.requsts.length > frontNav.currentTab) {
+        if (frontNav.requsts.length - 1 > frontNav.currentTab) {
             ajaxRequestToElement(frontNav.requsts[frontNav.currentTab + 1], 'bodyContainer');
             frontNav.currentTab += 1;
         }
     });
-            
+             
     // object literal to encapsulate nav requests
     var frontNav = {
         currentTab: 0,

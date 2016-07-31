@@ -21,7 +21,7 @@ namespace TokuCinema.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("TokuCinema_DataEntities", throwIfV1Schema: false)
+            : base("TokuCinema_DataEntities (TokuCinema)", throwIfV1Schema: false)
         {
         }
 

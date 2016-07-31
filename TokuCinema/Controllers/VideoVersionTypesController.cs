@@ -173,7 +173,7 @@ namespace TokuCinema.Controllers
                 titleList.Add(item.VideoVersionTitle);
             }
 
-            return Json(titleList, JsonRequestBehavior.AllowGet);
+            return Json(titleList.Distinct(), JsonRequestBehavior.AllowGet);
         }
     }
 }
