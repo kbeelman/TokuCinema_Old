@@ -21,10 +21,8 @@ namespace TokuCinema.Models
         public bool Image { get; set; }
         public bool Video { get; set; }
         public int Location { get; set; }
-        public bool UseFileOverLink { get; set; }
         public string MediaLink { get; set; }
-        
-        // Used for file uploads
+        public bool UseFileOverLink { get; set; }
         public HttpPostedFileBase File { get; set; }
 
         public virtual VideoVersion VideoVersion { get; set; }

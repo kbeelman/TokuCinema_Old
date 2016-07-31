@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67ef69dd0c0042f6a083a10dcc5e875a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="15.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="13" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AudioTrack" Width="1.5" PointX="10.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AudioTrackType" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Company" Width="1.5" PointX="3.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Distributor" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Format" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FormatType" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Language" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Medium" Width="1.5" PointX="1.5" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MediaFile" Width="1.5" PointX="10.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Packaging" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Region" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RegionType" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ShoppingItemType" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Standard" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.StandardType" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SubtitleTrack" Width="1.5" PointX="13.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SubtitleTrackType" Width="1.5" PointX="11.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoBoxSet" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoBoxSetType" Width="1.5" PointX="6" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoMedia" Width="1.5" PointX="3.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoRelease" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoReview" Width="1.5" PointX="10.5" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoShoppingItem" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoVersion" Width="1.5" PointX="8.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VideoVersionType" Width="1.5" PointX="6" PointY="24.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AudioTrack_AudioTrackType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AudioTrack_VideoVersion" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AudioTrackType_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShoppingItemType_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoRelease_Distributor" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Format_FormatType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Format_VideoRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SubtitleTrackType_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoMedia_Media" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MediaFile_VideoVersion" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoRelease_Packaging" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Region_RegionType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Region_VideoRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoShoppingItem_ShoppingItemType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Standard_StandardType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Standard_VideoRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SubtitleTrack_SubtitleTrackType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SubtitleTrack_VideoVersion" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoBoxSet_VideoBoxSetType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoBoxSet_VideoRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoVersionType_VideoMedia" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoShoppingItem_VideoRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoVersion_VideoRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoReview_VideoVersion" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VideoVersion_VideoVersionType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

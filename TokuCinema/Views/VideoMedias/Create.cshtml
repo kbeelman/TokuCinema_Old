@@ -41,6 +41,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Media.MediaImageLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Media.MediaImageLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Media.MediaImageLink, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.VideoMedia.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2 required-field" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.VideoMedia.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })

@@ -6,3 +6,4 @@ function goToView(actionName, controllerName, queryString) {
     var targetUrl = '/' + controllerName + '/' + actionName + '/' + desired;
     window.location.href=targetUrl;
 }
+
