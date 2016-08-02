@@ -8,23 +8,23 @@ Script to be executed upon loading of the _Layout_Front partial view
 
 */
 $(document)
-    // assign listener to show nav 'button'
-    $("#showNav").click(function() {
-        $("#contentNav").show();
-    });
 
-    // assign listener to hide nav 'button'
-    $("#hideNav").click(function () {
-        $("#contentNav").hide();
+    // object literal to encapsulate nav requests
+    var frontNav = {
+        currentTab: 0,
+        requsts: []
+    };
 
+    $(document).ready(function () {
         // reset nav - prevents other uses of the ajaxMethodToElement ajax helper from affecting front end nav context
         frontNav.currentTab = 0;
         frontNav.requsts.length = 0;
+        addRequestToNav("/VideoMedias/MovieIndex/");
     });
 
     // go back to the last ajax request - like browser back button, but for ajax requests
     $("#goBack").click(function () {
-        if (frontNav.currentTab > 0) {
+        if (frontNav.currentTab >= 1) {
             ajaxRequestToElement(frontNav.requsts[frontNav.currentTab - 1], 'bodyContainer');
             frontNav.currentTab -= 1;
         }
@@ -37,12 +37,6 @@ $(document)
             frontNav.currentTab += 1;
         }
     });
-             
-    // object literal to encapsulate nav requests
-    var frontNav = {
-        currentTab: 0,
-        requsts: []
-    };
 
     // helper function to add a request the nav object
     function addRequestToNav(requestString) {

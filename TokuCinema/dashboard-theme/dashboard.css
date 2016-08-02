@@ -153,10 +153,6 @@ body {
     width: 100%;
 }
 
-.specialButton::after{
-   content:"\e092";
-}
-
 /* Hide for mobile, show later */
 .showButton {
   display: none;

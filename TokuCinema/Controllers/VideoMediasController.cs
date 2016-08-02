@@ -35,7 +35,7 @@ namespace TokuCinema.Controllers
             List<VideoMedia> searchResults = new List<VideoMedia>();
             searchResults = TokuCinema.Services.SearchingService.VideoMediaMovieSearch(db.VideoVersionTypes.ToList(), id);
 
-            return View(searchResults.OrderBy(t => Math.Abs(t.Medium.MediaOfficialTitle.Length - id.Length)));
+            return View(searchResults.OrderBy(t => t.ReleaseDate).OrderBy(t => Math.Abs(t.Medium.MediaOfficialTitle.Length - id.Length)));
         }
 
         // GET: MovieIndex
